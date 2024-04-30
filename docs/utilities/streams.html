@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Streams | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Streams | Trakt.NET ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/docs/utilities/streams.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="streams">Streams</h1>
+
+<p>Streams provide a way to get multiple single objects, like movies, shows, etc. in a &quot;single&quot; requests.
+&quot;Single&quot; request means that under the hood the library makes a single request for each object, but the user only has to make one library request.</p>
+<p>Each object request is stored in a collection which is then passed into the library.
+The library requests the data for each object from the API and returns an <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0"><code>IAsyncEnumerable</code></a> with the responses for each object.</p>
+<h2 id="example">Example</h2>
+<pre><code class="lang-csharp">using TraktNet.Parameters;
+
+var extendedInfo = new TraktExtendedInfo { Full = true };
+
+// Store the ids of each object in a collection.
+var parameters = new TraktMultipleObjectsQueryParams
+{
+    &quot;game-of-thrones&quot;, // For this show we want only the minimal information.
+
+    // The following shows will have full information.
+    { &quot;breaking-bad&quot;, extendedInfo },
+    { &quot;the-last-of-us&quot;, extendedInfo }
+};
+
+// Get the responses for each show in an async stream.
+// NOTE: DO NOT &quot;await&quot; here.
+IAsyncEnumerable&lt;TraktResponse&lt;ITraktShow&gt;&gt; mutlipleShowsResponse = client.Shows.GetShowsStreamAsync(parameters);
+
+// NOTE: Instead &quot;await&quot; the loop.
+await foreach (TraktResponse&lt;ITraktShow&gt; showResponse in mutlipleShowsResponse)
+{
+    // Do something with the response.
+}
+</code></pre>
+<p>This feature depends heavily on multiple object parameters. An overview of all can be found in the <a href="../references/requestparameters.html#multiple-ids">references section</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/docs/utilities/streams.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

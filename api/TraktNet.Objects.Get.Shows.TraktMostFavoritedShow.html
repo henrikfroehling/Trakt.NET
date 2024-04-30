@@ -1,0 +1,990 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TraktMostFavoritedShow | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TraktMostFavoritedShow | Trakt.NET ">
+      
+      <meta name="description" content="A favorited Trakt show.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/new/develop/apiSpec/new?filename=TraktNet_Objects_Get_Shows_TraktMostFavoritedShow.md&amp;value=---%0Auid%3A%20TraktNet.Objects.Get.Shows.TraktMostFavoritedShow%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow">
+
+
+
+  <h1 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow" class="text-break">
+Class TraktMostFavoritedShow  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="TraktNet.html">TraktNet</a>.<a class="xref" href="TraktNet.Objects.html">Objects</a>.<a class="xref" href="TraktNet.Objects.Get.html">Get</a>.<a class="xref" href="TraktNet.Objects.Get.Shows.html">Shows</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Trakt.NET.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A favorited Trakt show.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TraktMostFavoritedShow : ITraktMostFavoritedShow, ITraktShow</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TraktMostFavoritedShow</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="TraktNet.Objects.Get.Shows.ITraktMostFavoritedShow.html">ITraktMostFavoritedShow</a></div>
+      <div><a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_AiredEpisodes_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.AiredEpisodes*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_AiredEpisodes" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.AiredEpisodes">
+  AiredEpisodes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the absolute number of already aired episodes in all seasons of the show.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? AiredEpisodes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Airs_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Airs*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Airs" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Airs">
+  Airs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the air time of the show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowAirs.html">ITraktShowAirs</a>.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITraktShowAirs Airs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowAirs.html">ITraktShowAirs</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_AvailableTranslationLanguageCodes_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.AvailableTranslationLanguageCodes*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_AvailableTranslationLanguageCodes" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.AvailableTranslationLanguageCodes">
+  AvailableTranslationLanguageCodes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L238"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the list of translation language codes (two letters) for the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;string&gt; AvailableTranslationLanguageCodes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Certification_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Certification*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Certification" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Certification">
+  Certification
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the content certification of the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Certification { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_CommentCount_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.CommentCount*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_CommentCount" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.CommentCount">
+  CommentCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the comment count of the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? CommentCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_CountryCode_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.CountryCode*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_CountryCode" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.CountryCode">
+  CountryCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the two letter language code for the country in which the show is produced.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CountryCode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_FirstAired_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.FirstAired*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_FirstAired" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.FirstAired">
+  FirstAired
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the UTC datetime when the first episode of the first season of the show was aired.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? FirstAired { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Genres_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Genres*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Genres" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Genres">
+  Genres
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the collection of Trakt genre slugs for the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;string&gt; Genres { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Homepage_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Homepage*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Homepage" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Homepage">
+  Homepage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the web address of the homepage of the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Homepage { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Ids_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Ids*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Ids" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Ids">
+  Ids
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the collection of ids for the show for various web services.
+See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITraktShowIds Ids { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_LanguageCode_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.LanguageCode*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_LanguageCode" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.LanguageCode">
+  LanguageCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the two letter language code of the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LanguageCode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Network_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Network*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Network" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Network">
+  Network
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the producing network name of the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Network { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Overview_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Overview*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Overview" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Overview">
+  Overview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the synopsis of the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Overview { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Rating_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Rating*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Rating" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Rating">
+  Rating
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the average user rating of the show.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float? Rating { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Runtime_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Runtime*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Runtime" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Runtime">
+  Runtime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the runtime for the show's episodes, in minutes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? Runtime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Seasons_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Seasons*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Seasons" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Seasons">
+  Seasons
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L274"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the collection of Trakt seasons for the show. See also <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a>.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;ITraktSeason&gt; Seasons { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Show_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Show*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Show" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Show">
+  Show
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the Trakt show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITraktShow Show { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Status_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Status*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Status" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Status">
+  Status
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the show's current status. See also <a class="xref" href="TraktNet.Enums.TraktShowStatus.html">TraktShowStatus</a>.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TraktShowStatus Status { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Enums.TraktShowStatus.html">TraktShowStatus</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Tagline_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Tagline*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Tagline" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Tagline">
+  Tagline
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the show tagline.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Tagline { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Title_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Title*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Title" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Title">
+  Title
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the show title.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Trailer_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Trailer*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Trailer" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Trailer">
+  Trailer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the web address of a trailer for the show.<p>Nullable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Trailer { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_UpdatedAt_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.UpdatedAt*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_UpdatedAt" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.UpdatedAt">
+  UpdatedAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the UTC datetime when the show was last updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? UpdatedAt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_UserCount_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.UserCount*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_UserCount" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.UserCount">
+  UserCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the user count for the <a class="xref" href="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.html#TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Show">Show</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? UserCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Votes_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Votes*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Votes" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Votes">
+  Votes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of votes for the show.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? Votes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Year_" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Year*"></a>
+
+  <h3 id="TraktNet_Objects_Get_Shows_TraktMostFavoritedShow_Year" data-uid="TraktNet.Objects.Get.Shows.TraktMostFavoritedShow.Year">
+  Year
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the show release year (first episode of the first season).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? Year { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Get/Shows/Implementations/TraktMostFavoritedShow.cs/#L9" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

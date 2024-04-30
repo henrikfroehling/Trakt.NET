@@ -1,180 +1,219 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TraktCheckinPostErrorResponse | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TraktCheckinPostErrorResponse | Trakt.NET ">
+      
+      <meta name="description" content="Represents a checkin error response.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/new/develop/apiSpec/new?filename=TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse.md&amp;value=---%0Auid%3A%20TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
 
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class TraktCheckinPostErrorResponse
- | Trakt.NET </title>
-      <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class TraktCheckinPostErrorResponse
- | Trakt.NET ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
 
-            <a class="brand" href="../index.html">
-              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-              <span class="brand-title">Trakt.NET</span>
-            </a>        </div>
+  </head>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <div class="mobile-hide">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-                          <span class="brand-title">Trakt.NET</span>
-                        </a>                      </div>
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                    <article class="content wrap" id="_content" data-uid="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse">
+        <article data-uid="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse">
 
 
-  <h1 id="TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse" data-uid="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse" class="text-break">Class TraktCheckinPostErrorResponse
-</h1>
-  <div class="markdown level0 summary"><p>Represents a checkin error response.</p>
+
+  <h1 id="TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse" data-uid="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse" class="text-break">
+Class TraktCheckinPostErrorResponse  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Post/Checkins/Responses/Implementations/TraktCheckinPostErrorResponse.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="TraktNet.html">TraktNet</a>.<a class="xref" href="TraktNet.Objects.html">Objects</a>.<a class="xref" href="TraktNet.Objects.Post.html">Post</a>.<a class="xref" href="TraktNet.Objects.Post.Checkins.html">Checkins</a>.<a class="xref" href="TraktNet.Objects.Post.Checkins.Responses.html">Responses</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Trakt.NET.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a checkin error response.</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">TraktCheckinPostErrorResponse</span></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="TraktNet.Objects.Post.Checkins.Responses.ITraktCheckinPostErrorResponse.html">ITraktCheckinPostErrorResponse</a></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Objects.Post.Checkins.Responses.html">TraktNet.Objects.Post.Checkins.Responses</a></h6>
-  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
-  <h5 id="TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class TraktCheckinPostErrorResponse : ITraktCheckinPostErrorResponse</code></pre>
   </div>
-  <h3 id="properties">Properties
-</h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse_ExpiresAt" data-uid="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse.ExpiresAt">
-          <a class="xref" href="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse.html#TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse_ExpiresAt">ExpiresAt</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets or sets the UTC datetime, when the current checkin expires.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>Copyright &#169; 2016 - Current Henrik Fr&#246;hling et al.</span>
-                </div>
-            </main>
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TraktCheckinPostErrorResponse</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="TraktNet.Objects.Post.Checkins.Responses.ITraktCheckinPostErrorResponse.html">ITraktCheckinPostErrorResponse</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse_ExpiresAt_" data-uid="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse.ExpiresAt*"></a>
+
+  <h3 id="TraktNet_Objects_Post_Checkins_Responses_TraktCheckinPostErrorResponse_ExpiresAt" data-uid="TraktNet.Objects.Post.Checkins.Responses.TraktCheckinPostErrorResponse.ExpiresAt">
+  ExpiresAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Post/Checkins/Responses/Implementations/TraktCheckinPostErrorResponse.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the UTC datetime, when the current checkin expires.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? ExpiresAt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Objects/Post/Checkins/Responses/Implementations/TraktCheckinPostErrorResponse.cs/#L6" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

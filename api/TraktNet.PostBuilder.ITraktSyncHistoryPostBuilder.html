@@ -1,468 +1,2485 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface ITraktSyncHistoryPostBuilder | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface ITraktSyncHistoryPostBuilder | Trakt.NET ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/new/develop/apiSpec/new?filename=TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder.md&amp;value=---%0Auid%3A%20TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
 
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Interface ITraktSyncHistoryPostBuilder
- | Trakt.NET </title>
-      <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Interface ITraktSyncHistoryPostBuilder
- | Trakt.NET ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
 
-            <a class="brand" href="../index.html">
-              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-              <span class="brand-title">Trakt.NET</span>
-            </a>        </div>
+  </head>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <div class="mobile-hide">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-                          <span class="brand-title">Trakt.NET</span>
-                        </a>                      </div>
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                    <article class="content wrap" id="_content" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder">
+        <article data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder">
 
 
-  <h1 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder" class="text-break">Interface ITraktSyncHistoryPostBuilder
-</h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.PostBuilder.html">TraktNet.PostBuilder</a></h6>
-  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
-  <h5 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_syntax">Syntax</h5>
+
+  <h1 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder" class="text-break">
+Interface ITraktSyncHistoryPostBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="TraktNet.html">TraktNet</a>.<a class="xref" href="TraktNet.PostBuilder.html">PostBuilder</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Trakt.NET.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface ITraktSyncHistoryPostBuilder</code></pre>
   </div>
-  <h3 id="methods">Methods
-</h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_Build" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.Build">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_Build">Build()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a> instance with the added movies, shows, seasons and episodes.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_TraktNet_Objects_Get_Episodes_ITraktEpisode_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisode(TraktNet.Objects.Get.Episodes.ITraktEpisode)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_TraktNet_Objects_Get_Episodes_ITraktEpisode_">WithEpisode(ITraktEpisode)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episode</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisode(TraktNet.Objects.Get.Episodes.ITraktEpisodeIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds_">WithEpisode(ITraktEpisodeIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodeIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Episodes_ITraktEpisode__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodes(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Episodes.ITraktEpisode})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Episodes_ITraktEpisode__">WithEpisodes(IEnumerable&lt;ITraktEpisode&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodes</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodes(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Episodes.ITraktEpisodeIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds__">WithEpisodes(IEnumerable&lt;ITraktEpisodeIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodeIds</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedEpisode__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedEpisode})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedEpisode__">WithEpisodesWatchedAt(IEnumerable&lt;WatchedEpisode&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodesWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedEpisodeIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedEpisodeIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedEpisodeIds__">WithEpisodesWatchedAt(IEnumerable&lt;WatchedEpisodeIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodeIdsWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_Objects_Get_Episodes_ITraktEpisode_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.Objects.Get.Episodes.ITraktEpisode,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_Objects_Get_Episodes_ITraktEpisode_System_DateTime_">WithEpisodeWatchedAt(ITraktEpisode, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episode</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.Objects.Get.Episodes.ITraktEpisodeIds,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds_System_DateTime_">WithEpisodeWatchedAt(ITraktEpisodeIds, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodeIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_PostBuilder_WatchedEpisode_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.PostBuilder.WatchedEpisode)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_PostBuilder_WatchedEpisode_">WithEpisodeWatchedAt(WatchedEpisode)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodeWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_PostBuilder_WatchedEpisodeIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.PostBuilder.WatchedEpisodeIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_PostBuilder_WatchedEpisodeIds_">WithEpisodeWatchedAt(WatchedEpisodeIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">episodeIdsWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovie_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovie(TraktNet.Objects.Get.Movies.ITraktMovie)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovie_">WithMovie(ITraktMovie)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movie</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovieIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovie(TraktNet.Objects.Get.Movies.ITraktMovieIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovieIds_">WithMovie(ITraktMovieIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovie__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovies(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Movies.ITraktMovie})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovie__">WithMovies(IEnumerable&lt;ITraktMovie&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movies</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovieIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovies(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Movies.ITraktMovieIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovieIds__">WithMovies(IEnumerable&lt;ITraktMovieIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieIds</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedMovie__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMoviesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedMovie})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedMovie__">WithMoviesWatchedAt(IEnumerable&lt;WatchedMovie&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">moviesWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedMovieIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMoviesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedMovieIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedMovieIds__">WithMoviesWatchedAt(IEnumerable&lt;WatchedMovieIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieIdsWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_Objects_Get_Movies_ITraktMovie_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.Objects.Get.Movies.ITraktMovie,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_Objects_Get_Movies_ITraktMovie_System_DateTime_">WithMovieWatchedAt(ITraktMovie, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movie</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_Objects_Get_Movies_ITraktMovieIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.Objects.Get.Movies.ITraktMovieIds,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_Objects_Get_Movies_ITraktMovieIds_System_DateTime_">WithMovieWatchedAt(ITraktMovieIds, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_PostBuilder_WatchedMovie_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.PostBuilder.WatchedMovie)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_PostBuilder_WatchedMovie_">WithMovieWatchedAt(WatchedMovie)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_PostBuilder_WatchedMovieIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.PostBuilder.WatchedMovieIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_PostBuilder_WatchedMovieIds_">WithMovieWatchedAt(WatchedMovieIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieIdsWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeason_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeason(TraktNet.Objects.Get.Seasons.ITraktSeason)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeason_">WithSeason(ITraktSeason)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">season</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeason(TraktNet.Objects.Get.Seasons.ITraktSeasonIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_">WithSeason(ITraktSeasonIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeason__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasons(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Seasons.ITraktSeason})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeason__">WithSeasons(IEnumerable&lt;ITraktSeason&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasons</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeasonIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasons(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Seasons.ITraktSeasonIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeasonIds__">WithSeasons(IEnumerable&lt;ITraktSeasonIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonIds</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedSeason__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedSeason})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedSeason__">WithSeasonsWatchedAt(IEnumerable&lt;WatchedSeason&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonsWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedSeasonIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedSeasonIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedSeasonIds__">WithSeasonsWatchedAt(IEnumerable&lt;WatchedSeasonIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonIdsWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_Objects_Get_Seasons_ITraktSeason_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.Objects.Get.Seasons.ITraktSeason,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_Objects_Get_Seasons_ITraktSeason_System_DateTime_">WithSeasonWatchedAt(ITraktSeason, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">season</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.Objects.Get.Seasons.ITraktSeasonIds,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_System_DateTime_">WithSeasonWatchedAt(ITraktSeasonIds, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_PostBuilder_WatchedSeason_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.PostBuilder.WatchedSeason)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_PostBuilder_WatchedSeason_">WithSeasonWatchedAt(WatchedSeason)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_PostBuilder_WatchedSeasonIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.PostBuilder.WatchedSeasonIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_PostBuilder_WatchedSeasonIds_">WithSeasonWatchedAt(WatchedSeasonIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonIdsWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_TraktNet_Objects_Get_Shows_ITraktShow_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShow(TraktNet.Objects.Get.Shows.ITraktShow)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_TraktNet_Objects_Get_Shows_ITraktShow_">WithShow(ITraktShow)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">show</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_TraktNet_Objects_Get_Shows_ITraktShowIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShow(TraktNet.Objects.Get.Shows.ITraktShowIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_TraktNet_Objects_Get_Shows_ITraktShowIds_">WithShow(ITraktShowIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_TraktNet_PostBuilder_PostHistorySeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShow,TraktNet.PostBuilder.PostHistorySeasons)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_TraktNet_PostBuilder_PostHistorySeasons_">WithShowAndSeasons(ITraktShow, PostHistorySeasons)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">show</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_TraktNet_PostBuilder_PostHistorySeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShowIds,TraktNet.PostBuilder.PostHistorySeasons)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_TraktNet_PostBuilder_PostHistorySeasons_">WithShowAndSeasons(ITraktShowIds, PostHistorySeasons)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_PostBuilder_WatchedShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.PostBuilder.WatchedShowAndSeasons)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_PostBuilder_WatchedShowAndSeasons_">WithShowAndSeasons(WatchedShowAndSeasons)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showAndSeasons</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_PostBuilder_WatchedShowIdsAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.PostBuilder.WatchedShowIdsAndSeasons)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_PostBuilder_WatchedShowIdsAndSeasons_">WithShowAndSeasons(WatchedShowIdsAndSeasons)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIdsAndSeasons</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShow__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShows(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Shows.ITraktShow})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShow__">WithShows(IEnumerable&lt;ITraktShow&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">shows</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShowIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShows(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Shows.ITraktShowIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShowIds__">WithShows(IEnumerable&lt;ITraktShowIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowAndSeasons__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsAndSeasons(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShowAndSeasons})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowAndSeasons__">WithShowsAndSeasons(IEnumerable&lt;WatchedShowAndSeasons&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showsAndSeasons</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowIdsAndSeasons__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsAndSeasons(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShowIdsAndSeasons})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowIdsAndSeasons__">WithShowsAndSeasons(IEnumerable&lt;WatchedShowIdsAndSeasons&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIdsAndSeasons</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShow__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShow})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShow__">WithShowsWatchedAt(IEnumerable&lt;WatchedShow&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showsWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShowIds})">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowIds__">WithShowsWatchedAt(IEnumerable&lt;WatchedShowIds&gt;)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIdsWatchedAt</code> collection to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_Objects_Get_Shows_ITraktShow_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.Objects.Get.Shows.ITraktShow,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_Objects_Get_Shows_ITraktShow_System_DateTime_">WithShowWatchedAt(ITraktShow, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">show</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_Objects_Get_Shows_ITraktShowIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.Objects.Get.Shows.ITraktShowIds,System.DateTime)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_Objects_Get_Shows_ITraktShowIds_System_DateTime_">WithShowWatchedAt(ITraktShowIds, DateTime)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_PostBuilder_WatchedShow_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.PostBuilder.WatchedShow)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_PostBuilder_WatchedShow_">WithShowWatchedAt(WatchedShow)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_PostBuilder_WatchedShowIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.PostBuilder.WatchedShowIds)">
-          <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html#TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_PostBuilder_WatchedShowIds_">WithShowWatchedAt(WatchedShowIds)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIdsWatchedAt</code> to the builder.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>Copyright &#169; 2016 - Current Henrik Fr&#246;hling et al.</span>
-                </div>
-            </main>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_Build_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.Build*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_Build" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.Build">
+  Build()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L334"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a> instance with the added movies, shows, seasons and episodes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPost Build()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a></dt>
+    <dd><p>A new <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a> instance with the added movies, shows, seasons and episodes.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisode*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_TraktNet_Objects_Get_Episodes_ITraktEpisode_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisode(TraktNet.Objects.Get.Episodes.ITraktEpisode)">
+  WithEpisode(ITraktEpisode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L274"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episode</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisode(ITraktEpisode episode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episode</code> <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episode</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisode*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisode_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisode(TraktNet.Objects.Get.Episodes.ITraktEpisodeIds)">
+  WithEpisode(ITraktEpisodeIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodeIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisode(ITraktEpisodeIds episodeIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodeIds</code> <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodeIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_Objects_Get_Episodes_ITraktEpisode_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.Objects.Get.Episodes.ITraktEpisode,System.DateTime)">
+  WithEpisodeWatchedAt(ITraktEpisode, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L287"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episode</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodeWatchedAt(ITraktEpisode episode, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episode</code> <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">episode</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episode</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.Objects.Get.Episodes.ITraktEpisodeIds,System.DateTime)">
+  WithEpisodeWatchedAt(ITraktEpisodeIds, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodeIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodeWatchedAt(ITraktEpisodeIds episodeIds, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodeIds</code> <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">episodeIds</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodeIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_PostBuilder_WatchedEpisode_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.PostBuilder.WatchedEpisode)">
+  WithEpisodeWatchedAt(WatchedEpisode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L293"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodeWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodeWatchedAt(WatchedEpisode episodeWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodeWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedEpisode.html">WatchedEpisode</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedEpisode.html">WatchedEpisode</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodeWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodeWatchedAt_TraktNet_PostBuilder_WatchedEpisodeIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodeWatchedAt(TraktNet.PostBuilder.WatchedEpisodeIds)">
+  WithEpisodeWatchedAt(WatchedEpisodeIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L306"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodeIdsWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodeWatchedAt(WatchedEpisodeIds episodeIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodeIdsWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedEpisodeIds.html">WatchedEpisodeIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedEpisodeIds.html">WatchedEpisodeIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodeIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodes*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Episodes_ITraktEpisodeIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodes(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Episodes.ITraktEpisodeIds})">
+  WithEpisodes(IEnumerable&lt;ITraktEpisodeIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L318"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodeIds</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodes(IEnumerable&lt;ITraktEpisodeIds&gt; episodeIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodeIds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodeIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodes*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodes_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Episodes_ITraktEpisode__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodes(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Episodes.ITraktEpisode})">
+  WithEpisodes(IEnumerable&lt;ITraktEpisode&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L312"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodes</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodes(IEnumerable&lt;ITraktEpisode&gt; episodes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodes</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodesWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedEpisodeIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedEpisodeIds})">
+  WithEpisodesWatchedAt(IEnumerable&lt;WatchedEpisodeIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L330"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodeIdsWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodesWatchedAt(IEnumerable&lt;WatchedEpisodeIds&gt; episodeIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodeIdsWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedEpisodeIds.html">WatchedEpisodeIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedEpisodeIds.html">WatchedEpisodeIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodeIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodesWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithEpisodesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedEpisode__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithEpisodesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedEpisode})">
+  WithEpisodesWatchedAt(IEnumerable&lt;WatchedEpisode&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">episodesWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithEpisodesWatchedAt(IEnumerable&lt;WatchedEpisode&gt; episodesWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodesWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedEpisode.html">WatchedEpisode</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedEpisode.html">WatchedEpisode</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">episodesWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovie*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovie_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovie(TraktNet.Objects.Get.Movies.ITraktMovie)">
+  WithMovie(ITraktMovie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movie</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovie(ITraktMovie movie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movie</code> <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movie</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovie*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovieIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovie(TraktNet.Objects.Get.Movies.ITraktMovieIds)">
+  WithMovie(ITraktMovieIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movieIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovie(ITraktMovieIds movieIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movieIds</code> <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movieIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_Objects_Get_Movies_ITraktMovie_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.Objects.Get.Movies.ITraktMovie,System.DateTime)">
+  WithMovieWatchedAt(ITraktMovie, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movie</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovieWatchedAt(ITraktMovie movie, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movie</code> <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">movie</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movie</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_Objects_Get_Movies_ITraktMovieIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.Objects.Get.Movies.ITraktMovieIds,System.DateTime)">
+  WithMovieWatchedAt(ITraktMovieIds, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movieIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovieWatchedAt(ITraktMovieIds movieIds, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movieIds</code> <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">movieIds</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movieIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_PostBuilder_WatchedMovie_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.PostBuilder.WatchedMovie)">
+  WithMovieWatchedAt(WatchedMovie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movieWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovieWatchedAt(WatchedMovie movieWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movieWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedMovie.html">WatchedMovie</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedMovie.html">WatchedMovie</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movieWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovieWatchedAt_TraktNet_PostBuilder_WatchedMovieIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovieWatchedAt(TraktNet.PostBuilder.WatchedMovieIds)">
+  WithMovieWatchedAt(WatchedMovieIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movieIdsWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovieWatchedAt(WatchedMovieIds movieIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movieIdsWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedMovieIds.html">WatchedMovieIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedMovieIds.html">WatchedMovieIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movieIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovies*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovieIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovies(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Movies.ITraktMovieIds})">
+  WithMovies(IEnumerable&lt;ITraktMovieIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movieIds</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovies(IEnumerable&lt;ITraktMovieIds&gt; movieIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movieIds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movieIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovies*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMovies_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovie__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMovies(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Movies.ITraktMovie})">
+  WithMovies(IEnumerable&lt;ITraktMovie&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movies</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMovies(IEnumerable&lt;ITraktMovie&gt; movies)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movies</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movies</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMoviesWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedMovieIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMoviesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedMovieIds})">
+  WithMoviesWatchedAt(IEnumerable&lt;WatchedMovieIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">movieIdsWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMoviesWatchedAt(IEnumerable&lt;WatchedMovieIds&gt; movieIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>movieIdsWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedMovieIds.html">WatchedMovieIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedMovieIds.html">WatchedMovieIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">movieIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMoviesWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithMoviesWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedMovie__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithMoviesWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedMovie})">
+  WithMoviesWatchedAt(IEnumerable&lt;WatchedMovie&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">moviesWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithMoviesWatchedAt(IEnumerable&lt;WatchedMovie&gt; moviesWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>moviesWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedMovie.html">WatchedMovie</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedMovie.html">WatchedMovie</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">moviesWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeason*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeason_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeason(TraktNet.Objects.Get.Seasons.ITraktSeason)">
+  WithSeason(ITraktSeason)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">season</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeason(ITraktSeason season)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>season</code> <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">season</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeason*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeason(TraktNet.Objects.Get.Seasons.ITraktSeasonIds)">
+  WithSeason(ITraktSeasonIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasonIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeason(ITraktSeasonIds seasonIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasonIds</code> <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasonIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_Objects_Get_Seasons_ITraktSeason_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.Objects.Get.Seasons.ITraktSeason,System.DateTime)">
+  WithSeasonWatchedAt(ITraktSeason, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">season</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasonWatchedAt(ITraktSeason season, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>season</code> <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">season</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">season</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.Objects.Get.Seasons.ITraktSeasonIds,System.DateTime)">
+  WithSeasonWatchedAt(ITraktSeasonIds, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L238"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasonIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasonWatchedAt(ITraktSeasonIds seasonIds, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasonIds</code> <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">seasonIds</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasonIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_PostBuilder_WatchedSeason_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.PostBuilder.WatchedSeason)">
+  WithSeasonWatchedAt(WatchedSeason)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasonWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasonWatchedAt(WatchedSeason seasonWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasonWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedSeason.html">WatchedSeason</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedSeason.html">WatchedSeason</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasonWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonWatchedAt_TraktNet_PostBuilder_WatchedSeasonIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonWatchedAt(TraktNet.PostBuilder.WatchedSeasonIds)">
+  WithSeasonWatchedAt(WatchedSeasonIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L244"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasonIdsWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasonWatchedAt(WatchedSeasonIds seasonIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasonIdsWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedSeasonIds.html">WatchedSeasonIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedSeasonIds.html">WatchedSeasonIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasonIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeasonIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasons(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Seasons.ITraktSeasonIds})">
+  WithSeasons(IEnumerable&lt;ITraktSeasonIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L256"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasonIds</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasons(IEnumerable&lt;ITraktSeasonIds&gt; seasonIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasonIds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasonIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasons_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeason__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasons(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Seasons.ITraktSeason})">
+  WithSeasons(IEnumerable&lt;ITraktSeason&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasons</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasons(IEnumerable&lt;ITraktSeason&gt; seasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasons</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonsWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedSeasonIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedSeasonIds})">
+  WithSeasonsWatchedAt(IEnumerable&lt;WatchedSeasonIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasonIdsWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasonsWatchedAt(IEnumerable&lt;WatchedSeasonIds&gt; seasonIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasonIdsWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedSeasonIds.html">WatchedSeasonIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedSeasonIds.html">WatchedSeasonIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasonIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonsWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithSeasonsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedSeason__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithSeasonsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedSeason})">
+  WithSeasonsWatchedAt(IEnumerable&lt;WatchedSeason&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">seasonsWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithSeasonsWatchedAt(IEnumerable&lt;WatchedSeason&gt; seasonsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seasonsWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedSeason.html">WatchedSeason</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedSeason.html">WatchedSeason</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasonsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShow*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_TraktNet_Objects_Get_Shows_ITraktShow_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShow(TraktNet.Objects.Get.Shows.ITraktShow)">
+  WithShow(ITraktShow)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">show</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShow(ITraktShow show)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShow*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShow_TraktNet_Objects_Get_Shows_ITraktShowIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShow(TraktNet.Objects.Get.Shows.ITraktShowIds)">
+  WithShow(ITraktShowIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShow(ITraktShowIds showIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_System_Collections_Generic_IEnumerable_System_Int32__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShow,System.Collections.Generic.IEnumerable{System.Int32})">
+  WithShowAndSeasons(ITraktShow, IEnumerable&lt;int&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">show</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable&lt;int&gt; seasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> which will be added.</p>
+</dd>
+    <dt><code>seasons</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>The seasons for the <code class="paramref">show</code> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_System_Int32_System_Int32___" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShow,System.Int32,System.Int32[])">
+  WithShowAndSeasons(ITraktShow, int, params int[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">show</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> which will be added.</p>
+</dd>
+    <dt><code>season</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A season number for the <code class="paramref">show</code> which will be added.</p>
+</dd>
+    <dt><code>seasons</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd><p>An optional array of season numbers for the <code class="paramref">show</code> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_TraktNet_PostBuilder_PostHistorySeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShow,TraktNet.PostBuilder.PostHistorySeasons)">
+  WithShowAndSeasons(ITraktShow, PostHistorySeasons)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">show</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShow show, PostHistorySeasons seasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> which will be added.</p>
+</dd>
+    <dt><code>seasons</code> <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a> for the <code class="paramref">show</code> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_System_Collections_Generic_IEnumerable_System_Int32__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShowIds,System.Collections.Generic.IEnumerable{System.Int32})">
+  WithShowAndSeasons(ITraktShowIds, IEnumerable&lt;int&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable&lt;int&gt; seasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> which will be added.</p>
+</dd>
+    <dt><code>seasons</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>The seasons for the <code class="paramref">showIds</code> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_System_Int32_System_Int32___" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShowIds,System.Int32,System.Int32[])">
+  WithShowAndSeasons(ITraktShowIds, int, params int[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> which will be added.</p>
+</dd>
+    <dt><code>season</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A season number for the <code class="paramref">showIds</code> which will be added.</p>
+</dd>
+    <dt><code>seasons</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd><p>An optional array of season numbers for the <code class="paramref">showIds</code> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_TraktNet_PostBuilder_PostHistorySeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShowIds,TraktNet.PostBuilder.PostHistorySeasons)">
+  WithShowAndSeasons(ITraktShowIds, PostHistorySeasons)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShowIds showIds, PostHistorySeasons seasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> which will be added.</p>
+</dd>
+    <dt><code>seasons</code> <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a> for the <code class="paramref">showIds</code> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">seasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_PostBuilder_WatchedShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.PostBuilder.WatchedShowAndSeasons)">
+  WithShowAndSeasons(WatchedShowAndSeasons)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showAndSeasons</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(WatchedShowAndSeasons showAndSeasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showAndSeasons</code> <a class="xref" href="TraktNet.PostBuilder.WatchedShowAndSeasons.html">WatchedShowAndSeasons</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedShowAndSeasons.html">WatchedShowAndSeasons</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showAndSeasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowAndSeasons_TraktNet_PostBuilder_WatchedShowIdsAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowAndSeasons(TraktNet.PostBuilder.WatchedShowIdsAndSeasons)">
+  WithShowAndSeasons(WatchedShowIdsAndSeasons)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIdsAndSeasons</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowAndSeasons(WatchedShowIdsAndSeasons showIdsAndSeasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdsAndSeasons</code> <a class="xref" href="TraktNet.PostBuilder.WatchedShowIdsAndSeasons.html">WatchedShowIdsAndSeasons</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedShowIdsAndSeasons.html">WatchedShowIdsAndSeasons</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIdsAndSeasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_Objects_Get_Shows_ITraktShow_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.Objects.Get.Shows.ITraktShow,System.DateTime)">
+  WithShowWatchedAt(ITraktShow, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">show</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowWatchedAt(ITraktShow show, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">show</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_Objects_Get_Shows_ITraktShowIds_System_DateTime_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.Objects.Get.Shows.ITraktShowIds,System.DateTime)">
+  WithShowWatchedAt(ITraktShowIds, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIds</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowWatchedAt(ITraktShowIds showIds, DateTime watchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> which will be added.</p>
+</dd>
+    <dt><code>watchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>The UTC datetime when the <code class="paramref">showIds</code> was watched.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_PostBuilder_WatchedShow_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.PostBuilder.WatchedShow)">
+  WithShowWatchedAt(WatchedShow)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowWatchedAt(WatchedShow showWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedShow.html">WatchedShow</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedShow.html">WatchedShow</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowWatchedAt_TraktNet_PostBuilder_WatchedShowIds_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowWatchedAt(TraktNet.PostBuilder.WatchedShowIds)">
+  WithShowWatchedAt(WatchedShowIds)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIdsWatchedAt</code> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowWatchedAt(WatchedShowIds showIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdsWatchedAt</code> <a class="xref" href="TraktNet.PostBuilder.WatchedShowIds.html">WatchedShowIds</a></dt>
+    <dd><p>The <a class="xref" href="TraktNet.PostBuilder.WatchedShowIds.html">WatchedShowIds</a> which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShows*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShowIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShows(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Shows.ITraktShowIds})">
+  WithShows(IEnumerable&lt;ITraktShowIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIds</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShows(IEnumerable&lt;ITraktShowIds&gt; showIds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShows*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShows_System_Collections_Generic_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShow__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShows(System.Collections.Generic.IEnumerable{TraktNet.Objects.Get.Shows.ITraktShow})">
+  WithShows(IEnumerable&lt;ITraktShow&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">shows</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShows(IEnumerable&lt;ITraktShow&gt; shows)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>shows</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">shows</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowAndSeasons__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsAndSeasons(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShowAndSeasons})">
+  WithShowsAndSeasons(IEnumerable&lt;WatchedShowAndSeasons&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showsAndSeasons</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowsAndSeasons(IEnumerable&lt;WatchedShowAndSeasons&gt; showsAndSeasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showsAndSeasons</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedShowAndSeasons.html">WatchedShowAndSeasons</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedShowAndSeasons.html">WatchedShowAndSeasons</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showsAndSeasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsAndSeasons*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsAndSeasons_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowIdsAndSeasons__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsAndSeasons(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShowIdsAndSeasons})">
+  WithShowsAndSeasons(IEnumerable&lt;WatchedShowIdsAndSeasons&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIdsAndSeasons</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowsAndSeasons(IEnumerable&lt;WatchedShowIdsAndSeasons&gt; showIdsAndSeasons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdsAndSeasons</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedShowIdsAndSeasons.html">WatchedShowIdsAndSeasons</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedShowIdsAndSeasons.html">WatchedShowIdsAndSeasons</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIdsAndSeasons</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShowIds__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShowIds})">
+  WithShowsWatchedAt(IEnumerable&lt;WatchedShowIds&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showIdsWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowsWatchedAt(IEnumerable&lt;WatchedShowIds&gt; showIdsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdsWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedShowIds.html">WatchedShowIds</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedShowIds.html">WatchedShowIds</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIdsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsWatchedAt*"></a>
+
+  <h3 id="TraktNet_PostBuilder_ITraktSyncHistoryPostBuilder_WithShowsWatchedAt_System_Collections_Generic_IEnumerable_TraktNet_PostBuilder_WatchedShow__" data-uid="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.WithShowsWatchedAt(System.Collections.Generic.IEnumerable{TraktNet.PostBuilder.WatchedShow})">
+  WithShowsWatchedAt(IEnumerable&lt;WatchedShow&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given <code class="paramref">showsWatchedAt</code> collection to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ITraktSyncHistoryPostBuilder WithShowsWatchedAt(IEnumerable&lt;WatchedShow&gt; showsWatchedAt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showsWatchedAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.PostBuilder.WatchedShow.html">WatchedShow</a>&gt;</dt>
+    <dd><p>A collection of <a class="xref" href="TraktNet.PostBuilder.WatchedShow.html">WatchedShow</a>s which will be added.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>Returns a reference to itself. See also <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showsWatchedAt</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/Interfaces/ITraktSyncHistoryPostBuilder.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

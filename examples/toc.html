@@ -3,9 +3,9 @@
   <div>
     <div class="sidefilter">
       <form class="toc-filter">
-        <i class="bi bi-funnel-fill filter-icon"></i>
-        <i id="toc_filter_clear" class="bi bi-x-lg clear-icon"></i>
-        <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." autocomplete="off" onkeypress="if(event.keyCode==13) {return false;}">
+        <span class="glyphicon glyphicon-filter filter-icon"></span>
+        <span class="glyphicon glyphicon-remove clear-icon" id="toc_filter_clear"></span>
+        <input type="text" id="toc_filter_input" placeholder="Filter by title" onkeypress="if(event.keyCode==13) {return false;}">
       </form>
     </div>
     <div class="sidetoc">
@@ -13,88 +13,73 @@
 
           <ul class="nav level1">
                 <li>
-                      <a href="index.html" class="sidebar-item" name="" title="Overview">Overview</a>
-        
+                    <a href="index.html" name="" title="Overview">Overview</a>
                 </li>
                 <li>
-                      <span class="expand-stub"></span>
-                      <a>Authentication</a>
-        
+                    <span class="expand-stub"></span>
+                    <a>Authentication</a>
 
                     <ul class="nav level2">
                           <li>
-                                <a href="auth/device-authentication.html" class="sidebar-item" name="" title="Device Authentication">Device Authentication</a>
-        
+                              <a href="auth/device-authentication.html" name="" title="Device Authentication">Device Authentication</a>
                           </li>
                           <li>
-                                <a href="auth/oauth-authentication.html" class="sidebar-item" name="" title="OAuth Authentication">OAuth Authentication</a>
-        
+                              <a href="auth/oauth-authentication.html" name="" title="OAuth Authentication">OAuth Authentication</a>
                           </li>
                     </ul>
                 </li>
                 <li>
-                      <span class="expand-stub"></span>
-                      <a>Modules</a>
-        
+                    <span class="expand-stub"></span>
+                    <a>Modules</a>
 
                     <ul class="nav level2">
                           <li>
-                                <span class="expand-stub"></span>
-                                <a>Shows Module</a>
-        
+                              <span class="expand-stub"></span>
+                              <a>Shows Module</a>
 
                               <ul class="nav level3">
                                     <li>
-                                          <a href="modules/shows/get-trending-shows.html" class="sidebar-item" name="" title="Get Trending Shows">Get Trending Shows</a>
-        
+                                        <a href="modules/shows/get-trending-shows.html" name="" title="Get Trending Shows">Get Trending Shows</a>
                                     </li>
                                     <li>
-                                          <a href="modules/shows/get-single-show.html" class="sidebar-item" name="" title="Get Single Show">Get Single Show</a>
-        
+                                        <a href="modules/shows/get-single-show.html" name="" title="Get Single Show">Get Single Show</a>
                                     </li>
                                     <li>
-                                          <a href="modules/shows/get-multiple-shows.html" class="sidebar-item" name="" title="Get Multiple Shows">Get Multiple Shows</a>
-        
+                                        <a href="modules/shows/get-shows-stream.html" name="" title="Get Shows Stream">Get Shows Stream</a>
                                     </li>
                               </ul>
                           </li>
                     </ul>
                 </li>
                 <li>
-                      <span class="expand-stub"></span>
-                      <a>Parameters</a>
-        
+                    <span class="expand-stub"></span>
+                    <a>Parameters</a>
 
                     <ul class="nav level2">
                           <li>
-                                <span class="expand-stub"></span>
-                                <a>Filter</a>
-        
+                              <span class="expand-stub"></span>
+                              <a>Filter</a>
 
                               <ul class="nav level3">
                                     <li>
-                                          <a href="parameters/filter/calendar-filter.html" class="sidebar-item" name="" title="Calendar Filter">Calendar Filter</a>
-        
+                                        <a href="parameters/filter/calendar-filter.html" name="" title="Calendar Filter">Calendar Filter</a>
                                     </li>
                               </ul>
                           </li>
                           <li>
-                                <span class="expand-stub"></span>
-                                <a>Post Builder</a>
-        
+                              <span class="expand-stub"></span>
+                              <a>Post Builder</a>
 
                               <ul class="nav level3">
                                     <li>
-                                          <a href="parameters/postbuilder/recommendations-post-builder.html" class="sidebar-item" name="" title="Recommendations Post Builder">Recommendations Post Builder</a>
-        
+                                        <a href="parameters/postbuilder/favorites-post-builder.html" name="" title="Favorites Post Builder">Favorites Post Builder</a>
                                     </li>
                               </ul>
                           </li>
                     </ul>
                 </li>
                 <li>
-                      <a href="serialization/serialize-authorization.html" class="sidebar-item" name="" title="Serialization">Serialization</a>
-        
+                    <a href="serialization/serialize-authorization.html" name="" title="Serialization">Serialization</a>
                 </li>
           </ul>
       </div>

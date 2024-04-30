@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Request Parameters | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Request Parameters | Trakt.NET ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/docs/references/requestparameters.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="request-parameters">Request Parameters</h1>
+
+<p>Many methods in the <a href="modules.html">modules</a> accept <a href="requestparameters.html#extended-info">extended info</a> specifications, <a href="requestparameters.html#filters">filters</a> and / or collections with <a href="requestparameters.html#multiple-ids">multiple object ids</a>.</p>
+<h2 id="extended-info">Extended Info</h2>
+<p>A <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html"><code>TraktExtendedInfo</code></a> instance can be created to specify, how much data should be retrieved for a request. It is possible to create just one instance of it and use it for each request or to create a new instance of it for every new request.</p>
+<p>To create an instance of <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html"><code>TraktExtendedInfo</code></a>, there are basically two ways.</p>
+<pre><code class="lang-csharp">using TraktNet.Parameters;
+
+var extendedInfo = new TraktExtendedInfo
+{
+    Full = true
+};
+
+// or
+
+var extendedInfo = new TraktExtendedInfo().SetFull();
+</code></pre>
+<p><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html"><code>TraktExtendedInfo</code></a> has several options you can set and also reset.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Set</th>
+<th>Reset</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metadata</td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetMetadata"><code>SetMetadata()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Metadata"><code>Metadata = true</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetMetadata"><code>ResetMetadata()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Metadata"><code>Metadata = false</code></a></td>
+<td>Works only with <a class="xref" href="../../api/TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Sync.GetCollectionMoviesAsync()</code></a>, <a class="xref" href="../../api/TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Sync.GetCollectionShowsAsync()</code></a>, <a class="xref" href="../../api/TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionMoviesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Users.GetCollectionMoviesAsync()</code></a> and <a class="xref" href="../../api/TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Users.GetCollectionShowsAsync()</code></a>. Will be ignored otherwise.</td>
+</tr>
+<tr>
+<td>Full</td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetFull"><code>SetFull()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Full"><code>Full = true</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetFull"><code>ResetFull()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Full"><code>Full = false</code></a></td>
+<td>None</td>
+</tr>
+<tr>
+<td>NoSeasons</td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetNoSeasons"><code>SetNoSeasons()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_NoSeasons"><code>NoSeasons = true</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetNoSeasons"><code>ResetNoSeasons()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_NoSeasons"><code>NoSeasons = false</code></a></td>
+<td>Works only with <a class="xref" href="../../api/TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Sync.GetWatchedMoviesAsync()</code></a> and <a class="xref" href="../../api/TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Users.GetWatchedShowsAsync()</code></a>. Will be ignored otherwise.</td>
+</tr>
+<tr>
+<td>Episodes</td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetEpisodes"><code>SetEpisodes()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Episodes"><code>Episodes = true</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetEpisodes"><code>ResetEpisodes()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Episodes"><code>Episodes = false</code></a></td>
+<td>Works only with <a class="xref" href="../../api/TraktNet.Modules.TraktSeasonsModule.html#TraktNet_Modules_TraktSeasonsModule_GetAllSeasonsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_String_System_Threading_CancellationToken_"><code>TraktClient.Seasons.GetAllSeasonsAsync()</code></a>. Will be ignored otherwise.</td>
+</tr>
+<tr>
+<td>GuestStars</td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetGuestStars"><code>SetGuestStars()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_GuestStars"><code>GuestStars = true</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetGuestStars"><code>ResetGuestStars()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_GuestStars"><code>GuestStars = false</code></a></td>
+<td>Works only with <a class="xref" href="../../api/TraktNet.Modules.TraktMoviesModule.html#TraktNet_Modules_TraktMoviesModule_GetMoviePeopleAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktNet.Modules.TraktMoviesModule.GetMoviePeopleAsync()</code></a>, <a class="xref" href="../../api/TraktNet.Modules.TraktShowsModule.html#TraktNet_Modules_TraktShowsModule_GetShowPeopleAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Shows.GetShowPeopleAsync()</code></a>, <a class="xref" href="../../api/TraktNet.Modules.TraktSeasonsModule.html#TraktNet_Modules_TraktSeasonsModule_GetSeasonPeopleAsync_System_String_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Seasons.GetSeasonPeopleAsync()</code></a> and <a class="xref" href="../../api/TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktClient.Episodes.GetEpisodePeopleAsync()</code></a>. Will be ignored otherwise.</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetComments"><code>SetComments()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Comments"><code>Comments = true</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetComments"><code>ResetComments()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Comments"><code>Comments = false</code></a></td>
+<td>Works only with requests which might return comments. Will be ignored otherwise.</td>
+</tr>
+<tr>
+<td>Vip</td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetVip"><code>SetVip()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Vip"><code>Vip = true</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetVip"><code>ResetVip()</code></a> or <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Vip"><code>Vip = false</code></a></td>
+<td>Works only with <a class="xref" href="../../api/TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetUserProfileAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_"><code>TraktNet.Modules.TraktUsersModule.GetUserProfileAsync()</code></a> and <a class="xref" href="../../api/TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetLikesAsync_System_String_TraktNet_Enums_TraktUserLikeType_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_"><code>TraktNet.Modules.TraktUsersModule.GetLikesAsync()</code></a>. Will be ignored otherwise.</td>
+</tr>
+</tbody>
+</table>
+<p>With <code>Reset&lt;Option&gt;()</code> you can disable a single option and with <a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_Reset"><code>Reset()</code></a> you can disable all options.</p>
+<p><a class="xref" href="../../api/TraktNet.Parameters.TraktExtendedInfo.html"><code>TraktExtendedInfo</code></a> has a fluent interface which allows you to chain its method calls like in the following example.</p>
+<pre><code class="lang-csharp">using TraktNet.Parameters;
+
+var extendedInfo = new TraktExtendedInfo().SetMetadata().SetFull().SetNoSeasons().SetEpisodes().Reset().SetNoSeasons().Reset();
+</code></pre>
+<h2 id="filters">Filters</h2>
+<p>There are four different filters you can use.</p>
+<ul>
+<li><a class="xref" href="../../api/TraktNet.Parameters.ITraktCalendarFilter.html"><code>ITraktCalendarFilter</code></a> for all methods in the <a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Calendar"><code>TraktClient.Calendar</code></a> module</li>
+<li><a class="xref" href="../../api/TraktNet.Parameters.ITraktMovieFilter.html"><code>ITraktMovieFilter</code></a> for some methods in the <a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Movies"><code>TraktClient.Movies</code></a> module</li>
+<li><a class="xref" href="../../api/TraktNet.Parameters.ITraktShowFilter.html"><code>ITraktShowFilter</code></a> for some methods in the <a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Shows"><code>TraktClient.Shows</code></a> module</li>
+<li><a class="xref" href="../../api/TraktNet.Parameters.ITraktSearchFilter.html"><code>ITraktSearcFilter</code></a> for the <a class="xref" href="../../api/TraktNet.Modules.TraktSearchModule.html#TraktNet_Modules_TraktSearchModule_GetTextQueryResultsAsync_TraktNet_Enums_TraktSearchResultType_System_String_TraktNet_Enums_TraktSearchField_TraktNet_Parameters_ITraktSearchFilter_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_"><code>GetTextQueryResultsAsync()</code></a> method in the <a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Search"><code>TraktClient.Search</code></a> module</li>
+</ul>
+<p>For each filter exists a builder to create an instance of it.</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Builder</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Parameters.ITraktCalendarFilter.html"><code>ITraktCalendarFilter</code></a></td>
+<td><code>TraktFilter.NewCalendarFilter().Build()</code></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktFilter.html#TraktNet_Parameters_TraktFilter_NewCalendarFilter"><code>NewCalendarFilter()</code></a>, <a class="xref" href="../../api/TraktNet.Parameters.ITraktFilterBuilder-2.html#TraktNet_Parameters_ITraktFilterBuilder_2_Build"><code>.Build()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Parameters.ITraktMovieFilter.html"><code>ITraktMovieFilter</code></a></td>
+<td><code>TraktFilter.NewMovieFilter().Build()</code></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktFilter.html#TraktNet_Parameters_TraktFilter_NewMovieFilter"><code>NewMovieFilter()</code></a>, <a class="xref" href="../../api/TraktNet.Parameters.ITraktFilterBuilder-2.html#TraktNet_Parameters_ITraktFilterBuilder_2_Build"><code>.Build()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Parameters.ITraktShowFilter.html"><code>ITraktShowFilter</code></a></td>
+<td><code>TraktFilter.NewShowFilter().Build()</code></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktFilter.html#TraktNet_Parameters_TraktFilter_NewShowFilter"><code>NewShowFilter()</code></a>, <a class="xref" href="../../api/TraktNet.Parameters.ITraktFilterBuilder-2.html#TraktNet_Parameters_ITraktFilterBuilder_2_Build"><code>.Build()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Parameters.ITraktSearchFilter.html"><code>ITraktSearcFilter</code></a></td>
+<td><code>TraktFilter.NewSearchFilter().Build()</code></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktFilter.html#TraktNet_Parameters_TraktFilter_NewSearchFilter"><code>NewSearchFilter()</code></a>, <a class="xref" href="../../api/TraktNet.Parameters.ITraktFilterBuilder-2.html#TraktNet_Parameters_ITraktFilterBuilder_2_Build"><code>.Build()</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Each filter is immutable.</p>
+<p>If you want to change one, just create a new instance.</p>
+<p>Filters are only creatable through their builder methods.</p>
+<p>In the following example, a <a class="xref" href="../../api/TraktNet.Parameters.ITraktCalendarFilter.html"><code>ITraktCalendarFilter</code></a> is created.</p>
+<pre><code class="lang-csharp">using TraktNet.Parameters;
+
+ITraktCalendarFilter calendarFilter = TraktFilter.NewCalenderFilter()
+                                          .WithQuery(&quot;calendar movie&quot;)
+                                          .WithYears(2020, 2022)
+                                          .WithGenres(&quot;drama&quot;, &quot;fantasy&quot;)
+                                          .WithLanguages(&quot;en&quot;, &quot;de&quot;)
+                                          .WithCountries(&quot;us&quot;)
+                                          .WithRuntimes(30, 60)
+                                          .WithRatings(80, 95)
+                                          .Build();
+</code></pre>
+<h2 id="multiple-ids">Multiple Ids</h2>
+<p>The methods</p>
+<ul>
+<li><a class="xref" href="../../api/TraktNet.Modules.TraktMoviesModule.html#TraktNet_Modules_TraktMoviesModule_GetMoviesStreamAsync_TraktNet_Parameters_TraktMultipleObjectsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Movies.GetMoviesStreamAsync()</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Modules.TraktShowsModule.html#TraktNet_Modules_TraktShowsModule_GetShowsStreamAsync_TraktNet_Parameters_TraktMultipleObjectsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Shows.GetShowsStreamAsync()</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Modules.TraktSeasonsModule.html#TraktNet_Modules_TraktSeasonsModule_GetSeasonsStreamAsync_TraktNet_Parameters_TraktMultipleSeasonsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Seasons.GetSeasonsStreamAsync()</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodesStreamAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Episodes.GetEpisodesStreamAsync()</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Modules.TraktPeopleModule.html#TraktNet_Modules_TraktPeopleModule_GetPersonsStreamAsync_TraktNet_Parameters_TraktMultipleObjectsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.People.GetPersonsStreamAsync()</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPersonalListsStreamAsync_TraktNet_Parameters_TraktMultipleUserListsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Users.GetPersonalListsStreamAsync()</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Modules.TraktCommentsModule.html#TraktNet_Modules_TraktCommentsModule_GetCommentsStreamAsync_TraktNet_Parameters_TraktMultipleCommentsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Comments.GetCommentsStreamAsync()</code></a>
+require each a collection of mutliple ids of objects, which you want to retrieve, as an argument.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Collection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Modules.TraktMoviesModule.html#TraktNet_Modules_TraktMoviesModule_GetMoviesStreamAsync_TraktNet_Parameters_TraktMultipleObjectsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Movies.GetMoviesStreamAsync()</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleObjectsQueryParams.html"><code>TraktMultipleObjectsQueryParams</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Modules.TraktShowsModule.html#TraktNet_Modules_TraktShowsModule_GetShowsStreamAsync_TraktNet_Parameters_TraktMultipleObjectsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Shows.GetShowsStreamAsync()</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleObjectsQueryParams.html"><code>TraktMultipleObjectsQueryParams</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Modules.TraktSeasonsModule.html#TraktNet_Modules_TraktSeasonsModule_GetSeasonsStreamAsync_TraktNet_Parameters_TraktMultipleSeasonsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Seasons.GetSeasonsStreamAsync()</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleSeasonsQueryParams.html"><code>TraktMultipleSeasonsQueryParams</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodesStreamAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Episodes.GetEpisodesStreamAsync()</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleEpisodesQueryParams.html"><code>TraktMultipleEpisodesQueryParams</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Modules.TraktPeopleModule.html#TraktNet_Modules_TraktPeopleModule_GetPersonsStreamAsync_TraktNet_Parameters_TraktMultipleObjectsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.People.GetPersonsStreamAsync()</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleObjectsQueryParams.html"><code>TraktMultipleObjectsQueryParams</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPersonalListsStreamAsync_TraktNet_Parameters_TraktMultipleUserListsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Users.GetPersonalListsStreamAsync()</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleUserListsQueryParams.html"><code>TraktMultipleUserListsQueryParams</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Modules.TraktCommentsModule.html#TraktNet_Modules_TraktCommentsModule_GetCommentsStreamAsync_TraktNet_Parameters_TraktMultipleCommentsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Comments.GetCommentsStreamAsync()</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleCommentsQueryParams.html"><code>TraktMultipleCommentsQueryParams</code></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="traktmultipleobjectsqueryparams"><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleObjectsQueryParams.html"><code>TraktMultipleObjectsQueryParams</code></a></h3>
+<pre><code class="lang-csharp">using TraktNet.Modules;
+using TraktNet.Parameters;
+
+var queryParams = new TraktMultipleObjectsQueryParams
+{
+    // { id[, extended info] }
+    &quot;id-1&quot;,
+    { &quot;id-2&quot;, new TraktExtendedInfo { Full = true } },
+    &quot;id-3&quot;
+};
+
+// or
+
+var queryParams = new TraktMultipleObjectsQueryParams();
+
+queryParams.Add(&quot;id-1&quot;);
+queryParams.Add(&quot;id-2&quot;, new TraktExtendedInfo { Full = true });
+queryParams.Add(&quot;id-3&quot;);
+</code></pre>
+<h3 id="traktmultipleseasonsqueryparams"><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleSeasonsQueryParams.html"><code>TraktMultipleSeasonsQueryParams</code></a></h3>
+<pre><code class="lang-csharp">using TraktNet.Modules;
+using TraktNet.Parameters;
+
+var queryParams = new TraktMultipleSeasonsQueryParams
+{
+    // { show-id, seasonnumber[, extended info] }
+    { &quot;show-id-1&quot;, 1 },
+    { &quot;show-id-2&quot;, 3, new TraktExtendedInfo { Full = true } },
+    { &quot;show-id-3&quot;, 2 }
+};
+
+// or
+
+var queryParams = new TraktMultipleSeasonsQueryParams();
+
+queryParams.Add(&quot;show-id-1&quot;, 1);
+queryParams.Add(&quot;show-id-2&quot;, 3, new TraktExtendedInfo { Full = true });
+queryParams.Add(&quot;show-id-3&quot;, 2);
+</code></pre>
+<h3 id="traktmultipleepisodesqueryparams"><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleEpisodesQueryParams.html"><code>TraktMultipleEpisodesQueryParams</code></a></h3>
+<pre><code class="lang-csharp">using TraktNet.Modules;
+using TraktNet.Parameters;
+
+var queryParams = new TraktMultipleEpisodesQueryParams
+{
+    // { show-id, seasonnumber, episodenumber[, extended info] }
+    { &quot;show-id-1&quot;, 1, 1 },
+    { &quot;show-id-2&quot;, 3, 5, new TraktExtendedInfo { Full = true } },
+    { &quot;show-id-3&quot;, 2, 1 }
+};
+
+// or
+
+var queryParams = new TraktMultipleEpisodesQueryParams();
+
+queryParams.Add(&quot;show-id-1&quot;, 1, 1);
+queryParams.Add(&quot;show-id-2&quot;, 3, 5, new TraktExtendedInfo { Full = true });
+queryParams.Add(&quot;show-id-3&quot;, 2, 1);
+</code></pre>
+<h3 id="traktmultipleuserlistsqueryparams"><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleUserListsQueryParams.html"><code>TraktMultipleUserListsQueryParams</code></a></h3>
+<pre><code class="lang-csharp">using TraktNet.Modules;
+using TraktNet.Parameters;
+
+var queryParams = new TraktMultipleUserListsQueryParams
+{
+    // { username, list-id }
+    { &quot;username-1&quot;, &quot;list-id-1&quot; },
+    { &quot;username-2&quot;, &quot;list-id-3&quot; },
+    { &quot;username-3&quot;, &quot;list-id-5&quot; }
+};
+
+// or
+
+var queryParams = new TraktMultipleUserListsQueryParams();
+
+queryParams.Add(&quot;username-1&quot;, &quot;list-id-1&quot;);
+queryParams.Add(&quot;username-2&quot;, &quot;list-id-3&quot;);
+queryParams.Add(&quot;username-3&quot;, &quot;list-id-5&quot;);
+</code></pre>
+<h3 id="traktmultiplecommentsqueryparams"><a class="xref" href="../../api/TraktNet.Parameters.TraktMultipleCommentsQueryParams.html"><code>TraktMultipleCommentsQueryParams</code></a></h3>
+<pre><code class="lang-csharp">using TraktNet.Modules;
+using TraktNet.Parameters;
+
+var queryParams = new TraktMultipleCommentsQueryParams
+{
+    // { comment-id[, extended info] }
+    1,
+    { 2, new TraktExtendedInfo { Full = true } },
+    3
+};
+
+// or
+
+var queryParams = new TraktMultipleCommentsQueryParams();
+
+queryParams.Add(1);
+queryParams.Add(2, new TraktExtendedInfo { Full = true });
+queryParams.Add(3);
+</code></pre>
+<h2 id="post-objects-post-builder">Post Objects (Post Builder)</h2>
+<p>There are several methods which require a post object.
+These are mostly required in the following modules:</p>
+<ul>
+<li><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Checkins"><code>TraktClient.Checkins</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Comments"><code>TraktClient.Comments</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Scrobble"><code>TraktClient.Scrobble</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Users"><code>TraktClient.Users</code></a></li>
+</ul>
+<p>Here is an overview of the post objects, its modules and its builder methods:</p>
+<table>
+<thead>
+<tr>
+<th>Post Object</th>
+<th>Module</th>
+<th>Builder</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html"><code>ITraktSyncCollectionPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html"><code>ITraktSyncCollectionPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost"><code>TraktPost.NewSyncCollectionPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionRemovePost.html"><code>ITraktSyncCollectionRemovePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html"><code>ITraktSyncCollectionRemovePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionRemovePost"><code>TraktPost.NewSyncCollectionRemovePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost.html"><code>ITraktSyncFavoritesPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncFavoritesPostBuilder.html"><code>ITraktSyncFavoritesPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncFavoritesPost"><code>TraktPost.NewSyncFavoritesPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesRemovePost.html"><code>ITraktSyncFavoritesRemovePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncFavoritesRemovePostBuilder.html"><code>ITraktSyncFavoritesRemovePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncFavoritesRemovePost"><code>TraktPost.NewSyncFavoritesRemovePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html"><code>ITraktSyncHistoryPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html"><code>ITraktSyncHistoryPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryPost"><code>TraktPost.NewSyncHistoryPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost.html"><code>ITraktSyncHistoryRemovePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html"><code>ITraktSyncHistoryRemovePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryRemovePost"><code>TraktPost.NewSyncHistoryRemovePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost.html"><code>ITraktSyncRatingsPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html"><code>ITraktSyncRatingsPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost"><code>TraktPost.NewSyncRatingsPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsRemovePost.html"><code>ITraktSyncRatingsRemovePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html"><code>ITraktSyncRatingsRemovePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsRemovePost"><code>TraktPost.NewSyncRatingsRemovePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost.html"><code>ITraktSyncWatchlistPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html"><code>ITraktSyncWatchlistPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost"><code>TraktPost.NewSyncWatchlistPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistRemovePost.html"><code>ITraktSyncWatchlistRemovePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html"><code>ITraktSyncWatchlistRemovePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistRemovePost"><code>TraktPost.NewSyncWatchlistRemovePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Users.HiddenItems.ITraktUserHiddenItemsPost.html"><code>ITraktUserHiddenItemsPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Users"><code>TraktClient.Users</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html"><code>ITraktUserHiddenItemsPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsPost"><code>TraktPost.NewUserHiddenItemsPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Users.HiddenItems.ITraktUserHiddenItemsRemovePost.html"><code>ITraktUserHiddenItemsRemovePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Users"><code>TraktClient.Users</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktUserHiddenItemsRemovePostBuilder.html"><code>ITraktUserHiddenItemsRemovePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsRemovePost"><code>TraktPost.NewUserHiddenItemsRemovePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Users.ITraktUserPersonalListPost.html"><code>ITraktUserPersonalListItemsPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Users"><code>TraktClient.Users</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html"><code>ITraktUserPersonalListItemsPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsPost"><code>TraktPost.NewUserPersonalListItemsPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Users.PersonalListItems.ITraktUserPersonalListItemsRemovePost.html"><code>ITraktUserPersonalListItemsRemovePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Users"><code>TraktClient.Users</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktUserPersonalListItemsRemovePostBuilder.html"><code>ITraktUserPersonalListItemsRemovePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsRemovePost"><code>TraktPost.NewUserPersonalListItemsRemovePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Comments.ITraktMovieCommentPost.html"><code>ITraktMovieCommentPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Comments"><code>TraktClient.Comments</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktMovieCommentPostBuilder.html"><code>ITraktMovieCommentPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewMovieCommentPost"><code>TraktPost.NewMovieCommentPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Comments.ITraktShowCommentPost.html"><code>ITraktShowCommentPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Comments"><code>TraktClient.Comments</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktShowCommentPostBuilder.html"><code>ITraktShowCommentPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewShowCommentPost"><code>TraktPost.NewShowCommentPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Comments.ITraktSeasonCommentPost.html"><code>ITraktSeasonCommentPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Comments"><code>TraktClient.Comments</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktSeasonCommentPostBuilder.html"><code>ITraktSeasonCommentPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSeasonCommentPost"><code>TraktPost.NewSeasonCommentPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Comments.ITraktEpisodeCommentPost.html"><code>ITraktEpisodeCommentPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Comments"><code>TraktClient.Comments</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktEpisodeCommentPostBuilder.html"><code>ITraktEpisodeCommentPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewEpisodeCommentPost"><code>TraktPost.NewEpisodeCommentPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Comments.ITraktListCommentPost.html"><code>ITraktListCommentPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Comments"><code>TraktClient.Comments</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktListCommentPostBuilder.html"><code>ITraktListCommentPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewListCommentPost"><code>TraktPost.NewListCommentPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Checkins.ITraktMovieCheckinPost.html"><code>ITraktMovieCheckinPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Checkins"><code>TraktClient.Checkins</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktMovieCheckinPostBuilder.html"><code>ITraktMovieCheckinPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewMovieCheckinPost"><code>TraktPost.NewMovieCheckinPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Checkins.ITraktEpisodeCheckinPost.html"><code>ITraktEpisodeCheckinPost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Checkins"><code>TraktClient.Checkins</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktEpisodeCheckinPostBuilder.html"><code>ITraktEpisodeCheckinPostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewEpisodeCheckinPost"><code>TraktPost.NewEpisodeCheckinPost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Scrobbles.ITraktMovieScrobblePost.html"><code>ITraktMovieScrobblePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Scrobble"><code>TraktClient.Scrobble</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktMovieScrobblePostBuilder.html"><code>ITraktMovieScrobblePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewMovieScrobblePost"><code>TraktPost.NewMovieScrobblePost()</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/TraktNet.Objects.Post.Scrobbles.ITraktEpisodeScrobblePost.html"><code>ITraktEpisodeScrobblePost</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Scrobble"><code>TraktClient.Scrobble</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.ITraktEpisodeScrobblePostBuilder.html"><code>ITraktEpisodeScrobblePostBuilder</code></a></td>
+<td><a class="xref" href="../../api/TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewEpisodeScrobblePost"><code>TraktPost.NewEpisodeScrobblePost()</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>You do not need to use the builder methods for creating instances of post objects.</p>
+<p>It is also possible to just create an instance, like this:</p>
+<pre><code class="lang-csharp">ITraktSyncFavoritesPost favoritesPost = new TraktSyncFavoritesPost();
+</code></pre>
+<p>But it is recommended to use the builder methods.</p>
+<p>They check the added values for validity while creating an instance.</p>
+<p>The following example creates an <a class="xref" href="../../api/TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost.html"><code>ITraktSyncFavoritesPost</code></a> instance which is required for the <a class="xref" href="../../api/TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddFavoriteItemsAsync_TraktNet_Objects_Post_Syncs_Favorites_ITraktSyncFavoritesPost_System_Threading_CancellationToken_"><code>AddFavoriteItemsAsync()</code></a> method in the <a class="xref" href="../../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Sync"><code>TraktClient.Sync</code></a> module.</p>
+<pre><code class="lang-csharp">// Get shows and movies for this example.
+TraktPagedResponse&lt;ITraktTrendingMovie&gt; trendingMovies = await client.Movies.GetTrendingMoviesAsync();
+TraktPagedResponse&lt;ITraktTrendingShow&gt; trendingShows = await client.Shows.GetTrendingShowsAsync();
+
+// Create the post object with the queried shows and movies.
+ITraktSyncFavoritesPost favoritesPost = TraktPost.NewSyncFavoritesPost()
+                                            .WithMovies(trendingMovies)
+                                            .WithShows(trendingShows)
+                                            .Build();
+
+// Use the post object.
+TraktResponse&lt;ITraktSyncFavoritesPostResponse&gt; response = await client.Sync.AddFavoriteItemsAsync(favoritesPost);
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/docs/references/requestparameters.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

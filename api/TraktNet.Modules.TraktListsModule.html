@@ -1,236 +1,1767 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TraktListsModule | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TraktListsModule | Trakt.NET ">
+      
+      <meta name="description" content="Provides access to data retrieving methods specific to lists.  This module contains all methods of the &quot;Trakt API Doc - Lists&quot; section.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/new/develop/apiSpec/new?filename=TraktNet_Modules_TraktListsModule.md&amp;value=---%0Auid%3A%20TraktNet.Modules.TraktListsModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
 
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class TraktListsModule
- | Trakt.NET </title>
-      <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class TraktListsModule
- | Trakt.NET ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
 
-            <a class="brand" href="../index.html">
-              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-              <span class="brand-title">Trakt.NET</span>
-            </a>        </div>
+  </head>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <div class="mobile-hide">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-                          <span class="brand-title">Trakt.NET</span>
-                        </a>                      </div>
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                    <article class="content wrap" id="_content" data-uid="TraktNet.Modules.TraktListsModule">
+        <article data-uid="TraktNet.Modules.TraktListsModule">
 
 
-  <h1 id="TraktNet_Modules_TraktListsModule" data-uid="TraktNet.Modules.TraktListsModule" class="text-break">Class TraktListsModule
-</h1>
-  <div class="markdown level0 summary"><p>Provides access to data retrieving methods specific to lists.
+
+  <h1 id="TraktNet_Modules_TraktListsModule" data-uid="TraktNet.Modules.TraktListsModule" class="text-break">
+Class TraktListsModule  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_UnlikeList.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="TraktNet.html">TraktNet</a>.<a class="xref" href="TraktNet.Modules.html">Modules</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Trakt.NET.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides access to data retrieving methods specific to lists.</p>
 <p>
-This module contains all methods of the <a href="https://trakt.docs.apiary.io/#reference/lists">&quot;Trakt API Doc - Lists&quot;</a> section.
+This module contains all methods of the <a href="https://trakt.docs.apiary.io/#reference/lists">"Trakt API Doc - Lists"</a> section.
 </p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
-    <div class="level2"><span class="xref">TraktListsModule</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Modules.html">TraktNet.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
-  <h5 id="TraktNet_Modules_TraktListsModule_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class TraktListsModule : ATraktModule</code></pre>
   </div>
-  <h3 id="methods">Methods
-</h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="TraktNet_Modules_TraktListsModule_GetListAsync_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListAsync(System.String,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktListsModule.html#TraktNet_Modules_TraktListsModule_GetListAsync_System_String_System_Threading_CancellationToken_">GetListAsync(String, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> with the given Trakt-Id.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/lists/list/get-list">&quot;Trakt API Doc - Lists: List&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_System_String_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync(System.String,TraktNet.Enums.TraktCommentSortOrder,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktListsModule.html#TraktNet_Modules_TraktListsModule_GetListCommentsAsync_System_String_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetListCommentsAsync(String, TraktCommentSortOrder, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets top level comments for a list.
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/lists/list-comments/get-all-list-comments">&quot;Trakt API Doc - Lists: List Comments&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_System_String_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync(System.String,TraktNet.Enums.TraktListItemType,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktListsModule.html#TraktNet_Modules_TraktListsModule_GetListItemsAsync_System_String_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetListItemsAsync(String, TraktListItemType, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the items on a list.
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">&quot;Trakt API Doc - Lists: List Items&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_System_String_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync(System.String,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktListsModule.html#TraktNet_Modules_TraktListsModule_GetListLikesAsync_System_String_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetListLikesAsync(String, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the users who liked a list.
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-all-users-who-liked-a-list">&quot;Trakt API Doc - Lists: List Likes&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktListsModule_GetPopularListsAsync_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetPopularListsAsync(TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktListsModule.html#TraktNet_Modules_TraktListsModule_GetPopularListsAsync_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetPopularListsAsync(TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets popular lists.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/lists/popular/get-popular-lists">&quot;Trakt API Doc - Lists: Popular&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktListsModule_GetTrendingListsAsync_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetTrendingListsAsync(TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktListsModule.html#TraktNet_Modules_TraktListsModule_GetTrendingListsAsync_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetTrendingListsAsync(TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets trending lists.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/lists/trending/get-trending-lists">&quot;Trakt API Doc - Lists: Trending&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>Copyright &#169; 2016 - Current Henrik Fr&#246;hling et al.</span>
-                </div>
-            </main>
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
+      <div><span class="xref">TraktListsModule</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetListAsync(string, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetList.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> with the given Trakt-Id.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list/get-list">"Trakt API Doc - Lists: List"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktList&gt;&gt; GetListAsync(string listIdOrSlug, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The list's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> instance with the queried list's data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListAsync_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListAsync(System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetListAsync(uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetList.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> with the given Trakt-Id.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list/get-list">"Trakt API Doc - Lists: List"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktList&gt;&gt; GetListAsync(uint traktListId, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktListId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The list's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> instance with the queried list's data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktListId</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListAsync_TraktNet_Objects_Get_Lists_ITraktListIds_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListAsync(TraktNet.Objects.Get.Lists.ITraktListIds,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetListAsync(ITraktListIds, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetList.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> with the given Trakt-Id.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list/get-list">"Trakt API Doc - Lists: List"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktList&gt;&gt; GetListAsync(ITraktListIds listIds, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIds</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a></dt>
+    <dd><p>The list's ids. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> instance with the queried list's data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_System_String_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync(System.String,TraktNet.Enums.TraktCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListCommentsAsync(string, TraktCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListComments.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-comments/get-all-list-comments">"Trakt API Doc - Lists: List Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetListCommentsAsync(string listIdOrSlug, TraktCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The id or slug of the list, for which the comments should be queried.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried list comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_System_UInt32_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync(System.UInt32,TraktNet.Enums.TraktCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListCommentsAsync(uint, TraktCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListComments.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-comments/get-all-list-comments">"Trakt API Doc - Lists: List Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetListCommentsAsync(uint traktListId, TraktCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktListId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The list's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried list comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktListId</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_TraktNet_Objects_Get_Lists_ITraktList_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync(TraktNet.Objects.Get.Lists.ITraktList,TraktNet.Enums.TraktCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListCommentsAsync(ITraktList, TraktCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListComments.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-comments/get-all-list-comments">"Trakt API Doc - Lists: List Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetListCommentsAsync(ITraktList list, TraktCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a></dt>
+    <dd><p>The list. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried list comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">list</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListCommentsAsync_TraktNet_Objects_Get_Lists_ITraktListIds_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListCommentsAsync(TraktNet.Objects.Get.Lists.ITraktListIds,TraktNet.Enums.TraktCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListCommentsAsync(ITraktListIds, TraktCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListComments.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-comments/get-all-list-comments">"Trakt API Doc - Lists: List Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetListCommentsAsync(ITraktListIds listIds, TraktCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIds</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a></dt>
+    <dd><p>The list's ids. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktCommentSortOrder.html">TraktCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried list comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_System_String_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync(System.String,TraktNet.Enums.TraktListItemType,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListItemsAsync(string, TraktListItemType, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListItems.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the items on a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListItem&gt;&gt; GetListItemsAsync(string listIdOrSlug, TraktListItemType listItemType = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The id or slug of the list, for which the items should be queried.</p>
+</dd>
+    <dt><code>listItemType</code> <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a></dt>
+    <dd><p>Determines, which type of list items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_System_UInt32_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync(System.UInt32,TraktNet.Enums.TraktListItemType,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListItemsAsync(uint, TraktListItemType, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListItems.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the items on a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListItem&gt;&gt; GetListItemsAsync(uint traktListId, TraktListItemType listItemType = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktListId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The list's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>listItemType</code> <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a></dt>
+    <dd><p>Determines, which type of list items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktListId</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_TraktNet_Objects_Get_Lists_ITraktList_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync(TraktNet.Objects.Get.Lists.ITraktList,TraktNet.Enums.TraktListItemType,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListItemsAsync(ITraktList, TraktListItemType, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListItems.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the items on a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListItem&gt;&gt; GetListItemsAsync(ITraktList list, TraktListItemType listItemType = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a></dt>
+    <dd><p>The list. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.</p>
+</dd>
+    <dt><code>listItemType</code> <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a></dt>
+    <dd><p>Determines, which type of list items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">list</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListItemsAsync_TraktNet_Objects_Get_Lists_ITraktListIds_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListItemsAsync(TraktNet.Objects.Get.Lists.ITraktListIds,TraktNet.Enums.TraktListItemType,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListItemsAsync(ITraktListIds, TraktListItemType, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListItems.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the items on a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListItem&gt;&gt; GetListItemsAsync(ITraktListIds listIds, TraktListItemType listItemType = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIds</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a></dt>
+    <dd><p>The list's ids. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>listItemType</code> <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a></dt>
+    <dd><p>Determines, which type of list items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktListItemType.html">TraktListItemType</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListItem.html">ITraktListItem</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListLikesAsync(string, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListLikes.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the users who liked a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Lists: List Likes"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListLike&gt;&gt; GetListLikesAsync(string listIdOrSlug, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The id or slug of the list, for which the likes should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync(System.UInt32,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListLikesAsync(uint, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListLikes.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the users who liked a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Lists: List Likes"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListLike&gt;&gt; GetListLikesAsync(uint traktListId, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktListId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The list's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktListId</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_TraktNet_Objects_Get_Lists_ITraktList_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync(TraktNet.Objects.Get.Lists.ITraktList,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListLikesAsync(ITraktList, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListLikes.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the users who liked a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Lists: List Likes"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListLike&gt;&gt; GetListLikesAsync(ITraktList list, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a></dt>
+    <dd><p>The list. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">list</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetListLikesAsync_TraktNet_Objects_Get_Lists_ITraktListIds_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetListLikesAsync(TraktNet.Objects.Get.Lists.ITraktListIds,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetListLikesAsync(ITraktListIds, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_GetListLikes.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the users who liked a list.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Lists: List Likes"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktListLike&gt;&gt; GetListLikesAsync(ITraktListIds listIds, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIds</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a></dt>
+    <dd><p>The list's ids. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListLike.html">ITraktListLike</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetPopularListsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetPopularListsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetPopularListsAsync_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetPopularListsAsync(TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetPopularListsAsync(TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets popular lists.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/popular/get-popular-lists">"Trakt API Doc - Lists: Popular"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktPopularList&gt;&gt; GetPopularListsAsync(TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktPopularList.html">ITraktPopularList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried popular lists and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktPopularList.html">ITraktPopularList</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_GetTrendingListsAsync_" data-uid="TraktNet.Modules.TraktListsModule.GetTrendingListsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_GetTrendingListsAsync_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.GetTrendingListsAsync(TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetTrendingListsAsync(TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets trending lists.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/trending/get-trending-lists">"Trakt API Doc - Lists: Trending"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktTrendingList&gt;&gt; GetTrendingListsAsync(TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktTrendingList.html">ITraktTrendingList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried trending lists and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktTrendingList.html">ITraktTrendingList</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_LikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_LikeListAsync_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync(System.String,System.Threading.CancellationToken)">
+  LikeListAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_LikeList.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Like a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; LikeListAsync(string listIdOrSlug, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The id or slug of the list, which will be liked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_LikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_LikeListAsync_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync(System.UInt32,System.Threading.CancellationToken)">
+  LikeListAsync(uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_LikeList.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Like a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; LikeListAsync(uint traktListId, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktListId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The Trakt ID of the list, which will be liked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktListId</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_LikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_LikeListAsync_TraktNet_Objects_Get_Lists_ITraktList_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync(TraktNet.Objects.Get.Lists.ITraktList,System.Threading.CancellationToken)">
+  LikeListAsync(ITraktList, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_LikeList.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Like a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; LikeListAsync(ITraktList list, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a></dt>
+    <dd><p>The list, which will be liked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">list</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_LikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_LikeListAsync_TraktNet_Objects_Get_Lists_ITraktListIds_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.LikeListAsync(TraktNet.Objects.Get.Lists.ITraktListIds,System.Threading.CancellationToken)">
+  LikeListAsync(ITraktListIds, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_LikeList.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Like a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; LikeListAsync(ITraktListIds listIds, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIds</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a></dt>
+    <dd><p>The ids of the list, which will be liked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync(System.String,System.Threading.CancellationToken)">
+  UnlikeListAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_UnlikeList.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlike a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; UnlikeListAsync(string listIdOrSlug, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The id or slug of the list, which will be unliked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync(System.UInt32,System.Threading.CancellationToken)">
+  UnlikeListAsync(uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_UnlikeList.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlike a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; UnlikeListAsync(uint traktListId, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktListId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The Trakt ID of the list, which will be unliked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktListId</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_TraktNet_Objects_Get_Lists_ITraktList_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync(TraktNet.Objects.Get.Lists.ITraktList,System.Threading.CancellationToken)">
+  UnlikeListAsync(ITraktList, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_UnlikeList.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlike a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; UnlikeListAsync(ITraktList list, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a></dt>
+    <dd><p>The list, which will be unliked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">list</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktListsModule_UnlikeListAsync_TraktNet_Objects_Get_Lists_ITraktListIds_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktListsModule.UnlikeListAsync(TraktNet.Objects.Get.Lists.ITraktListIds,System.Threading.CancellationToken)">
+  UnlikeListAsync(ITraktListIds, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_UnlikeList.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlike a list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/lists/list-like/like-a-list">"Trakt API Doc - Lists: List Like"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; UnlikeListAsync(ITraktListIds listIds, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listIds</code> <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a></dt>
+    <dd><p>The ids of the list, which will be unliked. See also <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktListIds.html">ITraktListIds</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">listIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Lists/TraktListsModule_UnlikeList.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

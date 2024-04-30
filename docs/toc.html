@@ -3,9 +3,9 @@
   <div>
     <div class="sidefilter">
       <form class="toc-filter">
-        <i class="bi bi-funnel-fill filter-icon"></i>
-        <i id="toc_filter_clear" class="bi bi-x-lg clear-icon"></i>
-        <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." autocomplete="off" onkeypress="if(event.keyCode==13) {return false;}">
+        <span class="glyphicon glyphicon-filter filter-icon"></span>
+        <span class="glyphicon glyphicon-remove clear-icon" id="toc_filter_clear"></span>
+        <input type="text" id="toc_filter_input" placeholder="Filter by title" onkeypress="if(event.keyCode==13) {return false;}">
       </form>
     </div>
     <div class="sidetoc">
@@ -13,60 +13,70 @@
 
           <ul class="nav level1">
                 <li>
-                      <a href="index.html" class="sidebar-item" name="" title="Overview">Overview</a>
-        
+                    <a href="../index.html" name="" title="Quick Start">Quick Start</a>
                 </li>
                 <li>
-                      <a href="installation.html" class="sidebar-item" name="" title="Installation">Installation</a>
-        
+                    <a>Get started</a>
                 </li>
                 <li>
-                      <a href="building.html" class="sidebar-item" name="" title="Build from Source">Build from Source</a>
-        
+                    <a href="getstarted/installation.html" name="" title="Installation">Installation</a>
                 </li>
                 <li>
-                      <a href="namespaces.html" class="sidebar-item" name="" title="Namespaces">Namespaces</a>
-        
+                    <a href="getstarted/basicsetup.html" name="" title="Basic Setup">Basic Setup</a>
                 </li>
                 <li>
-                      <a href="basicsetup.html" class="sidebar-item" name="" title="Basic Setup">Basic Setup</a>
-        
+                    <a href="getstarted/configuration.html" name="" title="Configuration">Configuration</a>
                 </li>
                 <li>
-                      <a href="configuration.html" class="sidebar-item" name="" title="Configuration">Configuration</a>
-        
+                    <a>Essentials</a>
                 </li>
                 <li>
-                      <a href="auth.html" class="sidebar-item" name="" title="Authentication and Authorization">Authentication and Authorization</a>
-        
+                    <a href="essentials/auth.html" name="" title="Authentication and Authorization">Authentication and Authorization</a>
                 </li>
                 <li>
-                      <a href="async.html" class="sidebar-item" name="" title="Async / Await">Async / Await</a>
-        
+                    <a href="essentials/responses.html" name="" title="Responses">Responses</a>
                 </li>
                 <li>
-                      <a href="exceptionhandling.html" class="sidebar-item" name="" title="Exception Handling">Exception Handling</a>
-        
+                    <a href="essentials/exceptionhandling.html" name="" title="Exception Handling">Exception Handling</a>
                 </li>
                 <li>
-                      <a href="nullhandling.html" class="sidebar-item" name="" title="Null Handling">Null Handling</a>
-        
+                    <a href="essentials/paging.html" name="" title="Paging">Paging</a>
                 </li>
                 <li>
-                      <a href="responses.html" class="sidebar-item" name="" title="Responses">Responses</a>
-        
+                    <a href="essentials/nullhandling.html" name="" title="Null Handling">Null Handling</a>
                 </li>
                 <li>
-                      <a href="modules.html" class="sidebar-item" name="" title="Modules">Modules</a>
-        
+                    <a href="essentials/async.html" name="" title="Async / Await">Async / Await</a>
                 </li>
                 <li>
-                      <a href="requestparameters.html" class="sidebar-item" name="" title="Request Parameters">Request Parameters</a>
-        
+                    <a>Utilities</a>
                 </li>
                 <li>
-                      <a href="services.html" class="sidebar-item" name="" title="Services">Services</a>
-        
+                    <a href="utilities/serialization.html" name="" title="Serialization">Serialization</a>
+                </li>
+                <li>
+                    <a href="utilities/postbuilder.html" name="" title="Post Builder">Post Builder</a>
+                </li>
+                <li>
+                    <a href="utilities/filterbuilder.html" name="" title="Filter Builder">Filter Builder</a>
+                </li>
+                <li>
+                    <a href="utilities/streams.html" name="" title="Streams">Streams</a>
+                </li>
+                <li>
+                    <a>Reference</a>
+                </li>
+                <li>
+                    <a href="references/modules.html" name="" title="Modules">Modules</a>
+                </li>
+                <li>
+                    <a href="references/requestparameters.html" name="" title="Request Parameters">Request Parameters</a>
+                </li>
+                <li>
+                    <a href="references/namespaces.html" name="" title="Namespaces">Namespaces</a>
+                </li>
+                <li>
+                    <a href="references/building.html" name="" title="Build from Source">Build from Source</a>
                 </li>
           </ul>
       </div>

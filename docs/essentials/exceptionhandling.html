@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Exception Handling | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Exception Handling | Trakt.NET ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/docs/essentials/exceptionhandling.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="exception-handling">Exception Handling</h1>
+
+<p><strong>Trakt.NET</strong> uses exceptions extensively. Every exception in the library inherits by <a class="xref" href="../../api/TraktNet.Exceptions.TraktException.html"><code>TraktException</code></a>. That means you don't need to catch every single exception thrown by the library, only <a class="xref" href="../../api/TraktNet.Exceptions.TraktException.html"><code>TraktException</code></a>:</p>
+<h2 id="usage">Usage</h2>
+<p>The library usage would look like this:</p>
+<pre><code class="lang-csharp">using TraktNet.Exceptions;
+
+try
+{
+    var result = await client.[ModuleName].[MethodName]Async([arguments]);
+}
+catch (TraktException ex)
+{
+    Console.WriteLine($&quot;Exception message: {ex.Message}&quot;);
+    Console.WriteLine($&quot;Status code: {ex.StatusCode}&quot;);
+    Console.WriteLine($&quot;Request URL: {ex.RequestUrl}&quot;);                     // could be null
+    Console.WriteLine($&quot;Request message: {ex.RequestBody}&quot;);                // could be null
+    Console.WriteLine($&quot;Request response: {ex.Response}&quot;);                  // could be null
+    Console.WriteLine($&quot;Server Reason Phrase: {ex.ServerReasonPhrase}&quot;);    // could be null
+}
+</code></pre>
+<p>If you want to catch a specific exception, the usage would look like this:</p>
+<pre><code class="lang-csharp">try
+{
+    var response = await client.Module.RequestAsync(Parameters...);
+}
+catch (TraktMovieNotFoundException ex) // Specific exception, which is thrown when a movie is not found
+{
+    // Do something with the exception
+} 
+catch (TraktException ex) // Base exception type
+{
+    // Do something with the exception
+}
+</code></pre>
+<h2 id="disabling-exceptions">Disabling Exceptions</h2>
+<p>If you do not want to use exceptions, you can disable this behaviour with the following setting:</p>
+<pre><code class="lang-csharp">client.Configuration.ThrowResponseExceptions = false;
+</code></pre>
+<p>You then need to check whether a response is valid like this:</p>
+<pre><code class="lang-csharp">var response = await client.Module.RequestAsync(Parameters...);
+
+if (response) // Or response.IsSuccess
+{
+    // Do something with the response.
+}
+else
+{
+    // Get a possible thrown exception
+    var exception = response.Exception;
+}
+</code></pre>
+<h2 id="argument-exceptions">Argument Exceptions</h2>
+<p>Other exceptions, you need to be aware of, are <a href="https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-7.0"><code>ArgumentNullException</code></a>, <a href="https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception?view=net-7.0"><code>ArgumentException</code></a> and occasionally <a href="https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=net-7.0"><code>ArgumentOutOfRangeException</code></a>. As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Trakt.NET checks all input parameters before any actual Trakt API request is made.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>Argument...</code> exceptions are not affected by the setting <code>client.Configuration.ThrowResponseExceptions</code>.</p>
+</div>
+<p>This means, that you will get one of the <code>Argument...</code> exceptions before a <a class="xref" href="../../api/TraktNet.Exceptions.TraktException.html"><code>TraktException</code></a>.</p>
+<h2 id="not-found-exceptions">Not Found Exceptions</h2>
+<p>For every possible Trakt media object (show, movie, person, etc.), there is also an exception, if the object was not found, e.g. a call to</p>
+<pre><code class="lang-csharp">using TraktNet.Objects.Get.Shows;
+using TraktNet.Responses;
+
+TraktResponse&lt;ITraktShow&gt; show = client.Shows.GetShowAsync(&quot;unknown-slug&quot;);
+</code></pre>
+<p>could throw a <a class="xref" href="../../api/TraktNet.Exceptions.TraktShowNotFoundException.html"><code>TraktShowNotFoundException</code></a>.</p>
+<p>Each</p>
+<ul>
+<li><a class="xref" href="../../api/TraktNet.Exceptions.TraktCommentNotFoundException.html"><code>TraktCommentNotFoundException</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Exceptions.TraktEpisodeNotFoundException.html"><code>TraktEpisodeNotFoundException</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Exceptions.TraktListNotFoundException.html"><code>TraktListNotFoundException</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Exceptions.TraktMovieNotFoundException.html"><code>TraktMovieNotFoundException</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Exceptions.TraktPersonNotFoundException.html"><code>TraktPersonNotFoundException</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Exceptions.TraktSeasonNotFoundException.html"><code>TraktSeasonNotFoundException</code></a></li>
+<li><a class="xref" href="../../api/TraktNet.Exceptions.TraktShowNotFoundException.html"><code>TraktShowNotFoundException</code></a>
+has a property <a class="xref" href="../../api/TraktNet.Exceptions.TraktObjectNotFoundException.html#TraktNet_Exceptions_TraktObjectNotFoundException_ObjectId"><code>ObjectId</code></a>, that tells you the id, which was not found.</li>
+</ul>
+<p>For more information on responses see the <a href="responses.html">Responses Section</a>.</p>
+<h2 id="rate-limit-exception">Rate Limit Exception</h2>
+<p>Rate limits can be catched with the exception <a class="xref" href="../../api/TraktNet.Exceptions.TraktRateLimitException.html"><code>TraktRateLimitException</code></a>.
+This exception provides detailed information about the rate limit.</p>
+<h2 id="failed-vip-validation-exception">Failed VIP Validation Exception</h2>
+<p>The <a href="https://trakt.tv/">Trakt.tv</a> <a href="http://trakt.docs.apiary.io/#">API</a> provides requests which can only be used by VIP users.
+If a non <a href="https://trakt.tv/vip">VIP</a> user tries to use such a request, a <a class="xref" href="../../api/TraktNet.Exceptions.TraktFailedVIPValidationException.html"><code>TraktFailedVIPValidationException</code></a> is thrown.
+This exception provides a <code>UpgradeURL</code> where the user can sign up for <a href="https://trakt.tv/">Trakt.tv</a> <a href="https://trakt.tv/vip">VIP</a>.</p>
+<h2 id="user-account-limit-exception">User Account Limit Exception</h2>
+<p>A <a class="xref" href="../../api/TraktNet.Exceptions.TraktUserAccountLimitException.html"><code>TraktUserAccountLimitException</code></a> is thrown when a user has exceeded their account limits, such as list counts, item counts, etc.</p>
+<h2 id="locked-user-account-exception">Locked User Account Exception</h2>
+<p>If an OAuth authorized user has a locked user account, a <a class="xref" href="../../api/TraktNet.Exceptions.TraktLockedUserAccountException.html"><code>TraktLockedUserAccountException</code></a> is thrown.</p>
+<p>This means that the user should <a href="https://support.trakt.tv/">contact the Trakt support</a>.</p>
+<h2 id="request-validation-exception">Request Validation Exception</h2>
+<p>Any argument, such as movie or show ids, given to a module method is validated before actually executing the request.
+If for example an id is not valid (contains spaces, etc.) a <a class="xref" href="../../api/TraktNet.Exceptions.TraktRequestValidationException.html"><code>TraktRequestValidationException</code></a> is thrown.</p>
+<h2 id="post-validation-exception">Post Validation Exception</h2>
+<p>For post requests where data is sent to the <a href="https://trakt.tv/">Trakt.tv</a> <a href="http://trakt.docs.apiary.io/#">API</a> a <a class="xref" href="../../api/TraktNet.Exceptions.TraktPostValidationException.html"><code>TraktPostValidationException</code></a> might be thrown,
+if the post object contains invalid data.
+E.g. a required property is null.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/docs/essentials/exceptionhandling.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,476 +1,1805 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TraktSyncModule | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TraktSyncModule | Trakt.NET ">
+      
+      <meta name="description" content="Provides access to data retrieving methods specific to sync.  This module contains all methods of the &quot;Trakt API Doc - Sync&quot; section.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/new/develop/apiSpec/new?filename=TraktNet_Modules_TraktSyncModule.md&amp;value=---%0Auid%3A%20TraktNet.Modules.TraktSyncModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
 
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class TraktSyncModule
- | Trakt.NET </title>
-      <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class TraktSyncModule
- | Trakt.NET ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
 
-            <a class="brand" href="../index.html">
-              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-              <span class="brand-title">Trakt.NET</span>
-            </a>        </div>
+  </head>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <div class="mobile-hide">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-                          <span class="brand-title">Trakt.NET</span>
-                        </a>                      </div>
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                    <article class="content wrap" id="_content" data-uid="TraktNet.Modules.TraktSyncModule">
+        <article data-uid="TraktNet.Modules.TraktSyncModule">
 
 
-  <h1 id="TraktNet_Modules_TraktSyncModule" data-uid="TraktNet.Modules.TraktSyncModule" class="text-break">Class TraktSyncModule
-</h1>
-  <div class="markdown level0 summary"><p>Provides access to data retrieving methods specific to sync.
+
+  <h1 id="TraktNet_Modules_TraktSyncModule" data-uid="TraktNet.Modules.TraktSyncModule" class="text-break">
+Class TraktSyncModule  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="TraktNet.html">TraktNet</a>.<a class="xref" href="TraktNet.Modules.html">Modules</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Trakt.NET.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides access to data retrieving methods specific to sync.</p>
 <p>
-This module contains all methods of the <a href="http://docs.trakt.apiary.io/#reference/sync">&quot;Trakt API Doc - Sync&quot;</a> section.
+This module contains all methods of the <a href="http://trakt.docs.apiary.io/#reference/sync">"Trakt API Doc - Sync"</a> section.
 </p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
-    <div class="level2"><span class="xref">TraktSyncModule</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Modules.html">TraktNet.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
-  <h5 id="TraktNet_Modules_TraktSyncModule_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class TraktSyncModule : ATraktModule</code></pre>
   </div>
-  <h3 id="methods">Methods
-</h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_AddCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddCollectionItemsAsync(TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_System_Threading_CancellationToken_">AddCollectionItemsAsync(ITraktSyncCollectionPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds items to the user&apos;s collection. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-collection/add-items-to-collection">&quot;Trakt API Doc - Sync: Add to Collection&quot;</a> for more information.
-</p>
-<p>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
+      <div><span class="xref">TraktSyncModule</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_AddCollectionItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.AddCollectionItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_AddCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddCollectionItemsAsync(TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost,System.Threading.CancellationToken)">
+  AddCollectionItemsAsync(ITraktSyncCollectionPost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L312"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds items to the user's collection. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-collection/add-items-to-collection">"Trakt API Doc - Sync: Add to Collection"</a> for more information.
+</p><p>
 It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a> to create an instance
 of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a>.
 See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost">NewSyncCollectionPost()</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_AddPersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddPersonalRecommendationsAsync(TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddPersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_System_Threading_CancellationToken_">AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds items to the user&apos;s personal recommendations. Accepts movies and shows.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/add-items-to-personal-recommendations">&quot;Trakt API Doc - Sync: Add to Personal Recommendations&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncCollectionPostResponse&gt;&gt; AddCollectionItemsAsync(ITraktSyncCollectionPost collectionPost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionPost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a> instance containing all shows, seasons, episodes and movies, which should be added.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.Responses.ITraktSyncCollectionPostResponse.html">ITraktSyncCollectionPostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.Responses.ITraktSyncCollectionPostResponse.html">ITraktSyncCollectionPostResponse</a> instance, which contains information about which items were added, updated, existing and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_AddFavoriteItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.AddFavoriteItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_AddFavoriteItemsAsync_TraktNet_Objects_Post_Syncs_Favorites_ITraktSyncFavoritesPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddFavoriteItemsAsync(TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost,System.Threading.CancellationToken)">
+  AddFavoriteItemsAsync(ITraktSyncFavoritesPost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L658"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds items to the user's favorites. Accepts movies and shows.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/add-to-favorites/add-items-to-favorites">"Trakt API Doc - Sync: Add to Favorites"</a> for more information.
+</p><p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesPostBuilder.html">ITraktSyncFavoritesPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost.html">ITraktSyncFavoritesPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncFavoritesPost">NewSyncFavoritesPost()</a>.
 </p>
-<p>
-It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsPostBuilder.html">ITraktSyncRecommendationsPostBuilder</a> to create an instance
-of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost.html">ITraktSyncRecommendationsPost</a>.
-See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsPost">NewSyncRecommendationsPost()</a>.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_AddRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddRatingsAsync(TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_System_Threading_CancellationToken_">AddRatingsAsync(ITraktSyncRatingsPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds items to the user&apos;s ratings. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/add-ratings/add-new-ratings">&quot;Trakt API Doc - Sync: Add Ratings&quot;</a> for more information.
-</p>
-<p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncFavoritesPostResponse&gt;&gt; AddFavoriteItemsAsync(ITraktSyncFavoritesPost favoritesPost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>favoritesPost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost.html">ITraktSyncFavoritesPost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost.html">ITraktSyncFavoritesPost</a> instance containing all movies and shows, which should be added.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.Responses.ITraktSyncFavoritesPostResponse.html">ITraktSyncFavoritesPostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.Responses.ITraktSyncFavoritesPostResponse.html">ITraktSyncFavoritesPostResponse</a> instance, which contains information about which items were added and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_AddRatingsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.AddRatingsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_AddRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddRatingsAsync(TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost,System.Threading.CancellationToken)">
+  AddRatingsAsync(ITraktSyncRatingsPost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L592"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds items to the user's ratings. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/add-ratings/add-new-ratings">"Trakt API Doc - Sync: Add Ratings"</a> for more information.
+</p><p>
 It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a> to create an instance
 of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost.html">ITraktSyncRatingsPost</a>.
 See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost">NewSyncRatingsPost()</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_AddWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchedHistoryItemsAsync(TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryPost_System_Threading_CancellationToken_">AddWatchedHistoryItemsAsync(ITraktSyncHistoryPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds items to the user&apos;s watch history. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-history/add-items-to-watched-history">&quot;Trakt API Doc - Sync: Add to History&quot;</a> for more information.
-</p>
-<p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncRatingsPostResponse&gt;&gt; AddRatingsAsync(ITraktSyncRatingsPost ratingsPost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ratingsPost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost.html">ITraktSyncRatingsPost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost.html">ITraktSyncRatingsPost</a> instance containing all shows, seasons, episodes and movies, which should be added.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.Responses.ITraktSyncRatingsPostResponse.html">ITraktSyncRatingsPostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.Responses.ITraktSyncRatingsPostResponse.html">ITraktSyncRatingsPostResponse</a> instance, which contains information about which items were added and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_AddWatchedHistoryItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchedHistoryItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_AddWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchedHistoryItemsAsync(TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost,System.Threading.CancellationToken)">
+  AddWatchedHistoryItemsAsync(ITraktSyncHistoryPost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L484"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds items to the user's watch history. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/add-to-history/add-items-to-watched-history">"Trakt API Doc - Sync: Add to History"</a> for more information.
+</p><p>
 It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a> to create an instance
 of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a>.
 See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryPost">NewSyncHistoryPost()</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_AddWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchlistItemsAsync(TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_System_Threading_CancellationToken_">AddWatchlistItemsAsync(ITraktSyncWatchlistPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Adds items to the user&apos;s watchlist. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-watchlist/add-items-to-watchlist">&quot;Trakt API Doc - Sync: Add to Watchlist&quot;</a> for more information.
-</p>
-<p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncHistoryPostResponse&gt;&gt; AddWatchedHistoryItemsAsync(ITraktSyncHistoryPost historyPost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>historyPost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a> instance containing all shows, seasons, episodes and movies, which should be added.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.History.Responses.ITraktSyncHistoryPostResponse.html">ITraktSyncHistoryPostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.History.Responses.ITraktSyncHistoryPostResponse.html">ITraktSyncHistoryPostResponse</a> instance, which contains information about which items were added and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_AddWatchlistItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchlistItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_AddWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchlistItemsAsync(TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost,System.Threading.CancellationToken)">
+  AddWatchlistItemsAsync(ITraktSyncWatchlistPost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L865"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds items to the user's watchlist. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/add-to-watchlist/add-items-to-watchlist">"Trakt API Doc - Sync: Add to Watchlist"</a> for more information.
+</p><p>
 It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a> to create an instance
 of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost.html">ITraktSyncWatchlistPost</a>.
 See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost">NewSyncWatchlistPost()</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionMoviesAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetCollectionMoviesAsync(TraktExtendedInfo, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all collected movies in the user&apos;s collection.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-collection/get-collection">&quot;Trakt API Doc - Sync: Get Collection&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncWatchlistPostResponse&gt;&gt; AddWatchlistItemsAsync(ITraktSyncWatchlistPost watchlistPost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>watchlistPost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost.html">ITraktSyncWatchlistPost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost.html">ITraktSyncWatchlistPost</a> instance containing all shows, seasons, episodes and movies, which should be added.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.Responses.ITraktSyncWatchlistPostResponse.html">ITraktSyncWatchlistPostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.Responses.ITraktSyncWatchlistPostResponse.html">ITraktSyncWatchlistPostResponse</a> instance, which contains information about which items were added, existing and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionMoviesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionMoviesAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetCollectionMoviesAsync(TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all collected movies in the user's collection.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-collection/get-collection">"Trakt API Doc - Sync: Get Collection"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionShowsAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetCollectionShowsAsync(TraktExtendedInfo, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all collected shows in the user&apos;s collection.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-collection/get-collection">&quot;Trakt API Doc - Sync: Get Collection&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktCollectionMovie&gt;&gt; GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the collected movies should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Collections.ITraktCollectionMovie.html">ITraktCollectionMovie</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Collections.ITraktCollectionMovie.html">ITraktCollectionMovie</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionShowsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionShowsAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetCollectionShowsAsync(TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L279"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all collected shows in the user's collection.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-collection/get-collection">"Trakt API Doc - Sync: Get Collection"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetLastActivitiesAsync_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetLastActivitiesAsync(System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetLastActivitiesAsync_System_Threading_CancellationToken_">GetLastActivitiesAsync(CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the user&apos;s last activities.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/last-activities/get-last-activity">&quot;Trakt API Doc - Sync: Last Activities&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktCollectionShow&gt;&gt; GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the collected shows should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Collections.ITraktCollectionShow.html">ITraktCollectionShow</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Collections.ITraktCollectionShow.html">ITraktCollectionShow</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetFavoritesAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetFavoritesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetFavoritesAsync_TraktNet_Enums_TraktFavoriteObjectType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetFavoritesAsync(TraktNet.Enums.TraktFavoriteObjectType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetFavoritesAsync(TraktFavoriteObjectType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets an user's favorite movies and / or shows.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/get-favorites/get-favorites">"Trakt API Doc - Sync: Get Favorites"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetPersonalRecommendationsAsync_TraktNet_Enums_TraktRecommendationObjectType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetPersonalRecommendationsAsync(TraktNet.Enums.TraktRecommendationObjectType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetPersonalRecommendationsAsync_TraktNet_Enums_TraktRecommendationObjectType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetPersonalRecommendationsAsync(TraktRecommendationObjectType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets an user&apos;s personal recommendations for movies and / or shows.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/get-personal-recommendations">&quot;Trakt API Doc - Sync: Personal Recommendations&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktFavorite&gt;&gt; GetFavoritesAsync(TraktFavoriteObjectType favoriteObjectType = null, TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>favoriteObjectType</code> <a class="xref" href="TraktNet.Enums.TraktFavoriteObjectType.html">TraktFavoriteObjectType</a></dt>
+    <dd><p>Determines, which type of favorite items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktFavoriteObjectType.html">TraktFavoriteObjectType</a>.</p>
+</dd>
+    <dt><code>sortOrder</code> <a class="xref" href="TraktNet.Enums.TraktWatchlistSortOrder.html">TraktWatchlistSortOrder</a></dt>
+    <dd><p>The favorites sort order. See also <a class="xref" href="TraktNet.Enums.TraktWatchlistSortOrder.html">TraktWatchlistSortOrder</a>.
+Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
+Will be ignored, if the given <code class="paramref">favoriteObjectType</code> is null or unspecified.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the favorite items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Users.ITraktFavorite.html">ITraktFavorite</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Users.ITraktFavorite.html">ITraktFavorite</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetLastActivitiesAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetLastActivitiesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetLastActivitiesAsync_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetLastActivitiesAsync(System.Threading.CancellationToken)">
+  GetLastActivitiesAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the user's last activities.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/last-activities/get-last-activity">"Trakt API Doc - Sync: Last Activities"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetPlaybackProgressAsync_TraktNet_Enums_TraktSyncType_System_Nullable_System_DateTime__System_Nullable_System_DateTime__TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetPlaybackProgressAsync(TraktNet.Enums.TraktSyncType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetPlaybackProgressAsync_TraktNet_Enums_TraktSyncType_System_Nullable_System_DateTime__System_Nullable_System_DateTime__TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetPlaybackProgressAsync(TraktSyncType, Nullable&lt;DateTime&gt;, Nullable&lt;DateTime&gt;, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the user&apos;s saved playback progress of scrobbles that are paused.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/last-activities/get-playback-progress">&quot;Trakt API Doc - Sync: Playback&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncLastActivities&gt;&gt; GetLastActivitiesAsync(CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Syncs.Activities.ITraktSyncLastActivities.html">ITraktSyncLastActivities</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Syncs.Activities.ITraktSyncLastActivities.html">ITraktSyncLastActivities</a> instance with the queried last activities.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetPlaybackProgressAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetPlaybackProgressAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetPlaybackProgressAsync_TraktNet_Enums_TraktSyncType_System_Nullable_System_DateTime__System_Nullable_System_DateTime__TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetPlaybackProgressAsync(TraktNet.Enums.TraktSyncType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetPlaybackProgressAsync(TraktSyncType, DateTime?, DateTime?, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the user's saved playback progress of scrobbles that are paused.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/last-activities/get-playback-progress">"Trakt API Doc - Sync: Playback"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetRatingsAsync_TraktNet_Enums_TraktRatingsItemType_System_Int32___TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetRatingsAsync(TraktNet.Enums.TraktRatingsItemType,System.Int32[],TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetRatingsAsync_TraktNet_Enums_TraktRatingsItemType_System_Int32___TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetRatingsAsync(TraktRatingsItemType, Int32[], TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the user&apos;s ratings for movies, shows, seasons and / or episodes.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-ratings/get-ratings">&quot;Trakt API Doc - Sync: Get Ratings&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktSyncPlaybackProgressItem&gt;&gt; GetPlaybackProgressAsync(TraktSyncType objectType = null, DateTime? startAt = null, DateTime? endAt = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectType</code> <a class="xref" href="TraktNet.Enums.TraktSyncType.html">TraktSyncType</a></dt>
+    <dd><p>Determines, which type of items should be queried. By default, all types will be returned. See also <a class="xref" href="TraktNet.Enums.TraktSyncType.html">TraktSyncType</a>.</p>
+</dd>
+    <dt><code>startAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>Determines an optional start date and time for a range of the returned playback progress.</p>
+</dd>
+    <dt><code>endAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>Determines an optional end date and time for a range of the returned playback progress.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Syncs.Playback.ITraktSyncPlaybackProgressItem.html">ITraktSyncPlaybackProgressItem</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Syncs.Playback.ITraktSyncPlaybackProgressItem.html">ITraktSyncPlaybackProgressItem</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetRatingsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetRatingsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetRatingsAsync_TraktNet_Enums_TraktRatingsItemType_System_Int32___TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetRatingsAsync(TraktNet.Enums.TraktRatingsItemType,System.Int32[],TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetRatingsAsync(TraktRatingsItemType, int[], TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L553"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the user's ratings for movies, shows, seasons and / or episodes.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-ratings/get-ratings">"Trakt API Doc - Sync: Get Ratings"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetWatchedHistoryAsync_TraktNet_Enums_TraktSyncItemType_System_Nullable_System_UInt32__System_Nullable_System_DateTime__System_Nullable_System_DateTime__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedHistoryAsync(TraktNet.Enums.TraktSyncItemType,System.Nullable{System.UInt32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedHistoryAsync_TraktNet_Enums_TraktSyncItemType_System_Nullable_System_UInt32__System_Nullable_System_DateTime__System_Nullable_System_DateTime__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetWatchedHistoryAsync(TraktSyncItemType, Nullable&lt;UInt32&gt;, Nullable&lt;DateTime&gt;, Nullable&lt;DateTime&gt;, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all movies, shows, seasons and / or episodes the user has watched, sorted by most recent.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-history/get-watched-history">&quot;Trakt API Doc - Sync: Get History&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktRatingsItem&gt;&gt; GetRatingsAsync(TraktRatingsItemType ratingsItemType = null, int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ratingsItemType</code> <a class="xref" href="TraktNet.Enums.TraktRatingsItemType.html">TraktRatingsItemType</a></dt>
+    <dd><p>Determines, which type of rating items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktRatingsItemType.html">TraktRatingsItemType</a>.</p>
+</dd>
+    <dt><code>ratingsFilter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd><p>An array of numbers. Numbers should be between 1 and 10.
+Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
+Will be ignored, if the given <code class="paramref">ratingsItemType</code> is null or unspecified.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the rating items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Ratings.ITraktRatingsItem.html">ITraktRatingsItem</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Ratings.ITraktRatingsItem.html">ITraktRatingsItem</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetWatchedHistoryAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedHistoryAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetWatchedHistoryAsync_TraktNet_Enums_TraktSyncItemType_System_Nullable_System_UInt32__System_Nullable_System_DateTime__System_Nullable_System_DateTime__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedHistoryAsync(TraktNet.Enums.TraktSyncItemType,System.Nullable{System.UInt32},System.Nullable{System.DateTime},System.Nullable{System.DateTime},TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetWatchedHistoryAsync(TraktSyncItemType, uint?, DateTime?, DateTime?, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L443"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all movies, shows, seasons and / or episodes the user has watched, sorted by most recent.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-history/get-watched-history">"Trakt API Doc - Sync: Get History"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetWatchedMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedMoviesAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetWatchedMoviesAsync(TraktExtendedInfo, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all movies the user has watched, sorted by most plays.
-<p>OAuth authorization required.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktHistoryItem&gt;&gt; GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null, DateTime? startAt = null, DateTime? endAt = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>historyItemType</code> <a class="xref" href="TraktNet.Enums.TraktSyncItemType.html">TraktSyncItemType</a></dt>
+    <dd><p>Determines, which type of history items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktSyncItemType.html">TraktSyncItemType</a>.</p>
+</dd>
+    <dt><code>itemId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>?</dt>
+    <dd><p>The Trakt Id for the item, which should be specifically queried. Will be ignored, if <code class="paramref">historyItemType</code> is not set or unspecified.</p>
+</dd>
+    <dt><code>startAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The datetime, after which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</p>
+</dd>
+    <dt><code>endAt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The datetime, until which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the history items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.History.ITraktHistoryItem.html">ITraktHistoryItem</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried history items and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
 <p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">&quot;Trakt API Doc - Sync: Get Watched&quot;</a> for more information.
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.History.ITraktHistoryItem.html">ITraktHistoryItem</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedShowsAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetWatchedShowsAsync(TraktExtendedInfo, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all shows the user has watched, sorted by most plays.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">&quot;Trakt API Doc - Sync: Get Watched&quot;</a> for more information.
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetWatchedMoviesAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedMoviesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetWatchedMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedMoviesAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetWatchedMoviesAsync(TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L374"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all movies the user has watched, sorted by most plays.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-watched/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_GetWatchlistAsync_TraktNet_Enums_TraktSyncItemType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchlistAsync(TraktNet.Enums.TraktSyncItemType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchlistAsync_TraktNet_Enums_TraktSyncItemType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetWatchlistAsync(TraktSyncItemType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the user&apos;s watchlist containing movies, shows, seasons and / or episodes.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watchlist/get-watchlist">&quot;Trakt API Doc - Sync: Get Watchlist&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktWatchedMovie&gt;&gt; GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the movies should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Watched.ITraktWatchedMovie.html">ITraktWatchedMovie</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Watched.ITraktWatchedMovie.html">ITraktWatchedMovie</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedShowsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedShowsAsync(TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetWatchedShowsAsync(TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L403"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all shows the user has watched, sorted by most plays.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-watched/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_RemoveCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveCollectionItemsAsync(TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_System_Threading_CancellationToken_">RemoveCollectionItemsAsync(ITraktSyncCollectionPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Removes items from the user&apos;s collection. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/remove-items-from-collection">&quot;Trakt API Doc - Sync: Remove from Collection&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktWatchedShow&gt;&gt; GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the shows should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Watched.ITraktWatchedShow.html">ITraktWatchedShow</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Watched.ITraktWatchedShow.html">ITraktWatchedShow</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_GetWatchlistAsync_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchlistAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_GetWatchlistAsync_TraktNet_Enums_TraktSyncItemType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchlistAsync(TraktNet.Enums.TraktSyncItemType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetWatchlistAsync(TraktSyncItemType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L764"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the user's watchlist containing movies, shows, seasons and / or episodes.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/get-watchlist/get-watchlist">"Trakt API Doc - Sync: Get Watchlist"</a> for more information.
 </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktWatchlistItem&gt;&gt; GetWatchlistAsync(TraktSyncItemType watchlistItemType = null, TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>watchlistItemType</code> <a class="xref" href="TraktNet.Enums.TraktSyncItemType.html">TraktSyncItemType</a></dt>
+    <dd><p>Determines, which type of watchlist items should be queried. See also <a class="xref" href="TraktNet.Enums.TraktSyncItemType.html">TraktSyncItemType</a>.</p>
+</dd>
+    <dt><code>sortOrder</code> <a class="xref" href="TraktNet.Enums.TraktWatchlistSortOrder.html">TraktWatchlistSortOrder</a></dt>
+    <dd><p>Determines the sort order of the returned watchlist items. See also <a class="xref" href="TraktNet.Enums.TraktWatchlistSortOrder.html">TraktWatchlistSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the watchlist items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Watchlist.ITraktWatchlistItem.html">ITraktWatchlistItem</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried watchlist items and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
 <p>
-It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a> to create an instance
-of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a>.
-See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost">NewSyncCollectionPost()</a>.
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.Watchlist.ITraktWatchlistItem.html">ITraktWatchlistItem</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_RemovePersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemovePersonalRecommendationsAsync(TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemovePersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_System_Threading_CancellationToken_">RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Remove items from the user&apos;s personal recommendations. Accepts movies and shows.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-personal-recommendations/remove-items-from-personal-recommendations">&quot;Trakt API Doc - Sync: Remove from Personal Recommendations&quot;</a> for more information.
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_RemoveCollectionItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveCollectionItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_RemoveCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionRemovePost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveCollectionItemsAsync(TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionRemovePost,System.Threading.CancellationToken)">
+  RemoveCollectionItemsAsync(ITraktSyncCollectionRemovePost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L345"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes items from the user's collection. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/remove-from-collection/remove-items-from-collection">"Trakt API Doc - Sync: Remove from Collection"</a> for more information.
+</p><p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html">ITraktSyncCollectionRemovePostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionRemovePost.html">ITraktSyncCollectionRemovePost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionRemovePost">NewSyncCollectionRemovePost()</a>.
 </p>
-<p>
-It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsPostBuilder.html">ITraktSyncRecommendationsPostBuilder</a> to create an instance
-of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost.html">ITraktSyncRecommendationsPost</a>.
-See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsPost">NewSyncRecommendationsPost()</a>.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncCollectionRemovePostResponse&gt;&gt; RemoveCollectionItemsAsync(ITraktSyncCollectionRemovePost collectionRemovePost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionRemovePost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionRemovePost.html">ITraktSyncCollectionRemovePost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionRemovePost.html">ITraktSyncCollectionRemovePost</a> instance containing all shows, seasons, episodes and movies, which should be removed.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.Responses.ITraktSyncCollectionRemovePostResponse.html">ITraktSyncCollectionRemovePostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.Responses.ITraktSyncCollectionRemovePostResponse.html">ITraktSyncCollectionRemovePostResponse</a> instance, which contains information about which items were deleted and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_RemoveFavoriteItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveFavoriteItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_RemoveFavoriteItemsAsync_TraktNet_Objects_Post_Syncs_Favorites_ITraktSyncFavoritesRemovePost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveFavoriteItemsAsync(TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesRemovePost,System.Threading.CancellationToken)">
+  RemoveFavoriteItemsAsync(ITraktSyncFavoritesRemovePost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L691"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Remove items from the user's favorites. Accepts movies and shows.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-favorites/remove-items-from-favorites">"Trakt API Doc - Sync: Remove from Favorites"</a> for more information.
+</p><p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesRemovePostBuilder.html">ITraktSyncFavoritesRemovePostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesRemovePost.html">ITraktSyncFavoritesRemovePost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncFavoritesRemovePost">NewSyncFavoritesRemovePost()</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_RemovePlaybackItemAsync_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemovePlaybackItemAsync(System.UInt32,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemovePlaybackItemAsync_System_UInt32_System_Threading_CancellationToken_">RemovePlaybackItemAsync(UInt32, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Removes a playback progress item from the user&apos;s playback progress list.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-playback/remove-a-playback-item">&quot;Trakt API Doc - Sync: Remove Playback&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncFavoritesRemovePostResponse&gt;&gt; RemoveFavoriteItemsAsync(ITraktSyncFavoritesRemovePost favoritesRemovePost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>favoritesRemovePost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesRemovePost.html">ITraktSyncFavoritesRemovePost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesRemovePost.html">ITraktSyncFavoritesRemovePost</a> instance containing all movies and shows, which should be removed.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.Responses.ITraktSyncFavoritesRemovePostResponse.html">ITraktSyncFavoritesRemovePostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Favorites.Responses.ITraktSyncFavoritesRemovePostResponse.html">ITraktSyncFavoritesRemovePostResponse</a> instance, which contains information about which items were removed and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_RemovePlaybackItemAsync_" data-uid="TraktNet.Modules.TraktSyncModule.RemovePlaybackItemAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_RemovePlaybackItemAsync_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemovePlaybackItemAsync(System.UInt32,System.Threading.CancellationToken)">
+  RemovePlaybackItemAsync(uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes a playback progress item from the user's playback progress list.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/remove-playback/remove-a-playback-item">"Trakt API Doc - Sync: Remove Playback"</a> for more information.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_RemoveRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveRatingsAsync(TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_System_Threading_CancellationToken_">RemoveRatingsAsync(ITraktSyncRatingsPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Removes items from the user&apos;s ratings. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-ratings/remove-ratings">&quot;Trakt API Doc - Sync: Remove Ratings&quot;</a> for more information.
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; RemovePlaybackItemAsync(uint playbackId, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>playbackId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The id of the playback progress item, which should be removed.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_RemoveRatingsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveRatingsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_RemoveRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsRemovePost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveRatingsAsync(TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsRemovePost,System.Threading.CancellationToken)">
+  RemoveRatingsAsync(ITraktSyncRatingsRemovePost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L625"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes items from the user's ratings. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/remove-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
+</p><p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html">ITraktSyncRatingsRemovePostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsRemovePost.html">ITraktSyncRatingsRemovePost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsRemovePost">NewSyncRatingsRemovePost()</a>.
 </p>
-<p>
-It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a> to create an instance
-of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost.html">ITraktSyncRatingsPost</a>.
-See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost">NewSyncRatingsPost()</a>.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_RemoveWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryRemovePost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchedHistoryItemsAsync(TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryRemovePost_System_Threading_CancellationToken_">RemoveWatchedHistoryItemsAsync(ITraktSyncHistoryRemovePost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Removes items from the user&apos;s watch history. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-history/remove-items-from-history">&quot;Trakt API Doc - Sync: Remove from History&quot;</a> for more information.
-</p>
-<p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncRatingsRemovePostResponse&gt;&gt; RemoveRatingsAsync(ITraktSyncRatingsRemovePost ratingsRemovePost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ratingsRemovePost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsRemovePost.html">ITraktSyncRatingsRemovePost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsRemovePost.html">ITraktSyncRatingsRemovePost</a> instance containing all shows, seasons, episodes and movies, which should be removed.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.Responses.ITraktSyncRatingsRemovePostResponse.html">ITraktSyncRatingsRemovePostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.Responses.ITraktSyncRatingsRemovePostResponse.html">ITraktSyncRatingsRemovePostResponse</a> instance, which contains information about which items were deleted and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_RemoveWatchedHistoryItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchedHistoryItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_RemoveWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryRemovePost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchedHistoryItemsAsync(TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost,System.Threading.CancellationToken)">
+  RemoveWatchedHistoryItemsAsync(ITraktSyncHistoryRemovePost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L517"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes items from the user's watch history. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/remove-from-history/remove-items-from-history">"Trakt API Doc - Sync: Remove from History"</a> for more information.
+</p><p>
 It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a> to create an instance
 of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost.html">ITraktSyncHistoryRemovePost</a>.
 See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryRemovePost">NewSyncHistoryRemovePost()</a>.
 </p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_RemoveWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchlistItemsAsync(TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_System_Threading_CancellationToken_">RemoveWatchlistItemsAsync(ITraktSyncWatchlistPost, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Removes items from the user&apos;s watchlist. Accepts shows, seasons, episodes and movies.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-watchlist/remove-items-from-watchlists">&quot;Trakt API Doc - Sync: Remove from Watchlist&quot;</a> for more information.
-</p>
-<p>
-It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a> to create an instance
-of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost.html">ITraktSyncWatchlistPost</a>.
-See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost">NewSyncWatchlistPost()</a>.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_ReorderRecommendedItemsAsync_System_Collections_Generic_IEnumerable_System_UInt32__System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderRecommendedItemsAsync(System.Collections.Generic.IEnumerable{System.UInt32},System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_ReorderRecommendedItemsAsync_System_Collections_Generic_IEnumerable_System_UInt32__System_Threading_CancellationToken_">ReorderRecommendedItemsAsync(IEnumerable&lt;UInt32&gt;, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Reorder all items on a user&apos;s personal recommendations.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-personal-recommendations/reorder-personally-recommended-items">&quot;Trakt API Doc - Sync: Reorder Personal Recommendations&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktSyncModule_ReorderWatchlistItemsAsync_System_Collections_Generic_IEnumerable_System_UInt32__System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderWatchlistItemsAsync(System.Collections.Generic.IEnumerable{System.UInt32},System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_ReorderWatchlistItemsAsync_System_Collections_Generic_IEnumerable_System_UInt32__System_Threading_CancellationToken_">ReorderWatchlistItemsAsync(IEnumerable&lt;UInt32&gt;, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Reorders an user&apos;s watchlist.
-<p>OAuth authorization required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-watchlist/reorder-watchlist-items">&quot;Trakt API Doc - Sync: Reorder Watchlist&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-                </div>
+</div>
+  <div class="markdown level1 conceptual"></div>
 
-                <div class="copyright-footer">
-                    <span>Copyright &#169; 2016 - Current Henrik Fr&#246;hling et al.</span>
-                </div>
-            </main>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncHistoryRemovePostResponse&gt;&gt; RemoveWatchedHistoryItemsAsync(ITraktSyncHistoryRemovePost historyRemovePost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>historyRemovePost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost.html">ITraktSyncHistoryRemovePost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost.html">ITraktSyncHistoryRemovePost</a> instance containing all shows, seasons, episodes and movies, which should be removed.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.History.Responses.ITraktSyncHistoryRemovePostResponse.html">ITraktSyncHistoryRemovePostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.History.Responses.ITraktSyncHistoryRemovePostResponse.html">ITraktSyncHistoryRemovePostResponse</a> instance, which contains information about which items were deleted and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_RemoveWatchlistItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchlistItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_RemoveWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistRemovePost_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchlistItemsAsync(TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistRemovePost,System.Threading.CancellationToken)">
+  RemoveWatchlistItemsAsync(ITraktSyncWatchlistRemovePost, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L898"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes items from the user's watchlist. Accepts shows, seasons, episodes and movies.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/sync/remove-from-watchlist/remove-items-from-watchlists">"Trakt API Doc - Sync: Remove from Watchlist"</a> for more information.
+</p><p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html">ITraktSyncWatchlistRemovePostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistRemovePost.html">ITraktSyncWatchlistRemovePost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistRemovePost">NewSyncWatchlistRemovePost()</a>.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktSyncWatchlistRemovePostResponse&gt;&gt; RemoveWatchlistItemsAsync(ITraktSyncWatchlistRemovePost watchlistRemovePost, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>watchlistRemovePost</code> <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistRemovePost.html">ITraktSyncWatchlistRemovePost</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistRemovePost.html">ITraktSyncWatchlistRemovePost</a> instance containing all shows, seasons, episodes and movies, which should be removed.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.Responses.ITraktSyncWatchlistRemovePostResponse.html">ITraktSyncWatchlistRemovePostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.Responses.ITraktSyncWatchlistRemovePostResponse.html">ITraktSyncWatchlistRemovePostResponse</a> instance, which contains information about which items were deleted and not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_ReorderFavoritedItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderFavoritedItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_ReorderFavoritedItemsAsync_System_Collections_Generic_IList_System_UInt32__System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderFavoritedItemsAsync(System.Collections.Generic.IList{System.UInt32},System.Threading.CancellationToken)">
+  ReorderFavoritedItemsAsync(IList&lt;uint&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reorder all user's favorites.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-favorites/reorder-favorited-items">"Trakt API Doc - Sync: Reorder Favorites"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktListItemsReorderPostResponse&gt;&gt; ReorderFavoritedItemsAsync(IList&lt;uint&gt; reorderedFavoritedItemRanks, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reorderedFavoritedItemRanks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
+    <dd><p>A collection of list ids. Represents the new order of an user's favorites.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Basic.Responses.ITraktListItemsReorderPostResponse.html">ITraktListItemsReorderPostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Basic.Responses.ITraktListItemsReorderPostResponse.html">ITraktListItemsReorderPostResponse</a> instance containing information about the successfully updated favorites order.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_ReorderWatchlistItemsAsync_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderWatchlistItemsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_ReorderWatchlistItemsAsync_System_Collections_Generic_IList_System_UInt32__System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderWatchlistItemsAsync(System.Collections.Generic.IList{System.UInt32},System.Threading.CancellationToken)">
+  ReorderWatchlistItemsAsync(IList&lt;uint&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L798"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reorders an user's watchlist.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-watchlist/reorder-watchlist-items">"Trakt API Doc - Sync: Reorder Watchlist"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktListItemsReorderPostResponse&gt;&gt; ReorderWatchlistItemsAsync(IList&lt;uint&gt; reorderedWatchlistItemRanks, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reorderedWatchlistItemRanks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
+    <dd><p>A collection of list ids. Represents the new order of an user's watchlist.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Post.Basic.Responses.ITraktListItemsReorderPostResponse.html">ITraktListItemsReorderPostResponse</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Post.Basic.Responses.ITraktListItemsReorderPostResponse.html">ITraktListItemsReorderPostResponse</a> instance containing information about the successfully updated watchlist order.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_UpdateFavoriteItemAsync_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateFavoriteItemAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_UpdateFavoriteItemAsync_System_UInt32_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateFavoriteItemAsync(System.UInt32,System.String,System.Threading.CancellationToken)">
+  UpdateFavoriteItemAsync(uint, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Update the notes on a single favorite item.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/update-favorite-item/update-a-favorite-item">"Trakt API Doc - Sync: Update Favorite Item"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; UpdateFavoriteItemAsync(uint listItemId, string notes = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listItemId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The id of the favorite item which should be updated.</p>
+</dd>
+    <dt><code>notes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The new favorite item's notes value. Can be null to delete the content of the notes.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_UpdateFavoritesAsync_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateFavoritesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_UpdateFavoritesAsync_System_String_TraktNet_Enums_TraktSortBy_TraktNet_Enums_TraktSortHow_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateFavoritesAsync(System.String,TraktNet.Enums.TraktSortBy,TraktNet.Enums.TraktSortHow,System.Threading.CancellationToken)">
+  UpdateFavoritesAsync(string, TraktSortBy, TraktSortHow, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L721"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Update the favorites list by sending 1 or more parameters.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/update-favorites/update-favorites">"Trakt API Doc - Sync: Update Favorites"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktList&gt;&gt; UpdateFavoritesAsync(string description, TraktSortBy sortBy = null, TraktSortHow sortHow = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Description for the favorites list.</p>
+</dd>
+    <dt><code>sortBy</code> <a class="xref" href="TraktNet.Enums.TraktSortBy.html">TraktSortBy</a></dt>
+    <dd><p>Sort by value for the favorites list.</p>
+</dd>
+    <dt><code>sortHow</code> <a class="xref" href="TraktNet.Enums.TraktSortHow.html">TraktSortHow</a></dt>
+    <dd><p>Sort how value for the favorites list.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> instance, which contains information about the updated favorites list</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_UpdateWatchlistAsync_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateWatchlistAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_UpdateWatchlistAsync_System_String_TraktNet_Enums_TraktSortBy_TraktNet_Enums_TraktSortHow_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateWatchlistAsync(System.String,TraktNet.Enums.TraktSortBy,TraktNet.Enums.TraktSortHow,System.Threading.CancellationToken)">
+  UpdateWatchlistAsync(string, TraktSortBy, TraktSortHow, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L928"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Update the watchlist by sending 1 or more parameters.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/update-watchlist/update-watchlist">"Trakt API Doc - Sync: Update Watchlist"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktList&gt;&gt; UpdateWatchlistAsync(string description, TraktSortBy sortBy = null, TraktSortHow sortHow = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Description for the watchlist.</p>
+</dd>
+    <dt><code>sortBy</code> <a class="xref" href="TraktNet.Enums.TraktSortBy.html">TraktSortBy</a></dt>
+    <dd><p>Sort by value for the watchlist.</p>
+</dd>
+    <dt><code>sortHow</code> <a class="xref" href="TraktNet.Enums.TraktSortHow.html">TraktSortHow</a></dt>
+    <dd><p>Sort how value for the watchlist.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a> instance, which contains information about the updated watchlist</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></dt>
+    <dd><p>Thrown, if validation of post data fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktSyncModule_UpdateWatchlistItemAsync_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateWatchlistItemAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktSyncModule_UpdateWatchlistItemAsync_System_UInt32_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.UpdateWatchlistItemAsync(System.UInt32,System.String,System.Threading.CancellationToken)">
+  UpdateWatchlistItemAsync(uint, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L829"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Update the notes on a watchlist item.</p>
+<p>OAuth authorization required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/update-watchlist-item/update-a-watchlist-item">"Trakt API Doc - Sync: Update Watchlist Item"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktNoContentResponse&gt; UpdateWatchlistItemAsync(uint listItemId, string notes = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listItemId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The id of the watchlist item which should be updated.</p>
+</dd>
+    <dt><code>notes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The new watchlist item's notes value. Can be null to delete the content of the notes.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/TraktSyncModule.cs/#L43" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

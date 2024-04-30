@@ -1,274 +1,2528 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TraktEpisodesModule | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TraktEpisodesModule | Trakt.NET ">
+      
+      <meta name="description" content="Provides access to data retrieving methods specific to episodes.  This module contains all methods of the &quot;Trakt API Doc - Episodes&quot; section.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/new/develop/apiSpec/new?filename=TraktNet_Modules_TraktEpisodesModule.md&amp;value=---%0Auid%3A%20TraktNet.Modules.TraktEpisodesModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
 
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class TraktEpisodesModule
- | Trakt.NET </title>
-      <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class TraktEpisodesModule
- | Trakt.NET ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
 
-            <a class="brand" href="../index.html">
-              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-              <span class="brand-title">Trakt.NET</span>
-            </a>        </div>
+  </head>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <div class="mobile-hide">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-                          <span class="brand-title">Trakt.NET</span>
-                        </a>                      </div>
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                    <article class="content wrap" id="_content" data-uid="TraktNet.Modules.TraktEpisodesModule">
+        <article data-uid="TraktNet.Modules.TraktEpisodesModule">
 
 
-  <h1 id="TraktNet_Modules_TraktEpisodesModule" data-uid="TraktNet.Modules.TraktEpisodesModule" class="text-break">Class TraktEpisodesModule
-</h1>
-  <div class="markdown level0 summary"><p>Provides access to data retrieving methods specific to episodes.
+
+  <h1 id="TraktNet_Modules_TraktEpisodesModule" data-uid="TraktNet.Modules.TraktEpisodesModule" class="text-break">
+Class TraktEpisodesModule  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeWatchingUsers.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="TraktNet.html">TraktNet</a>.<a class="xref" href="TraktNet.Modules.html">Modules</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Trakt.NET.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides access to data retrieving methods specific to episodes.</p>
 <p>
-This module contains all methods of the <a href="http://docs.trakt.apiary.io/#reference/episodes">&quot;Trakt API Doc - Episodes&quot;</a> section.
+This module contains all methods of the <a href="http://trakt.docs.apiary.io/#reference/episodes">"Trakt API Doc - Episodes"</a> section.
 </p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
-    <div class="level2"><span class="xref">TraktEpisodesModule</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Modules.html">TraktNet.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
-  <h5 id="TraktNet_Modules_TraktEpisodesModule_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class TraktEpisodesModule : ATraktModule</code></pre>
   </div>
-  <h3 id="methods">Methods
-</h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync(System.String,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetEpisodeAsync(String, UInt32, UInt32, TraktExtendedInfo, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">&quot;Trakt API Doc - Episodes: Summary&quot;</a> for more information.
-</p>
-<p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Modules_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_">GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_System_String_System_UInt32_System_UInt32_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync(System.String,System.UInt32,System.UInt32,TraktNet.Enums.TraktCommentSortOrder,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_System_String_System_UInt32_System_UInt32_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetEpisodeCommentsAsync(String, UInt32, UInt32, TraktCommentSortOrder, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets top level comments for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/comments/get-all-episode-comments">&quot;Trakt API Doc - Episodes: Comments&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_System_String_System_UInt32_System_UInt32_TraktNet_Enums_TraktListType_TraktNet_Enums_TraktListSortOrder_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync(System.String,System.UInt32,System.UInt32,TraktNet.Enums.TraktListType,TraktNet.Enums.TraktListSortOrder,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_System_String_System_UInt32_System_UInt32_TraktNet_Enums_TraktListType_TraktNet_Enums_TraktListSortOrder_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_">GetEpisodeListsAsync(String, UInt32, UInt32, TraktListType, TraktListSortOrder, TraktPagedParameters, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>s containing the given <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">&quot;Trakt API Doc - Episodes: Lists&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync(System.String,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetEpisodePeopleAsync(String, UInt32, UInt32, TraktExtendedInfo, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all people for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="https://trakt.docs.apiary.io/#reference/episodes/people/get-all-people-for-an-episode">&quot;Trakt API Doc - Episodes: People&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_System_String_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync(System.String,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_System_String_System_UInt32_System_UInt32_System_Threading_CancellationToken_">GetEpisodeRatingsAsync(String, UInt32, UInt32, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the ratings for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-ratings">&quot;Trakt API Doc - Episodes: Ratings&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_System_String_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync(System.String,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_System_String_System_UInt32_System_UInt32_System_Threading_CancellationToken_">GetEpisodeStatisticsAsync(String, UInt32, UInt32, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets the statistics for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-stats">&quot;Trakt API Doc - Episodes: Stats&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_System_String_System_UInt32_System_UInt32_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync(System.String,System.UInt32,System.UInt32,System.String,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_System_String_System_UInt32_System_UInt32_System_String_System_Threading_CancellationToken_">GetEpisodeTranslationsAsync(String, UInt32, UInt32, String, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all translations for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with the given Trakt-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/translations/get-all-episode-translations">&quot;Trakt API Doc - Episodes: Translations&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync(System.String,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetEpisodeWatchingUsersAsync(String, UInt32, UInt32, TraktExtendedInfo, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets all watching users of a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/watching/get-users-watching-right-now">&quot;Trakt API Doc - Episodes: Watching&quot;</a> for more information.
-</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Modules_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetMultipleEpisodesAsync(TraktNet.Modules.TraktMultipleEpisodesQueryParams,System.Threading.CancellationToken)">
-          <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Modules_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_">GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)</a>
-        </td>
-        <td class="markdown level1 summary"><p>Gets multiple different <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>s at once in a show with the given Trakt-Show-Id or -Slug.
-<p>OAuth authorization not required.</p>
-<p>
-See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">&quot;Trakt API Doc - Episodes: Summary&quot;</a> for more information.
-</p>
-<p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetEpisodeAsync(String, UInt32, UInt32, TraktExtendedInfo, CancellationToken)</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>Copyright &#169; 2016 - Current Henrik Fr&#246;hling et al.</span>
-                </div>
-            </main>
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
+      <div><span class="xref">TraktEpisodesModule</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync(System.String,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisode.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+</p><p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_">GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktEpisode&gt;&gt; GetEpisodeAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, which should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, which should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the episode should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> instance with the queried episode's data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_System_UInt32_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync(System.UInt32,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeAsync(uint, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisode.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+</p><p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_">GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktEpisode&gt;&gt; GetEpisodeAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, which should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, which should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the episode should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> instance with the queried episode's data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeAsync(ITraktShow, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisode.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+</p><p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_">GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktEpisode&gt;&gt; GetEpisodeAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, which should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, which should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the episode should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> instance with the queried episode's data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeAsync(ITraktShowIds, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisode.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+</p><p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_">GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktEpisode&gt;&gt; GetEpisodeAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, which should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, which should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the episode should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> instance with the queried episode's data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_System_String_System_UInt32_System_UInt32_TraktNet_Enums_TraktExtendedCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync(System.String,System.UInt32,System.UInt32,TraktNet.Enums.TraktExtendedCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeCommentsAsync(string, uint, uint, TraktExtendedCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeComments.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetEpisodeCommentsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, TraktExtendedCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_System_UInt32_System_UInt32_System_UInt32_TraktNet_Enums_TraktExtendedCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync(System.UInt32,System.UInt32,System.UInt32,TraktNet.Enums.TraktExtendedCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeCommentsAsync(uint, uint, uint, TraktExtendedCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeComments.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetEpisodeCommentsAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, TraktExtendedCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_TraktNet_Enums_TraktExtendedCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,TraktNet.Enums.TraktExtendedCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeCommentsAsync(ITraktShow, uint, uint, TraktExtendedCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeComments.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetEpisodeCommentsAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, TraktExtendedCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeCommentsAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_TraktNet_Enums_TraktExtendedCommentSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeCommentsAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,TraktNet.Enums.TraktExtendedCommentSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeCommentsAsync(ITraktShowIds, uint, uint, TraktExtendedCommentSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeComments.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets top level comments for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktComment&gt;&gt; GetEpisodeCommentsAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, TraktExtendedCommentSortOrder commentSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the comments should be queried.</p>
+</dd>
+    <dt><code>commentSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a></dt>
+    <dd><p>The comments sort order. See also <a class="xref" href="TraktNet.Enums.TraktExtendedCommentSortOrder.html">TraktExtendedCommentSortOrder</a>.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about a comment's media item should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode comments and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Basic.ITraktComment.html">ITraktComment</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_System_String_System_UInt32_System_UInt32_TraktNet_Enums_TraktListType_TraktNet_Enums_TraktListSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync(System.String,System.UInt32,System.UInt32,TraktNet.Enums.TraktListType,TraktNet.Enums.TraktListSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeListsAsync(string, uint, uint, TraktListType, TraktListSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeLists.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>s containing the given <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktList&gt;&gt; GetEpisodeListsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, TraktListType listType = null, TraktListSortOrder listSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>listType</code> <a class="xref" href="TraktNet.Enums.TraktListType.html">TraktListType</a></dt>
+    <dd><p>The type of lists, that should be queried. Defaults to personal lists.</p>
+</dd>
+    <dt><code>listSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a></dt>
+    <dd><p>The list sort order. See also <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a>. Defaults to sorted by popularity.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode lists and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_System_UInt32_System_UInt32_System_UInt32_TraktNet_Enums_TraktListType_TraktNet_Enums_TraktListSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync(System.UInt32,System.UInt32,System.UInt32,TraktNet.Enums.TraktListType,TraktNet.Enums.TraktListSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeListsAsync(uint, uint, uint, TraktListType, TraktListSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeLists.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>s containing the given <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktList&gt;&gt; GetEpisodeListsAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, TraktListType listType = null, TraktListSortOrder listSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>listType</code> <a class="xref" href="TraktNet.Enums.TraktListType.html">TraktListType</a></dt>
+    <dd><p>The type of lists, that should be queried. Defaults to personal lists.</p>
+</dd>
+    <dt><code>listSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a></dt>
+    <dd><p>The list sort order. See also <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a>. Defaults to sorted by popularity.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode lists and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_TraktNet_Enums_TraktListType_TraktNet_Enums_TraktListSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,TraktNet.Enums.TraktListType,TraktNet.Enums.TraktListSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeListsAsync(ITraktShow, uint, uint, TraktListType, TraktListSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeLists.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>s containing the given <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktList&gt;&gt; GetEpisodeListsAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, TraktListType listType = null, TraktListSortOrder listSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>listType</code> <a class="xref" href="TraktNet.Enums.TraktListType.html">TraktListType</a></dt>
+    <dd><p>The type of lists, that should be queried. Defaults to personal lists.</p>
+</dd>
+    <dt><code>listSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a></dt>
+    <dd><p>The list sort order. See also <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a>. Defaults to sorted by popularity.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode lists and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeListsAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_TraktNet_Enums_TraktListType_TraktNet_Enums_TraktListSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeListsAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,TraktNet.Enums.TraktListType,TraktNet.Enums.TraktListSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,System.Threading.CancellationToken)">
+  GetEpisodeListsAsync(ITraktShowIds, uint, uint, TraktListType, TraktListSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeLists.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>s containing the given <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktPagedResponse&lt;ITraktList&gt;&gt; GetEpisodeListsAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, TraktListType listType = null, TraktListSortOrder listSortOrder = null, TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the lists should be queried.</p>
+</dd>
+    <dt><code>listType</code> <a class="xref" href="TraktNet.Enums.TraktListType.html">TraktListType</a></dt>
+    <dd><p>The type of lists, that should be queried. Defaults to personal lists.</p>
+</dd>
+    <dt><code>listSortOrder</code> <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a></dt>
+    <dd><p>The list sort order. See also <a class="xref" href="TraktNet.Enums.TraktListSortOrder.html">TraktListSortOrder</a>. Defaults to sorted by popularity.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the list items should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>pagedParameters</code> <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a></dt>
+    <dd><p>Specifies pagination parameters. <a class="xref" href="TraktNet.Parameters.TraktPagedParameters.html">TraktPagedParameters</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance containing the queried episode lists and which also
+contains the queried page number, the page's item count, maximum page count and maximum item count.</p>
+<p>
+See also <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> and <a class="xref" href="TraktNet.Objects.Get.Lists.ITraktList.html">ITraktList</a>.
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync(System.String,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodePeopleAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodePeople.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all people for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/episodes/people/get-all-people-for-an-episode">"Trakt API Doc - Episodes: People"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktShowCastAndCrew&gt;&gt; GetEpisodePeopleAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season, for which the people should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the people should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the people should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a> instance, containing the cast and crew for a episode with the given showIdOrSlug and the given season number.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_System_UInt32_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync(System.UInt32,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodePeopleAsync(uint, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodePeople.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all people for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/episodes/people/get-all-people-for-an-episode">"Trakt API Doc - Episodes: People"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktShowCastAndCrew&gt;&gt; GetEpisodePeopleAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season, for which the people should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the people should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the people should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a> instance, containing the cast and crew for a episode with the given showIdOrSlug and the given season number.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodePeopleAsync(ITraktShow, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodePeople.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all people for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/episodes/people/get-all-people-for-an-episode">"Trakt API Doc - Episodes: People"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktShowCastAndCrew&gt;&gt; GetEpisodePeopleAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season, for which the people should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the people should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the people should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a> instance, containing the cast and crew for a episode with the given showIdOrSlug and the given season number.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodePeopleAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodePeopleAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodePeopleAsync(ITraktShowIds, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodePeople.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all people for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="https://trakt.docs.apiary.io/#reference/episodes/people/get-all-people-for-an-episode">"Trakt API Doc - Episodes: People"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktShowCastAndCrew&gt;&gt; GetEpisodePeopleAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season, for which the people should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the people should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the people should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowCastAndCrew.html">ITraktShowCastAndCrew</a> instance, containing the cast and crew for a episode with the given showIdOrSlug and the given season number.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_System_String_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync(System.String,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeRatingsAsync(string, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeRatings.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the ratings for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktRating&gt;&gt; GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a> instance, containing the ratings for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_System_UInt32_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync(System.UInt32,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeRatingsAsync(uint, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeRatings.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the ratings for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktRating&gt;&gt; GetEpisodeRatingsAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a> instance, containing the ratings for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeRatingsAsync(ITraktShow, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeRatings.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the ratings for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktRating&gt;&gt; GetEpisodeRatingsAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a> instance, containing the ratings for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeRatingsAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeRatingsAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeRatingsAsync(ITraktShowIds, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeRatings.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the ratings for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktRating&gt;&gt; GetEpisodeRatingsAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the ratings should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktRating.html">ITraktRating</a> instance, containing the ratings for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_System_String_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync(System.String,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeStatisticsAsync(string, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeStatistics.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the statistics for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-stats">"Trakt API Doc - Episodes: Stats"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktStatistics&gt;&gt; GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a> instance, containing the statistics for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_System_UInt32_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync(System.UInt32,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeStatisticsAsync(uint, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeStatistics.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the statistics for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-stats">"Trakt API Doc - Episodes: Stats"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktStatistics&gt;&gt; GetEpisodeStatisticsAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a> instance, containing the statistics for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeStatisticsAsync(ITraktShow, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeStatistics.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the statistics for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-stats">"Trakt API Doc - Episodes: Stats"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktStatistics&gt;&gt; GetEpisodeStatisticsAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a> instance, containing the statistics for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeStatisticsAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeStatisticsAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,System.Threading.CancellationToken)">
+  GetEpisodeStatisticsAsync(ITraktShowIds, uint, uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeStatistics.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the statistics for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/ratings/get-episode-stats">"Trakt API Doc - Episodes: Stats"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktResponse&lt;ITraktStatistics&gt;&gt; GetEpisodeStatisticsAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the statistics should be queried.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a>&gt;&gt;</dt>
+    <dd><p>An <a class="xref" href="TraktNet.Objects.Basic.ITraktStatistics.html">ITraktStatistics</a> instance, containing the statistics for a episode with the given showIdOrSlug.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_System_String_System_UInt32_System_UInt32_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync(System.String,System.UInt32,System.UInt32,System.String,System.Threading.CancellationToken)">
+  GetEpisodeTranslationsAsync(string, uint, uint, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeTranslations.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all translations for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/translations/get-all-episode-translations">"Trakt API Doc - Episodes: Translations"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktEpisodeTranslation&gt;&gt; GetEpisodeTranslationsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, string languageCode = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>languageCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional two letter language code to query a specific translation language.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a> instances, each containing a title, overview and language code.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_System_UInt32_System_UInt32_System_UInt32_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync(System.UInt32,System.UInt32,System.UInt32,System.String,System.Threading.CancellationToken)">
+  GetEpisodeTranslationsAsync(uint, uint, uint, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeTranslations.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all translations for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/translations/get-all-episode-translations">"Trakt API Doc - Episodes: Translations"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktEpisodeTranslation&gt;&gt; GetEpisodeTranslationsAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, string languageCode = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>languageCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional two letter language code to query a specific translation language.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a> instances, each containing a title, overview and language code.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,System.String,System.Threading.CancellationToken)">
+  GetEpisodeTranslationsAsync(ITraktShow, uint, uint, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeTranslations.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all translations for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/translations/get-all-episode-translations">"Trakt API Doc - Episodes: Translations"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktEpisodeTranslation&gt;&gt; GetEpisodeTranslationsAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, string languageCode = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>languageCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional two letter language code to query a specific translation language.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a> instances, each containing a title, overview and language code.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeTranslationsAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_System_String_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeTranslationsAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,System.String,System.Threading.CancellationToken)">
+  GetEpisodeTranslationsAsync(ITraktShowIds, uint, uint, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeTranslations.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all translations for a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with the given Trakt-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/translations/get-all-episode-translations">"Trakt API Doc - Episodes: Translations"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktEpisodeTranslation&gt;&gt; GetEpisodeTranslationsAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, string languageCode = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the translations should be queried.</p>
+</dd>
+    <dt><code>languageCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>An optional two letter language code to query a specific translation language.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeTranslation.html">ITraktEpisodeTranslation</a> instances, each containing a title, overview and language code.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync(System.String,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeWatchingUsersAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeWatchingUsers.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all watching users of a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktUser&gt;&gt; GetEpisodeWatchingUsersAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIdOrSlug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The show's Trakt-Id or -Slug. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the users should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_System_UInt32_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync(System.UInt32,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeWatchingUsersAsync(uint, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeWatchingUsers.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all watching users of a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktUser&gt;&gt; GetEpisodeWatchingUsersAsync(uint traktShowID, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>traktShowID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The show's Trakt-Id. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the users should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">traktShowID</code> is 0.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_TraktNet_Objects_Get_Shows_ITraktShow_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync(TraktNet.Objects.Get.Shows.ITraktShow,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeWatchingUsersAsync(ITraktShow, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeWatchingUsers.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all watching users of a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktUser&gt;&gt; GetEpisodeWatchingUsersAsync(ITraktShow show, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>show</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a></dt>
+    <dd><p>The show. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the users should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">show</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodeWatchingUsersAsync_TraktNet_Objects_Get_Shows_ITraktShowIds_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodeWatchingUsersAsync(TraktNet.Objects.Get.Shows.ITraktShowIds,System.UInt32,System.UInt32,TraktNet.Parameters.TraktExtendedInfo,System.Threading.CancellationToken)">
+  GetEpisodeWatchingUsersAsync(ITraktShowIds, uint, uint, TraktExtendedInfo, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeWatchingUsers.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all watching users of a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TraktListResponse&lt;ITraktUser&gt;&gt; GetEpisodeWatchingUsersAsync(ITraktShowIds showIds, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>showIds</code> <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a></dt>
+    <dd><p>The show's ids. See also <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a>.</p>
+</dd>
+    <dt><code>seasonNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the season containing the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>episodeNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The number of the episode, for which the watching users should be queried.</p>
+</dd>
+    <dt><code>extendedInfo</code> <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a></dt>
+    <dd><p>The extended info, which determines how much data about the users should be queried.
+See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html">TraktExtendedInfo</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a>&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Users.ITraktUser.html">ITraktUser</a> instances.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if the request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown, if the given <code class="paramref">showIds</code> has not any ids set.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetEpisodesStreamAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodesStreamAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetEpisodesStreamAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetEpisodesStreamAsync(TraktNet.Parameters.TraktMultipleEpisodesQueryParams,System.Threading.CancellationToken)">
+  GetEpisodesStreamAsync(TraktMultipleEpisodesQueryParams, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisode.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets multiple different <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>s at once in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+</p><p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetEpisodeAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAsyncEnumerable&lt;TraktResponse&lt;ITraktEpisode&gt;&gt; GetEpisodesStreamAsync(TraktMultipleEpisodesQueryParams episodesQueryParams, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodesQueryParams</code> <a class="xref" href="TraktNet.Parameters.TraktMultipleEpisodesQueryParams.html">TraktMultipleEpisodesQueryParams</a></dt>
+    <dd><p>A list of show ids, season numbers, episode numbers and optional extended infos. See also <a class="xref" href="TraktNet.Parameters.TraktMultipleEpisodesQueryParams.html">TraktMultipleEpisodesQueryParams</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>&gt;&gt;</dt>
+    <dd><p>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> instances with the data of each queried episode.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if one request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetMultipleEpisodesAsync*"></a>
+
+  <h3 id="TraktNet_Modules_TraktEpisodesModule_GetMultipleEpisodesAsync_TraktNet_Parameters_TraktMultipleEpisodesQueryParams_System_Threading_CancellationToken_" data-uid="TraktNet.Modules.TraktEpisodesModule.GetMultipleEpisodesAsync(TraktNet.Parameters.TraktMultipleEpisodesQueryParams,System.Threading.CancellationToken)">
+  GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisode.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets multiple different <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>s at once in a show with the given Trakt-Show-Id or -Slug.</p>
+<p>OAuth authorization not required.</p><p>
+See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+</p><p>See also <a class="xref" href="TraktNet.Modules.TraktEpisodesModule.html#TraktNet_Modules_TraktEpisodesModule_GetEpisodeAsync_System_String_System_UInt32_System_UInt32_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetEpisodeAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;GetMultipleEpisodesAsync is deprecated, please use GetEpisodesStreamAsync instead.&quot;)]
+public Task&lt;IEnumerable&lt;TraktResponse&lt;ITraktEpisode&gt;&gt;&gt; GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>episodesQueryParams</code> <a class="xref" href="TraktNet.Parameters.TraktMultipleEpisodesQueryParams.html">TraktMultipleEpisodesQueryParams</a></dt>
+    <dd><p>A list of show ids, season numbers, episode numbers and optional extended infos. See also <a class="xref" href="TraktNet.Parameters.TraktMultipleEpisodesQueryParams.html">TraktMultipleEpisodesQueryParams</a>.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Propagates notification that the request should be canceled.<p></p>
+If provided, the exception <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> should be catched.
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a>&gt;&gt;&gt;</dt>
+    <dd><p>A list of <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> instances with the data of each queried episode.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a></dt>
+    <dd><p>Thrown, if one request fails.</p>
+</dd>
+    <dt><a class="xref" href="TraktNet.Exceptions.TraktRequestValidationException.html">TraktRequestValidationException</a></dt>
+    <dd><p>Thrown, if validation of request data fails.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/Modules/Episodes/TraktEpisodesModule_GetEpisodeWatchingUsers.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,329 +1,939 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TraktPost | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TraktPost | Trakt.NET ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/new/develop/apiSpec/new?filename=TraktNet_PostBuilder_TraktPost.md&amp;value=---%0Auid%3A%20TraktNet.PostBuilder.TraktPost%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
 
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class TraktPost
- | Trakt.NET </title>
-      <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class TraktPost
- | Trakt.NET ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
 
-            <a class="brand" href="../index.html">
-              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-              <span class="brand-title">Trakt.NET</span>
-            </a>        </div>
+  </head>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <div class="mobile-hide">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-                          <span class="brand-title">Trakt.NET</span>
-                        </a>                      </div>
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                    <article class="content wrap" id="_content" data-uid="TraktNet.PostBuilder.TraktPost">
+        <article data-uid="TraktNet.PostBuilder.TraktPost">
 
 
-  <h1 id="TraktNet_PostBuilder_TraktPost" data-uid="TraktNet.PostBuilder.TraktPost" class="text-break">Class TraktPost
-</h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">TraktPost</span></div>
+
+  <h1 id="TraktNet_PostBuilder_TraktPost" data-uid="TraktNet.PostBuilder.TraktPost" class="text-break">
+Class TraktPost  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="TraktNet.html">TraktNet</a>.<a class="xref" href="TraktNet.PostBuilder.html">PostBuilder</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Trakt.NET.dll</dd></dl>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.PostBuilder.html">TraktNet.PostBuilder</a></h6>
-  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
-  <h5 id="TraktNet_PostBuilder_TraktPost_syntax">Syntax</h5>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class TraktPost</code></pre>
   </div>
-  <h3 id="methods">Methods
-</h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewEpisodeCheckinPost" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeCheckinPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewEpisodeCheckinPost">NewEpisodeCheckinPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCheckinPostBuilder.html">ITraktEpisodeCheckinPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewEpisodeCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeCommentPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewEpisodeCommentPost">NewEpisodeCommentPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCommentPostBuilder.html">ITraktEpisodeCommentPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewEpisodeScrobblePost" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeScrobblePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewEpisodeScrobblePost">NewEpisodeScrobblePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeScrobblePostBuilder.html">ITraktEpisodeScrobblePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewListCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewListCommentPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewListCommentPost">NewListCommentPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktListCommentPostBuilder.html">ITraktListCommentPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewMovieCheckinPost" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieCheckinPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewMovieCheckinPost">NewMovieCheckinPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktMovieCheckinPostBuilder.html">ITraktMovieCheckinPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewMovieCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieCommentPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewMovieCommentPost">NewMovieCommentPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktMovieCommentPostBuilder.html">ITraktMovieCommentPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewMovieScrobblePost" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieScrobblePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewMovieScrobblePost">NewMovieScrobblePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktMovieScrobblePostBuilder.html">ITraktMovieScrobblePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSeasonCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSeasonCommentPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSeasonCommentPost">NewSeasonCommentPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSeasonCommentPostBuilder.html">ITraktSeasonCommentPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewShowCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewShowCommentPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewShowCommentPost">NewShowCommentPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktShowCommentPostBuilder.html">ITraktShowCommentPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncCollectionPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost">NewSyncCollectionPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncCollectionRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncCollectionRemovePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionRemovePost">NewSyncCollectionRemovePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html">ITraktSyncCollectionRemovePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncHistoryPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncHistoryPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryPost">NewSyncHistoryPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncHistoryRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncHistoryRemovePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryRemovePost">NewSyncHistoryRemovePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRatingsPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost">NewSyncRatingsPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncRatingsRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRatingsRemovePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsRemovePost">NewSyncRatingsRemovePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html">ITraktSyncRatingsRemovePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRecommendationsPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsPost">NewSyncRecommendationsPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsPostBuilder.html">ITraktSyncRecommendationsPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRecommendationsRemovePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsRemovePost">NewSyncRecommendationsRemovePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsRemovePostBuilder.html">ITraktSyncRecommendationsRemovePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncWatchlistPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost">NewSyncWatchlistPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewSyncWatchlistRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncWatchlistRemovePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistRemovePost">NewSyncWatchlistRemovePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html">ITraktSyncWatchlistRemovePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsPost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserHiddenItemsPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsPost">NewUserHiddenItemsPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserHiddenItemsRemovePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsRemovePost">NewUserHiddenItemsRemovePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsRemovePostBuilder.html">ITraktUserHiddenItemsRemovePostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsPost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserPersonalListItemsPost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsPost">NewUserPersonalListItemsPost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserPersonalListItemsRemovePost">
-          <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsRemovePost">NewUserPersonalListItemsRemovePost()</a>
-        </td>
-        <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsRemovePostBuilder.html">ITraktUserPersonalListItemsRemovePostBuilder</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>Copyright &#169; 2016 - Current Henrik Fr&#246;hling et al.</span>
-                </div>
-            </main>
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TraktPost</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewEpisodeCheckinPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeCheckinPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewEpisodeCheckinPost" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeCheckinPost">
+  NewEpisodeCheckinPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCheckinPostBuilder.html">ITraktEpisodeCheckinPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktEpisodeCheckinPostBuilder NewEpisodeCheckinPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCheckinPostBuilder.html">ITraktEpisodeCheckinPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCheckinPostBuilder.html">ITraktEpisodeCheckinPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewEpisodeCommentPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeCommentPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewEpisodeCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeCommentPost">
+  NewEpisodeCommentPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCommentPostBuilder.html">ITraktEpisodeCommentPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktEpisodeCommentPostBuilder NewEpisodeCommentPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCommentPostBuilder.html">ITraktEpisodeCommentPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCommentPostBuilder.html">ITraktEpisodeCommentPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewEpisodeScrobblePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeScrobblePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewEpisodeScrobblePost" data-uid="TraktNet.PostBuilder.TraktPost.NewEpisodeScrobblePost">
+  NewEpisodeScrobblePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeScrobblePostBuilder.html">ITraktEpisodeScrobblePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktEpisodeScrobblePostBuilder NewEpisodeScrobblePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeScrobblePostBuilder.html">ITraktEpisodeScrobblePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeScrobblePostBuilder.html">ITraktEpisodeScrobblePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewListCommentPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewListCommentPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewListCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewListCommentPost">
+  NewListCommentPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktListCommentPostBuilder.html">ITraktListCommentPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktListCommentPostBuilder NewListCommentPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktListCommentPostBuilder.html">ITraktListCommentPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktListCommentPostBuilder.html">ITraktListCommentPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewMovieCheckinPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieCheckinPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewMovieCheckinPost" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieCheckinPost">
+  NewMovieCheckinPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktMovieCheckinPostBuilder.html">ITraktMovieCheckinPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktMovieCheckinPostBuilder NewMovieCheckinPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktMovieCheckinPostBuilder.html">ITraktMovieCheckinPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktMovieCheckinPostBuilder.html">ITraktMovieCheckinPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewMovieCommentPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieCommentPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewMovieCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieCommentPost">
+  NewMovieCommentPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktMovieCommentPostBuilder.html">ITraktMovieCommentPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktMovieCommentPostBuilder NewMovieCommentPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktMovieCommentPostBuilder.html">ITraktMovieCommentPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktMovieCommentPostBuilder.html">ITraktMovieCommentPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewMovieScrobblePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieScrobblePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewMovieScrobblePost" data-uid="TraktNet.PostBuilder.TraktPost.NewMovieScrobblePost">
+  NewMovieScrobblePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktMovieScrobblePostBuilder.html">ITraktMovieScrobblePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktMovieScrobblePostBuilder NewMovieScrobblePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktMovieScrobblePostBuilder.html">ITraktMovieScrobblePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktMovieScrobblePostBuilder.html">ITraktMovieScrobblePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSeasonCommentPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSeasonCommentPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSeasonCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSeasonCommentPost">
+  NewSeasonCommentPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSeasonCommentPostBuilder.html">ITraktSeasonCommentPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSeasonCommentPostBuilder NewSeasonCommentPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSeasonCommentPostBuilder.html">ITraktSeasonCommentPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSeasonCommentPostBuilder.html">ITraktSeasonCommentPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewShowCommentPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewShowCommentPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewShowCommentPost" data-uid="TraktNet.PostBuilder.TraktPost.NewShowCommentPost">
+  NewShowCommentPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktShowCommentPostBuilder.html">ITraktShowCommentPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktShowCommentPostBuilder NewShowCommentPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktShowCommentPostBuilder.html">ITraktShowCommentPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktShowCommentPostBuilder.html">ITraktShowCommentPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncCollectionPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncCollectionPost">
+  NewSyncCollectionPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncCollectionPostBuilder NewSyncCollectionPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncCollectionRemovePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncCollectionRemovePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncCollectionRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncCollectionRemovePost">
+  NewSyncCollectionRemovePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html">ITraktSyncCollectionRemovePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncCollectionRemovePostBuilder NewSyncCollectionRemovePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html">ITraktSyncCollectionRemovePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html">ITraktSyncCollectionRemovePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncFavoritesPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncFavoritesPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncFavoritesPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncFavoritesPost">
+  NewSyncFavoritesPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesPostBuilder.html">ITraktSyncFavoritesPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncFavoritesPostBuilder NewSyncFavoritesPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesPostBuilder.html">ITraktSyncFavoritesPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesPostBuilder.html">ITraktSyncFavoritesPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncFavoritesRemovePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncFavoritesRemovePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncFavoritesRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncFavoritesRemovePost">
+  NewSyncFavoritesRemovePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesRemovePostBuilder.html">ITraktSyncFavoritesRemovePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncFavoritesRemovePostBuilder NewSyncFavoritesRemovePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesRemovePostBuilder.html">ITraktSyncFavoritesRemovePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesRemovePostBuilder.html">ITraktSyncFavoritesRemovePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncHistoryPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncHistoryPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncHistoryPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncHistoryPost">
+  NewSyncHistoryPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncHistoryPostBuilder NewSyncHistoryPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncHistoryRemovePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncHistoryRemovePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncHistoryRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncHistoryRemovePost">
+  NewSyncHistoryRemovePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncHistoryRemovePostBuilder NewSyncHistoryRemovePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRatingsPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRatingsPost">
+  NewSyncRatingsPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncRatingsRemovePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRatingsRemovePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncRatingsRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncRatingsRemovePost">
+  NewSyncRatingsRemovePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html">ITraktSyncRatingsRemovePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncRatingsRemovePostBuilder NewSyncRatingsRemovePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html">ITraktSyncRatingsRemovePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html">ITraktSyncRatingsRemovePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncWatchlistPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncWatchlistPost">
+  NewSyncWatchlistPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewSyncWatchlistRemovePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncWatchlistRemovePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewSyncWatchlistRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewSyncWatchlistRemovePost">
+  NewSyncWatchlistRemovePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html">ITraktSyncWatchlistRemovePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktSyncWatchlistRemovePostBuilder NewSyncWatchlistRemovePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html">ITraktSyncWatchlistRemovePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html">ITraktSyncWatchlistRemovePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewUserHiddenItemsPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsPost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserHiddenItemsPost">
+  NewUserHiddenItemsPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsRemovePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewUserHiddenItemsRemovePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserHiddenItemsRemovePost">
+  NewUserHiddenItemsRemovePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsRemovePostBuilder.html">ITraktUserHiddenItemsRemovePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktUserHiddenItemsRemovePostBuilder NewUserHiddenItemsRemovePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsRemovePostBuilder.html">ITraktUserHiddenItemsRemovePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsRemovePostBuilder.html">ITraktUserHiddenItemsRemovePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsPost_" data-uid="TraktNet.PostBuilder.TraktPost.NewUserPersonalListItemsPost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsPost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserPersonalListItemsPost">
+  NewUserPersonalListItemsPost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktUserPersonalListItemsPostBuilder NewUserPersonalListItemsPost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsRemovePost_" data-uid="TraktNet.PostBuilder.TraktPost.NewUserPersonalListItemsRemovePost*"></a>
+
+  <h3 id="TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsRemovePost" data-uid="TraktNet.PostBuilder.TraktPost.NewUserPersonalListItemsRemovePost">
+  NewUserPersonalListItemsRemovePost()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsRemovePostBuilder.html">ITraktUserPersonalListItemsRemovePostBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITraktUserPersonalListItemsRemovePostBuilder NewUserPersonalListItemsRemovePost()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsRemovePostBuilder.html">ITraktUserPersonalListItemsRemovePostBuilder</a></dt>
+    <dd><p>An <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsRemovePostBuilder.html">ITraktUserPersonalListItemsRemovePostBuilder</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/main/Source/Lib/Trakt.NET/PostBuilder/TraktPost.cs/#L3" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,495 +1,756 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace TraktNet.PostBuilder | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace TraktNet.PostBuilder | Trakt.NET ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
 
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Namespace TraktNet.PostBuilder
- | Trakt.NET </title>
-      <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Namespace TraktNet.PostBuilder
- | Trakt.NET ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
 
-            <a class="brand" href="../index.html">
-              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-              <span class="brand-title">Trakt.NET</span>
-            </a>        </div>
+  </head>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <div class="mobile-hide">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
-                          <span class="brand-title">Trakt.NET</span>
-                        </a>                      </div>
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
+        <article data-uid="TraktNet.PostBuilder">
 
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                    <article class="content wrap" id="_content" data-uid="TraktNet.PostBuilder">
-
-  <h1 id="TraktNet_PostBuilder" data-uid="TraktNet.PostBuilder" class="text-break">Namespace TraktNet.PostBuilder
-</h1>
+  <h1 id="TraktNet_PostBuilder" data-uid="TraktNet.PostBuilder" class="text-break">Namespace TraktNet.PostBuilder</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-</h3>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedEntry-1.html">CollectedEntry&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedEntryWithMetadata-1.html">CollectedEntryWithMetadata&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedEpisode.html">CollectedEpisode</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedEpisodeIds.html">CollectedEpisodeIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedEpisodeIdsWithMetadata.html">CollectedEpisodeIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedEpisodeWithMetadata.html">CollectedEpisodeWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedMovie.html">CollectedMovie</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedMovieIds.html">CollectedMovieIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedMovieIdsWithMetadata.html">CollectedMovieIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedMovieWithMetadata.html">CollectedMovieWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedSeason.html">CollectedSeason</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedSeasonIds.html">CollectedSeasonIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedSeasonIdsWithMetadata.html">CollectedSeasonIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedSeasonWithMetadata.html">CollectedSeasonWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedShow.html">CollectedShow</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedShowIds.html">CollectedShowIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedShowIdsWithMetadata.html">CollectedShowIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectedShowWithMetadata.html">CollectedShowWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectionAndSeasons-1.html">CollectionAndSeasons&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectionEntry-1.html">CollectionEntry&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectionShowAndSeasons.html">CollectionShowAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostCollectionSeasons.html">PostCollectionSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.CollectionShowIdsAndSeasons.html">CollectionShowIdsAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostCollectionSeasons.html">PostCollectionSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.EntryWithMetadata-1.html">EntryWithMetadata&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.EntryWithNotes-1.html">EntryWithNotes&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.EntryWithNotesAndSeasons-1.html">EntryWithNotesAndSeasons&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.EpisodeIdsWithMetadata.html">EpisodeIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.EpisodeIdsWithNotes.html">EpisodeIdsWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.EpisodeWithMetadata.html">EpisodeWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.EpisodeWithNotes.html">EpisodeWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.HiddenItemsEntryWithSeasons-1.html">HiddenItemsEntryWithSeasons&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.HiddenShowIdsWithSeasons.html">HiddenShowIdsWithSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a seasons collection.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.HiddenShowWithSeasons.html">HiddenShowWithSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a seasons collection.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.HistoryAndSeasons-1.html">HistoryAndSeasons&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.MovieIdsWithMetadata.html">MovieIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.MovieIdsWithNotes.html">MovieIdsWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.MovieWithMetadata.html">MovieWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.MovieWithNotes.html">MovieWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PersonIdsWithNotes.html">PersonIdsWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.People.ITraktPersonIds.html">ITraktPersonIds</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PersonWithNotes.html">PersonWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.People.ITraktPerson.html">ITraktPerson</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostCollectionEpisode.html">PostCollectionEpisode</a></h5>
-      <section><p>Contains an episode number, optional metadata and an optional datetime, when it was collected</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostCollectionEpisodes.html">PostCollectionEpisodes</a></h5>
-      <section><p>A list of episode numbers.
-<p>Each episode number can have optional metadata and an optional datetime, when it was collected.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostCollectionSeason.html">PostCollectionSeason</a></h5>
-      <section><p>Contains a season number, optional metadata and an optional datetime, when it was collected.
-<p>Can also contain an optional list of episodes numbers.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostCollectionSeasons.html">PostCollectionSeasons</a></h5>
-      <section><p>A collection of season and episode numbers.
-<p>Can also contain metadata and collected datetimes for each season and episode number.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostEpisode.html">PostEpisode</a></h5>
-      <section><p>Contains an episode number.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostEpisodes.html">PostEpisodes</a></h5>
-      <section><p>A list of episode numbers.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostHistoryEpisode.html">PostHistoryEpisode</a></h5>
-      <section><p>Contains an episode number and an optional datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostHistoryEpisodes.html">PostHistoryEpisodes</a></h5>
-      <section><p>A list of episode numbers.
-<p>Each episode number can have an optional datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostHistorySeason.html">PostHistorySeason</a></h5>
-      <section><p>Contains a season number and an optional datetime, when it was watched.
-<p>Can also contain an optional list of episodes numbers.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a></h5>
-      <section><p>A collection of season and episode numbers.
-<p>Can also contain watched datetimes for each season and episode number.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostRatingsEpisode.html">PostRatingsEpisode</a></h5>
-      <section><p>Contains an episode number and rating and an optional datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostRatingsEpisodes.html">PostRatingsEpisodes</a></h5>
-      <section><p>A list of episode numbers.
-<p>Each episode number has a rating and an optional datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostRatingsSeason.html">PostRatingsSeason</a></h5>
-      <section><p>Contains a season number and rating and an optional datetime, when it was rated.
-<p>Can also contain an optional list of episodes numbers.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostRatingsSeasons.html">PostRatingsSeasons</a></h5>
-      <section><p>A collection of season and episode numbers.
-<p>Contains ratings and datetimes of the ratings for each season and episode number.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostSeason.html">PostSeason</a></h5>
-      <section><p>Contains a season number and an optional list of episodes numbers.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a></h5>
-      <section><p>A collection of season and episode numbers.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsAndSeasons-1.html">RatingsAndSeasons&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsEntry-1.html">RatingsEntry&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsEntryRatedAt-1.html">RatingsEntryRatedAt&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsEpisode.html">RatingsEpisode</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsEpisodeIds.html">RatingsEpisodeIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsEpisodeIdsRatedAt.html">RatingsEpisodeIdsRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsEpisodeRatedAt.html">RatingsEpisodeRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsMovie.html">RatingsMovie</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsMovieIds.html">RatingsMovieIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsMovieIdsRatedAt.html">RatingsMovieIdsRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsMovieRatedAt.html">RatingsMovieRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsSeason.html">RatingsSeason</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsSeasonIds.html">RatingsSeasonIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsSeasonIdsRatedAt.html">RatingsSeasonIdsRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsSeasonRatedAt.html">RatingsSeasonRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsShow.html">RatingsShow</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsShowAndSeasons.html">RatingsShowAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostRatingsSeasons.html">PostRatingsSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsShowIds.html">RatingsShowIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with rating.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsShowIdsAndSeasons.html">RatingsShowIdsAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostRatingsSeasons.html">PostRatingsSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsShowIdsRatedAt.html">RatingsShowIdsRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.RatingsShowRatedAt.html">RatingsShowRatedAt</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a UTC datetime, when it was rated.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.SeasonIdsWithMetadata.html">SeasonIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.SeasonIdsWithNotes.html">SeasonIdsWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.SeasonWithMetadata.html">SeasonWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.SeasonWithNotes.html">SeasonWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowAndSeasons.html">ShowAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowIdsAndSeasons.html">ShowIdsAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowIdsWithMetadata.html">ShowIdsWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowIdsWithNotes.html">ShowIdsWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowIdsWithNotesAndSeasons.html">ShowIdsWithNotesAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.PostBuilder.ShowIdsWithNotes.html">ShowIdsWithNotes</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowWithMetadata.html">ShowWithMetadata</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowWithNotes.html">ShowWithNotes</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with notes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ShowWithNotesAndSeasons.html">ShowWithNotesAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.PostBuilder.ShowWithNotes.html">ShowWithNotes</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.TraktPost.html">TraktPost</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedEntry-1.html">WatchedEntry&lt;T&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedEpisode.html">WatchedEpisode</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedEpisodeIds.html">WatchedEpisodeIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedMovie.html">WatchedMovie</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedMovieIds.html">WatchedMovieIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedSeason.html">WatchedSeason</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedSeasonIds.html">WatchedSeasonIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedShow.html">WatchedShow</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedShowAndSeasons.html">WatchedShowAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedShowIds.html">WatchedShowIds</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a UTC datetime, when it was watched.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WatchedShowIdsAndSeasons.html">WatchedShowIdsAndSeasons</a></h5>
-      <section><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
-See also <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a>.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.WithSeasons-1.html">WithSeasons&lt;T&gt;</a></h5>
-      <section></section>
-    <h3 id="interfaces">Interfaces
-</h3>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktCheckinPostBuilder-2.html">ITraktCheckinPostBuilder&lt;TPostBuilder, TPostObject&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktCommentPostBuilder-2.html">ITraktCommentPostBuilder&lt;TPostBuilder, TPostObject&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCheckinPostBuilder.html">ITraktEpisodeCheckinPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCommentPostBuilder.html">ITraktEpisodeCommentPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeScrobblePostBuilder.html">ITraktEpisodeScrobblePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html">ITraktHiddenItemsPostBuilder&lt;TPostBuilder, TPostObject&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktListCommentPostBuilder.html">ITraktListCommentPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktMovieCheckinPostBuilder.html">ITraktMovieCheckinPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktMovieCommentPostBuilder.html">ITraktMovieCommentPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktMovieScrobblePostBuilder.html">ITraktMovieScrobblePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktRemovePostBuilder-2.html">ITraktRemovePostBuilder&lt;TPostBuilder, TPostObject&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktScrobblePostBuilder-2.html">ITraktScrobblePostBuilder&lt;TPostBuilder, TPostObject&gt;</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSeasonCommentPostBuilder.html">ITraktSeasonCommentPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktShowCommentPostBuilder.html">ITraktShowCommentPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a></h5>
-      <section><p>Post builder for <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a>s.
-<p>Provides methods for adding movies, shows, seasons and episodes.</p>
-</section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html">ITraktSyncCollectionRemovePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html">ITraktSyncRatingsRemovePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsPostBuilder.html">ITraktSyncRecommendationsPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsRemovePostBuilder.html">ITraktSyncRecommendationsRemovePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html">ITraktSyncWatchlistRemovePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsRemovePostBuilder.html">ITraktUserHiddenItemsRemovePostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a></h5>
-      <section></section>
-      <h5><a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsRemovePostBuilder.html">ITraktUserPersonalListItemsRemovePostBuilder</a></h5>
-      <section></section>
-    <h3 id="enums">Enums
-</h3>
-      <h5><a class="xref" href="TraktNet.PostBuilder.TraktPostRating.html">TraktPostRating</a></h5>
-      <section><p>Represents a rating from 1 to 10.</p>
-</section>
-</article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>Copyright &#169; 2016 - Current Henrik Fr&#246;hling et al.</span>
-                </div>
-            </main>
+    <h3 id="classes">
+Classes
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedEntryWithMetadata-1.html">CollectedEntryWithMetadata&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedEntry-1.html">CollectedEntry&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedEpisode.html">CollectedEpisode</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedEpisodeIds.html">CollectedEpisodeIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedEpisodeIdsWithMetadata.html">CollectedEpisodeIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedEpisodeWithMetadata.html">CollectedEpisodeWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedMovie.html">CollectedMovie</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedMovieIds.html">CollectedMovieIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedMovieIdsWithMetadata.html">CollectedMovieIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedMovieWithMetadata.html">CollectedMovieWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedSeason.html">CollectedSeason</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedSeasonIds.html">CollectedSeasonIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedSeasonIdsWithMetadata.html">CollectedSeasonIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedSeasonWithMetadata.html">CollectedSeasonWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedShow.html">CollectedShow</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedShowIds.html">CollectedShowIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedShowIdsWithMetadata.html">CollectedShowIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectedShowWithMetadata.html">CollectedShowWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a> and a UTC datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectionAndSeasons-1.html">CollectionAndSeasons&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectionEntry-1.html">CollectionEntry&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectionShowAndSeasons.html">CollectionShowAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostCollectionSeasons.html">PostCollectionSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.CollectionShowIdsAndSeasons.html">CollectionShowIdsAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostCollectionSeasons.html">PostCollectionSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.EntryWithMetadata-1.html">EntryWithMetadata&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.EntryWithNotesAndSeasons-1.html">EntryWithNotesAndSeasons&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.EntryWithNotes-1.html">EntryWithNotes&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.EpisodeIdsWithMetadata.html">EpisodeIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.EpisodeIdsWithNotes.html">EpisodeIdsWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.EpisodeWithMetadata.html">EpisodeWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.EpisodeWithNotes.html">EpisodeWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.HiddenItemsEntryWithSeasons-1.html">HiddenItemsEntryWithSeasons&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.HiddenShowIdsWithSeasons.html">HiddenShowIdsWithSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a seasons collection.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.HiddenShowWithSeasons.html">HiddenShowWithSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a seasons collection.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.HistoryAndSeasons-1.html">HistoryAndSeasons&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.MovieIdsWithMetadata.html">MovieIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.MovieIdsWithNotes.html">MovieIdsWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.MovieWithMetadata.html">MovieWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.MovieWithNotes.html">MovieWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PersonIdsWithNotes.html">PersonIdsWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.People.ITraktPersonIds.html">ITraktPersonIds</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PersonWithNotes.html">PersonWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.People.ITraktPerson.html">ITraktPerson</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostCollectionEpisode.html">PostCollectionEpisode</a></dt>
+      <dd><p>Contains an episode number, optional metadata and an optional datetime, when it was collected</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostCollectionEpisodes.html">PostCollectionEpisodes</a></dt>
+      <dd><p>A list of episode numbers.</p>
+<p>Each episode number can have optional metadata and an optional datetime, when it was collected.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostCollectionSeason.html">PostCollectionSeason</a></dt>
+      <dd><p>Contains a season number, optional metadata and an optional datetime, when it was collected.</p>
+<p>Can also contain an optional list of episodes numbers.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostCollectionSeasons.html">PostCollectionSeasons</a></dt>
+      <dd><p>A collection of season and episode numbers.</p>
+<p>Can also contain metadata and collected datetimes for each season and episode number.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostEpisode.html">PostEpisode</a></dt>
+      <dd><p>Contains an episode number.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostEpisodes.html">PostEpisodes</a></dt>
+      <dd><p>A list of episode numbers.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostHistoryEpisode.html">PostHistoryEpisode</a></dt>
+      <dd><p>Contains an episode number and an optional datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostHistoryEpisodes.html">PostHistoryEpisodes</a></dt>
+      <dd><p>A list of episode numbers.</p>
+<p>Each episode number can have an optional datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostHistorySeason.html">PostHistorySeason</a></dt>
+      <dd><p>Contains a season number and an optional datetime, when it was watched.</p>
+<p>Can also contain an optional list of episodes numbers.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a></dt>
+      <dd><p>A collection of season and episode numbers.</p>
+<p>Can also contain watched datetimes for each season and episode number.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostRatingsEpisode.html">PostRatingsEpisode</a></dt>
+      <dd><p>Contains an episode number and rating and an optional datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostRatingsEpisodes.html">PostRatingsEpisodes</a></dt>
+      <dd><p>A list of episode numbers.</p>
+<p>Each episode number has a rating and an optional datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostRatingsSeason.html">PostRatingsSeason</a></dt>
+      <dd><p>Contains a season number and rating and an optional datetime, when it was rated.</p>
+<p>Can also contain an optional list of episodes numbers.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostRatingsSeasons.html">PostRatingsSeasons</a></dt>
+      <dd><p>A collection of season and episode numbers.</p>
+<p>Contains ratings and datetimes of the ratings for each season and episode number.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostSeason.html">PostSeason</a></dt>
+      <dd><p>Contains a season number and an optional list of episodes numbers.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a></dt>
+      <dd><p>A collection of season and episode numbers.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsAndSeasons-1.html">RatingsAndSeasons&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsEntryRatedAt-1.html">RatingsEntryRatedAt&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsEntry-1.html">RatingsEntry&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsEpisode.html">RatingsEpisode</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsEpisodeIds.html">RatingsEpisodeIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsEpisodeIdsRatedAt.html">RatingsEpisodeIdsRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsEpisodeRatedAt.html">RatingsEpisodeRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsMovie.html">RatingsMovie</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsMovieIds.html">RatingsMovieIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsMovieIdsRatedAt.html">RatingsMovieIdsRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsMovieRatedAt.html">RatingsMovieRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsSeason.html">RatingsSeason</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsSeasonIds.html">RatingsSeasonIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsSeasonIdsRatedAt.html">RatingsSeasonIdsRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsSeasonRatedAt.html">RatingsSeasonRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsShow.html">RatingsShow</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsShowAndSeasons.html">RatingsShowAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostRatingsSeasons.html">PostRatingsSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsShowIds.html">RatingsShowIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with rating.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsShowIdsAndSeasons.html">RatingsShowIdsAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostRatingsSeasons.html">PostRatingsSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsShowIdsRatedAt.html">RatingsShowIdsRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.RatingsShowRatedAt.html">RatingsShowRatedAt</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a UTC datetime, when it was rated.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.SeasonIdsWithMetadata.html">SeasonIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.SeasonIdsWithNotes.html">SeasonIdsWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.SeasonWithMetadata.html">SeasonWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.SeasonWithNotes.html">SeasonWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowAndSeasons.html">ShowAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowIdsAndSeasons.html">ShowIdsAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowIdsWithMetadata.html">ShowIdsWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowIdsWithNotes.html">ShowIdsWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowIdsWithNotesAndSeasons.html">ShowIdsWithNotesAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.PostBuilder.ShowIdsWithNotes.html">ShowIdsWithNotes</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowWithMetadata.html">ShowWithMetadata</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with <a class="xref" href="TraktNet.Objects.Basic.ITraktMetadata.html">ITraktMetadata</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowWithNotes.html">ShowWithNotes</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with notes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ShowWithNotesAndSeasons.html">ShowWithNotesAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.PostBuilder.ShowWithNotes.html">ShowWithNotes</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostSeasons.html">PostSeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.TraktPost.html">TraktPost</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedEntry-1.html">WatchedEntry&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedEpisode.html">WatchedEpisode</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisode.html">ITraktEpisode</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedEpisodeIds.html">WatchedEpisodeIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Episodes.ITraktEpisodeIds.html">ITraktEpisodeIds</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedMovie.html">WatchedMovie</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovie.html">ITraktMovie</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedMovieIds.html">WatchedMovieIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Movies.ITraktMovieIds.html">ITraktMovieIds</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedSeason.html">WatchedSeason</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeason.html">ITraktSeason</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedSeasonIds.html">WatchedSeasonIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Seasons.ITraktSeasonIds.html">ITraktSeasonIds</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedShow.html">WatchedShow</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedShowAndSeasons.html">WatchedShowAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShow.html">ITraktShow</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedShowIds.html">WatchedShowIds</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a UTC datetime, when it was watched.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WatchedShowIdsAndSeasons.html">WatchedShowIdsAndSeasons</a></dt>
+      <dd><p>Represents a <a class="xref" href="TraktNet.Objects.Get.Shows.ITraktShowIds.html">ITraktShowIds</a> with a collection of seasons and episodes.
+See also <a class="xref" href="TraktNet.PostBuilder.PostHistorySeasons.html">PostHistorySeasons</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.WithSeasons-1.html">WithSeasons&lt;T&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <h3 id="interfaces">
+Interfaces
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktCheckinPostBuilder-2.html">ITraktCheckinPostBuilder&lt;TPostBuilder, TPostObject&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktCommentPostBuilder-2.html">ITraktCommentPostBuilder&lt;TPostBuilder, TPostObject&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCheckinPostBuilder.html">ITraktEpisodeCheckinPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeCommentPostBuilder.html">ITraktEpisodeCommentPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktEpisodeScrobblePostBuilder.html">ITraktEpisodeScrobblePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html">ITraktHiddenItemsPostBuilder&lt;TPostBuilder, TPostObject&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktListCommentPostBuilder.html">ITraktListCommentPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktMovieCheckinPostBuilder.html">ITraktMovieCheckinPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktMovieCommentPostBuilder.html">ITraktMovieCommentPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktMovieScrobblePostBuilder.html">ITraktMovieScrobblePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktRemovePostBuilder-2.html">ITraktRemovePostBuilder&lt;TPostBuilder, TPostObject&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktScrobblePostBuilder-2.html">ITraktScrobblePostBuilder&lt;TPostBuilder, TPostObject&gt;</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSeasonCommentPostBuilder.html">ITraktSeasonCommentPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktShowCommentPostBuilder.html">ITraktShowCommentPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a></dt>
+      <dd><p>Post builder for <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a>s.</p>
+<p>Provides methods for adding movies, shows, seasons and episodes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionRemovePostBuilder.html">ITraktSyncCollectionRemovePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesPostBuilder.html">ITraktSyncFavoritesPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncFavoritesRemovePostBuilder.html">ITraktSyncFavoritesRemovePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder.html">ITraktSyncRatingsRemovePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder.html">ITraktSyncWatchlistRemovePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsRemovePostBuilder.html">ITraktUserHiddenItemsRemovePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsRemovePostBuilder.html">ITraktUserPersonalListItemsRemovePostBuilder</a></dt>
+      <dd></dd>
+    </dl>
+    <h3 id="enums">
+Enums
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="TraktNet.PostBuilder.TraktPostRating.html">TraktPostRating</a></dt>
+      <dd><p>Represents a rating from 1 to 10.</p>
+</dd>
+    </dl>
+
+
+</article>
+
+        <div class="contribution d-print-none">
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

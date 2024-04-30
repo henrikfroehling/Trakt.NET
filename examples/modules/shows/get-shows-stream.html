@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Get Details For Multiple Single Shows | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Get Details For Multiple Single Shows | Trakt.NET ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/examples/modules/shows/get-shows-stream.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="Trakt.NET">
+            Trakt.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="get-details-for-multiple-single-shows">Get Details For Multiple Single Shows</h1>
+
+<p>In this example we get the details of multiple single shows simultaneously.</p>
+<p>Since we do not need authentication or authorization for this example, only the Client-ID is required.</p>
+<pre><code class="lang-csharp">Console.WriteLine(&quot;Please enter your Trakt Client-ID:&quot;);
+string? clientID = Console.ReadLine();
+
+var client = new TraktClient(clientID);
+</code></pre>
+<p>Set the Trakt-IDs or -Slugs for the shows.</p>
+<pre><code class="lang-csharp">Console.WriteLine(&quot;Enter the Trakt-Id or -Slug of Show 1:&quot;);
+string? showIdOrSlug1 = Console.ReadLine();
+
+Console.WriteLine(&quot;Enter the Trakt-Id or -Slug of Show 2:&quot;);
+string? showIdOrSlug2 = Console.ReadLine();
+
+Console.WriteLine(&quot;Enter the Trakt-Id or -Slug of Show 3:&quot;);
+string? showIdOrSlug3 = Console.ReadLine();
+
+// Default fallback slugs.
+showIdOrSlug1 = string.IsNullOrEmpty(showIdOrSlug1) ? &quot;game-of-thrones&quot; : showIdOrSlug1;
+showIdOrSlug2 = string.IsNullOrEmpty(showIdOrSlug2) ? &quot;mr-robot&quot; : showIdOrSlug2;
+showIdOrSlug3 = string.IsNullOrEmpty(showIdOrSlug3) ? &quot;breaking-bad&quot; : showIdOrSlug3;
+</code></pre>
+<p>The following lines show how we can get the details of multiple shows in one library call.</p>
+<p>We create a <a class="xref" href="../../../api/TraktNet.Parameters.TraktMultipleObjectsQueryParams.html">TraktMultipleObjectsQueryParams</a> instance, which holds the ids of the shows.</p>
+<pre><code class="lang-csharp">var extendedInfo = new TraktExtendedInfo { Full = true };
+
+var parameters = new TraktMultipleObjectsQueryParams
+{
+    showIdOrSlug1, // For this show we want only the minimal information.
+
+    // The following shows will have full information.
+    { showIdOrSlug2, extendedInfo },
+    { showIdOrSlug3, extendedInfo }
+};
+</code></pre>
+<p>We use the <a class="xref" href="../../../api/TraktNet.Parameters.TraktMultipleObjectsQueryParams.html">TraktMultipleObjectsQueryParams</a> for the request.</p>
+<pre><code class="lang-csharp">IAsyncEnumerable&lt;TraktResponse&lt;ITraktShow&gt;&gt; mutlipleShowsResponse = client.Shows.GetShowsStreamAsync(parameters);
+
+await foreach (TraktResponse&lt;ITraktShow&gt; showResponse in mutlipleShowsResponse)
+{
+    ITraktShow show = showResponse.Value;
+
+    Console.WriteLine(&quot;-------------------------------------------------------------------------&quot;);
+
+    Console.WriteLine($&quot;Title: {show.Title}&quot;);
+    Console.WriteLine($&quot;Year: {show.Year ?? 0}&quot;);
+
+    ITraktShowIds ids = show.Ids;
+
+    if (ids != null)
+    {
+        Console.WriteLine($&quot;Trakt-Id: {ids.Trakt}&quot;);
+        Console.WriteLine($&quot;Slug: {ids.Slug}&quot;);
+        Console.WriteLine($&quot;ImDB-Id: {ids.Imdb}&quot;);
+        Console.WriteLine($&quot;TmDB-Id: {ids.Tmdb ?? 0}&quot;);
+        Console.WriteLine($&quot;TVDB-Id: {ids.Tvdb ?? 0}&quot;);
+        Console.WriteLine($&quot;TVRage-Id: {ids.TvRage ?? 0}&quot;);
+    }
+
+    Console.WriteLine($&quot;Overview: {show.Overview}&quot;);
+
+    if (show.FirstAired.HasValue)
+    {
+        Console.WriteLine($&quot;First Aired (UTC): {show.FirstAired.Value}&quot;);
+    }
+
+    ITraktShowAirs airs = show.Airs;
+
+    if (airs != null)
+    {
+        Console.WriteLine($&quot;Airs on: {airs.Day}&quot;);
+        Console.WriteLine($&quot;Airs at: {airs.Time}&quot;);
+        Console.WriteLine($&quot;Airs in: {airs.TimeZoneId}&quot;);
+    }
+
+    Console.WriteLine($&quot;Runtime: {show.Runtime ?? 0} Minutes&quot;);
+
+    if (show.Genres != null)
+    {
+        Console.WriteLine($&quot;Genres: {string.Join(&quot;, &quot;, show.Genres)}&quot;);
+    }
+
+    Console.WriteLine($&quot;Certification: {show.Certification}&quot;);
+    Console.WriteLine($&quot;Network: {show.Network}&quot;);
+    Console.WriteLine($&quot;Aired Episodes: {show.AiredEpisodes ?? 0}&quot;);
+
+    if (show.Status != null)
+    {
+        Console.WriteLine($&quot;Status: {show.Status.DisplayName}&quot;);
+    }
+
+    Console.WriteLine($&quot;Rating: {show.Rating ?? 0.0f}&quot;);
+    Console.WriteLine($&quot;Votes: {show.Votes ?? 0}&quot;);
+    Console.WriteLine($&quot;Country Code: {show.CountryCode}&quot;);
+    Console.WriteLine($&quot;Language Code: {show.LanguageCode}&quot;);
+
+    if (show.UpdatedAt.HasValue)
+    {
+        Console.WriteLine($&quot;Updated At (UTC): {show.UpdatedAt.Value}&quot;);
+    }
+
+    if (show.AvailableTranslationLanguageCodes != null)
+    {
+        Console.WriteLine($&quot;Available Translation Languages: {string.Join(&quot;, &quot;, show.AvailableTranslationLanguageCodes)}&quot;);
+    }
+
+    Console.WriteLine($&quot;Trailer: {show.Trailer}&quot;);
+    Console.WriteLine($&quot;Homepage: {show.Homepage}&quot;);
+}
+</code></pre>
+<p><strong>The complete code for this example can be found at: <a href="https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/modules/shows/GetShowsStreamExample.cs">Trakt.NET/docs/codesnippets/examples/modules/shows/GetShowsStreamExample.cs</a></strong></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/henrikfroehling/Trakt.NET/blob/develop/docs/examples/modules/shows/get-shows-stream.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br>Copyright © 2016 - Current Henrik Fröhling et al.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
