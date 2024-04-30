@@ -70,7 +70,7 @@ Some examples that **Trakt.NET** can be used for include:
 To use **Trakt.NET**, you will need to [obtain an API key](https://trakt.tv/oauth/applications) from Trakt and follow the guidelines for using the [API](http://trakt.docs.apiary.io/#).
 
 ## Features
-- Full Trakt.tv API Coverage (As of August 2023)
+- Full Trakt.tv API Coverage (As of April 2024)
 - Authentication and Authorization Support (OAuth 2.0 and Device)
 - Completely asynchronous
 - API Environments (Production and Sandbox)
