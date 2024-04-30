@@ -188,7 +188,7 @@ jobs:
 
       - name: Deploy documentation
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.ref_name == 'main' && (github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ github.ref_name == 'main' || github.event_name == 'workflow_dispatch' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: 'docs/_site'
