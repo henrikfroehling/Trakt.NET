@@ -2,6 +2,11 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+    <GenerateDocumentationFile Condition="'$(Configuration)' == 'Release'">true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <IncludeSymbols>true</IncludeSymbols>
@@ -17,7 +22,7 @@
     <PackageTags>trakt rest api dotnet</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#130</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/v1.4.0/Changelogs/v1.4.0.md</PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 

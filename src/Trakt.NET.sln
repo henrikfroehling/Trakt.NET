@@ -126,7 +126,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sourcegenerators", "sourceg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.SourceGenerators", "tools\sourcegenerators\Trakt.NET.SourceGenerators\Trakt.NET.SourceGenerators.csproj", "{08F3E34D-6355-4C5F-A07B-7E72235B20F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Tests.Utility", "tests\Trakt.NET.Tests.Utility\Trakt.NET.Tests.Utility.csproj", "{908AAA3F-9E5E-4B34-BE13-00F8D2A1710A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Tests.Utility", "tests\Trakt.NET.Tests.Utility\Trakt.NET.Tests.Utility.csproj", "{908AAA3F-9E5E-4B34-BE13-00F8D2A1710A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
