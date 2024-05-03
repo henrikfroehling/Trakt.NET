@@ -1,38 +1,15 @@
-name: 'CI-Build'
+name: 'CI'
 
 on:
   workflow_dispatch:
+  release:
+    types: [published,prereleased]
   push:
-    paths-ignore:
-      - 'Postman/**'
-      - 'AUTHORS.md'
-      - 'CODE_OF_CONDUCT.md'
-      - 'CONTRIBUTING.md'
-      - 'Changelog.md'
-      - 'LICENSE.md'
-      - 'PublishRelease.txt'
-      - 'README.md'
-      - 'coding_style.md'
-  pull_request:
-    paths-ignore:
-      - 'Postman/**'
-      - 'AUTHORS.md'
-      - 'CODE_OF_CONDUCT.md'
-      - 'CONTRIBUTING.md'
-      - 'Changelog.md'
-      - 'LICENSE.md'
-      - 'PublishRelease.txt'
-      - 'README.md'
-      - 'coding_style.md'
-
-env:
-  DOTNET_VERSION: '8.0.x'
-  DOTNET_QUALITY: 'ga'
-  BUILD_CONFIGURATION: Release
-  PROJECT_DEVELOP_NAME: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
-  PROJECT_V2_NAME: 'src/libs/Trakt.NET/Trakt.NET.csproj'
-  ARTIFACTS_DEVELOP_DIRECTORY: 'artifacts'
-  ARTIFACTS_V2_DIRECTORY: 'artifacts-v2.0.0-alpha'
+    tags: 'v**'
+    branches:
+      - main
+      - develop
+      - 'release-**'
 
 jobs:
   environment-check:
@@ -86,178 +63,47 @@ jobs:
       environment_name: ${{ env.env_name }}
       target_branch_name: ${{ env.target_br_name }}
 
-  build:
+  stable:
     needs: [environment-check]
-    runs-on: windows-latest
-    environment:
-      name: ${{ needs.environment-check.outputs.environment_name }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+    with:
+      should_run: true
+      environment_name: ${{ needs.environment-check.outputs.environment_name }}
+      version2_build: false
+      working_directory: 'Source'
+      project_name: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
+      build_configuration: Release
+      binaries_directory: 'Source/Lib/Trakt.NET/bin'
+      artifacts_directory: 'artifacts'
+      artifacts_archive_name: 'Trakt.NET-CI-Build-${{ needs.environment-check.outputs.target_branch_name }}'
+      upload_codecov: true
+      push_nuget_package: true
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-          dotnet-quality: ${{ env.DOTNET_QUALITY }}
-          source-url: https://nuget.pkg.github.com/henrikfroehling/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Restore dependencies
-        run: dotnet restore
-        working-directory: 'Source'
-
-      - name: Build solution
-        run: dotnet build  --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
-        working-directory: 'Source'
-
-      - name: Run tests
-        run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        working-directory: 'Source'
-
-      - name: Upload coverage reports to Codecov
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Create NuGet package
-        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-        run: dotnet pack ${{ env.PROJECT_DEVELOP_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
-
-      - name: Copy files for deployment
-        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-        shell: pwsh
-        run: |
-          New-Item -Type Directory -Force ${{ env.ARTIFACTS_DEVELOP_DIRECTORY }}
-          Get-ChildItem -Path 'Source/Lib/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ env.ARTIFACTS_DEVELOP_DIRECTORY }}
-
-      - name: Upload artifacts
-        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: Trakt.NET-CI-Build-${{ needs.environment-check.outputs.target_branch_name }}.${{ github.run_number }}-${{ github.sha }}
-          retention-days: 14
-          path: '${{ env.ARTIFACTS_DEVELOP_DIRECTORY }}/'
-
-      - name: Push NuGet package to Github Package Registry
-        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/henrikfroehling --skip-duplicate
-        working-directory: 'Source'
-
-      - name: Push package to NuGet
-        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
-        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+  v2-alpha:
+    needs: [environment-check]
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+    with:
+      should_run: ${{ github.ref_name == 'develop' }}
+      environment_name: ${{ needs.environment-check.outputs.environment_name }}
+      version2_build: true
+      working_directory: 'src'
+      project_name: 'src/libs/Trakt.NET/Trakt.NET.csproj'
+      build_configuration: Release
+      binaries_directory: 'src/libs/Trakt.NET/bin'
+      artifacts_directory: 'artifacts-v2.0.0-alpha'
+      artifacts_archive_name: 'Trakt.NET-CI-Build-v2.0.0-Alpha-${{ needs.environment-check.outputs.target_branch_name }}'
+      upload_codecov: false
+      push_nuget_package: false
 
   docs:
-    needs: [environment-check]
-    if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-    runs-on: windows-latest
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-          dotnet-quality: ${{ env.DOTNET_QUALITY }}
-
-      - name: Setup DocFX
-        run: dotnet tool update -g docfx
-
-      - name: Restore dependencies
-        run: dotnet restore ${{ env.PROJECT_DEVELOP_NAME }}
-
-      - name: Build library
-        run: dotnet build ${{ env.PROJECT_DEVELOP_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
-
-      - name: Build documentation
-        run: cd docs && docfx metadata && docfx build
-
-      - name: Upload documentation artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: Trakt.NET-Documentation-${{ needs.environment-check.outputs.target_branch_name }}.${{ github.run_number }}-${{ github.sha }}
-          retention-days: 14
-          path: 'docs/_site/'
-
-      - name: Deploy documentation
-        uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.ref_name == 'main' && (github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')) }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: 'docs/_site'
-
-  build-v2-alpha:
-    runs-on: windows-latest
-    environment: Development
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-          dotnet-quality: ${{ env.DOTNET_QUALITY }}
-#          source-url: https://nuget.pkg.github.com/henrikfroehling/index.json
-#        env:
-#          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Restore dependencies
-        run: dotnet restore
-        working-directory: 'src'
-
-      - name: Build solution
-        run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
-        working-directory: 'src'
-
-      - name: Run tests
-        run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        working-directory: 'src'
-
-      - name: Create NuGet package
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet pack ${{ env.PROJECT_V2_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
-
-      - name: Copy files for deployment
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        shell: pwsh
-        run: |
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.1'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.0'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net6.0'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net7.0'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net8.0'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' | Where-Object {$_.Fullname -match '[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ env.ARTIFACTS_V2_DIRECTORY }}
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.1' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.1'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.0'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net6.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net6.0'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net7.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net7.0'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net8.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net8.0'
-
-      - name: Upload artifacts
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: Trakt.NET-CI-Build-v2.0.0-Alpha.${{ github.run_number }}-${{ github.sha }}
-          retention-days: 14
-          path: '${{ env.ARTIFACTS_V2_DIRECTORY }}/'
-
-#      - name: Push NuGet package to Github Package Registry
-#        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-#        run: dotnet nuget push '**/Trakt.NET*.nupkg'
-#        working-directory: 'src'
+    needs: [environment-check, stable]
+    uses: ./.github/workflows/documentation.yml
+    secrets: inherit
+    with:
+      should_run: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+      environment_name: ${{ needs.environment-check.outputs.environment_name }}
+      project_name: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
+      build_configuration: Release
+      artifacts_archive_name: 'Trakt.NET-Documentation-${{ needs.environment-check.outputs.target_branch_name }}'

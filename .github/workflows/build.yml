@@ -1,0 +1,121 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      should_run:
+        required: true
+        type: boolean
+      environment_name:
+        required: true
+        type: string
+      version2_build:
+        required: true
+        type: boolean
+      working_directory:
+        required: true
+        type: string
+      project_name:
+        required: true
+        type: string
+      build_configuration:
+        required: true
+        type: string
+      binaries_directory:
+        required: true
+        type: string
+      artifacts_directory:
+        required: true
+        type: string
+      artifacts_archive_name:
+        required: true
+        type: string
+      upload_codecov:
+        required: true
+        type: boolean
+      push_nuget_package:
+        required: true
+        type: boolean
+
+jobs:
+  build:
+    if: ${{ inputs.should_run }}
+    runs-on: windows-latest
+    environment: ${{ inputs.environment_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup environment variables
+        uses: cardinalby/export-env-action@v2
+        with:
+          envFile: './.github/constants.env'  
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: ${{ inputs.working_directory }}
+
+      - name: Build solution
+        run: dotnet build  --configuration ${{ inputs.build_configuration }} --no-restore
+        working-directory: ${{ inputs.working_directory }}
+
+      - name: Run tests
+        run: dotnet test --configuration ${{ inputs.build_configuration }} --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        working-directory: ${{ inputs.working_directory }}
+
+      - name: Upload coverage reports to Codecov
+        if: ${{ inputs.upload_codecov }}
+        uses: codecov/codecov-action@v4
+
+      - name: Create NuGet package
+        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        run: dotnet pack ${{ inputs.project_name }} --configuration ${{ inputs.build_configuration }} --no-build --no-restore
+
+      - name: Copy files for deployment
+        if: ${{ !inputs.version2_build && !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        shell: pwsh
+        run: |
+          New-Item -Type Directory -Force ${{ inputs.artifacts_directory }}
+          Get-ChildItem -Path 'Source/Lib/Trakt.NET/bin/${{ inputs.build_configuration }}' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ inputs.artifacts_directory }}
+
+      - name: Copy files for deployment v2
+        if: ${{ inputs.version2_build && github.actor != 'dependabot[bot]' }}
+        shell: pwsh
+        run: |
+          New-Item -Type Directory -Force '${{ inputs.artifacts_directory }}'
+          New-Item -Type Directory -Force '${{ inputs.artifacts_directory }}/netstandard2.1'
+          New-Item -Type Directory -Force '${{ inputs.artifacts_directory }}/netstandard2.0'
+          New-Item -Type Directory -Force '${{ inputs.artifacts_directory }}/net6.0'
+          New-Item -Type Directory -Force '${{ inputs.artifacts_directory }}/net7.0'
+          New-Item -Type Directory -Force '${{ inputs.artifacts_directory }}/net8.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ inputs.build_configuration }}' | Where-Object {$_.Fullname -match '[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ inputs.artifacts_directory }}
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ inputs.build_configuration }}/netstandard2.1' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ inputs.artifacts_directory }}/netstandard2.1'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ inputs.build_configuration }}/netstandard2.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ inputs.artifacts_directory }}/netstandard2.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ inputs.build_configuration }}/net6.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ inputs.artifacts_directory }}/net6.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ inputs.build_configuration }}/net7.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ inputs.artifacts_directory }}/net7.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ inputs.build_configuration }}/net8.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ inputs.artifacts_directory }}/net8.0'
+  
+      - name: Upload artifacts
+        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifacts_archive_name }}-${{ github.run_number }}-${{ github.sha }}
+          retention-days: 14
+          path: '${{ inputs.artifacts_directory }}/'
+
+      - name: Push NuGet package to Github Package Registry
+        if: ${{ inputs.push_nuget_package && !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/henrikfroehling --skip-duplicate
+        working-directory: ${{ inputs.working_directory }}
+  
+      - name: Push package to NuGet
+        if: ${{ inputs.push_nuget_package && startsWith(github.ref, 'refs/tags/v') }}
+        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

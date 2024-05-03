@@ -1,0 +1,72 @@
+name: Documentation
+
+on:
+  workflow_call:
+    inputs:
+      should_run:
+        required: true
+        type: boolean
+      environment_name:
+        required: true
+        type: string
+      project_name:
+        required: true
+        type: string
+      build_configuration:
+        required: true
+        type: string
+      artifacts_archive_name:
+        required: true
+        type: string
+
+jobs:
+  build:
+    if: ${{ inputs.should_run }}
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    environment: ${{ inputs.environment_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup environment variables
+        uses: cardinalby/export-env-action@v2
+        with:
+          envFile: './.github/constants.env'  
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
+
+      - name: Setup DocFX
+        run: dotnet tool update -g docfx
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ inputs.project_name }}
+
+      - name: Build library
+        run: dotnet build ${{ inputs.project_name }} --configuration ${{ inputs.build_configuration }} --no-restore
+
+      - name: Build documentation
+        run: cd docs && docfx metadata && docfx build
+  
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifacts_archive_name }}-${{ github.run_number }}-${{ github.sha }}
+          retention-days: 14
+          path: 'docs/_site/'
+
+      - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v4
+        if: ${{ github.ref_name == 'main' || (github.event_name == 'workflow_dispatch' && github.ref_name == 'main') }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: 'docs/_site'
