@@ -12,98 +12,88 @@ on:
       - 'release-**'
 
 jobs:
-  environment-check:
+  init:
     runs-on: windows-latest
     steps:
-      - name: Check branch for enviroment
-        if: github.event_name != 'pull_request'
+      - name: Initialize environment variables
+        id: find-environment
         shell: bash
         run: |
-          echo "Running on branch ${{ github.ref_name }}"
-          br_name=${{ github.ref_name }}
-          echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
-          if [[ "${{ github.ref_name }}" == *"main"* ]]; then
-            echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [[ "${{ github.ref }}" == "refs/tags/v"* ]]; then
-            echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [[ "${{ github.ref_name }}" == *"develop"* ]]; then
-            echo "env_name=Development" >> "$GITHUB_ENV"
-          elif [[ "${{ github.ref_name }}" == *"release"* ]]; then
-            echo "env_name=Release-Previews" >> "$GITHUB_ENV"
+          if [[ "${{ github.event_name }}" != "pull_request" ]]; then
+            branch_name=${{ github.ref_name }}
           else
-            echo "env_name=Development" >> "$GITHUB_ENV"
-          fi 
-
-      - name: Check branch for enviroment in PR
-        if: github.event_name == 'pull_request'
-        shell: bash
-        run: |
-          echo "Running on branch ${{ github.head_ref }}"
-          br_name=${{ github.base_ref }}
-          echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
-          if [[ "${{ github.base_ref }}" == *"main"* ]]; then
-            echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [[ "${{ github.ref }}" == "refs/tags/v"* ]]; then
-            echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [[ "${{ github.base_ref }}" == *"develop"* ]]; then
-            echo "env_name=Development" >> "$GITHUB_ENV"
-          elif [[ "${{ github.base_ref }}" == *"release"* ]]; then
-            echo "env_name=Release-Previews" >> "$GITHUB_ENV"
+            branch_name=${{ github.base_ref }}
+          fi
+          target_br_name=${branch_name//\//-}
+          echo "Running on branch: ${branch_name}"
+          echo "Target branch is: ${target_br_name}"
+          if [[ "${branch_name}" == *"main"* || "${{ github.ref }}" == "refs/tags/v"* ]]; then
+            environment=Production
+          elif [[ "${branch_name}" == *"develop"* ]]; then
+            environment=Development
+          elif [[ "${branch_name}" == *"release"* ]]; then
+            environment=Release-Previews
           else
-            echo "env_name=Development" >> "$GITHUB_ENV"
-          fi 
-
-      - name: Output environment
-        shell: bash
-        run: |
-          echo "Environment name = ${{ env.env_name }}"
-          echo "Branch name = ${{ env.target_br_name }}"
+            environment=Development
+          fi
+          if [[ "${environment}" == "Production" || "${environment}" == "Release-Previews" ]]; then
+            echo "deploy_nuget_pckge=true" >> "$GITHUB_ENV"
+            echo "NuGet package deployment is enabled"
+          else
+            echo "deploy_nuget_pckge=false" >> "$GITHUB_ENV"
+            echo "NuGet package deployment is disabled"
+          fi
+          echo "Found environment: ${environment}"
+          echo "env_name=${environment}" >> "$GITHUB_ENV"
+          echo "target_br_name=${target_br_name}" >> "$GITHUB_ENV"
 
     outputs:
       environment_name: ${{ env.env_name }}
       target_branch_name: ${{ env.target_br_name }}
-
+      deploy_nuget_package: ${{ env.deploy_nuget_pckge }}
+      
   stable:
-    needs: [environment-check]
+    needs: [init]
     uses: ./.github/workflows/build.yml
     secrets: inherit
     with:
       should_run: true
-      environment_name: ${{ needs.environment-check.outputs.environment_name }}
-      version2_build: false
+      environment_name: ${{ needs.init.outputs.environment_name }}
+      target_branch_name: ${{ needs.init.outputs.target_branch_name }}
       working_directory: 'Source'
       project_name: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
       build_configuration: Release
-      binaries_directory: 'Source/Lib/Trakt.NET/bin'
-      artifacts_directory: 'artifacts'
-      artifacts_archive_name: 'Trakt.NET-CI-Build-${{ needs.environment-check.outputs.target_branch_name }}'
+      binaries_root_directory: 'Source/Lib/Trakt.NET/bin'
+      artifacts_root_directory: 'artifacts'
+      artifacts_archive_name: 'Trakt.NET-CI-Build-${{ needs.init.outputs.target_branch_name }}'
       upload_codecov: true
-      push_nuget_package: true
+      push_nuget_package: ${{ needs.init.outputs.deploy_nuget_package == 'true' }}
 
   v2-alpha:
-    needs: [environment-check]
+    needs: [init]
     uses: ./.github/workflows/build.yml
     secrets: inherit
     with:
       should_run: ${{ github.ref_name == 'develop' }}
-      environment_name: ${{ needs.environment-check.outputs.environment_name }}
-      version2_build: true
+      environment_name: ${{ needs.init.outputs.environment_name }}
+      target_branch_name: ${{ needs.init.outputs.target_branch_name }}
       working_directory: 'src'
       project_name: 'src/libs/Trakt.NET/Trakt.NET.csproj'
       build_configuration: Release
-      binaries_directory: 'src/libs/Trakt.NET/bin'
-      artifacts_directory: 'artifacts-v2.0.0-alpha'
-      artifacts_archive_name: 'Trakt.NET-CI-Build-v2.0.0-Alpha-${{ needs.environment-check.outputs.target_branch_name }}'
+      binaries_root_directory: 'src/libs/Trakt.NET/bin'
+      artifacts_root_directory: 'artifacts-v2.0.0-alpha'
+      artifacts_sub_directories: 'netstandard2.0,netstandard2.1,net6.0,net7.0,net8.0'
+      artifacts_archive_name: 'Trakt.NET-CI-Build-v2.0.0-Alpha-${{ needs.init.outputs.target_branch_name }}'
       upload_codecov: false
       push_nuget_package: false
 
   docs:
-    needs: [environment-check, stable]
+    needs: [init, stable]
     uses: ./.github/workflows/documentation.yml
     secrets: inherit
     with:
       should_run: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-      environment_name: ${{ needs.environment-check.outputs.environment_name }}
+      environment_name: ${{ needs.init.outputs.environment_name }}
       project_name: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
       build_configuration: Release
-      artifacts_archive_name: 'Trakt.NET-Documentation-${{ needs.environment-check.outputs.target_branch_name }}'
+      artifacts_archive_name: 'Trakt.NET-Documentation-${{ needs.init.outputs.target_branch_name }}'
