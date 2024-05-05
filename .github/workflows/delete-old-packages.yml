@@ -1,0 +1,13 @@
+name: Delete old packages
+
+on: workflow_dispatch
+
+jobs:
+  delete-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/delete-package-versions@v5
+        with:
+          package-name: 'Trakt.NET'
+          package-type: 'nuget'
+          min-versions-to-keep: 20
