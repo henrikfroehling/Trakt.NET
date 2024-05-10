@@ -6,9 +6,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77}"
 	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build.yml = ..\.github\workflows\build.yml
 		..\.github\workflows\ci.yml = ..\.github\workflows\ci.yml
 		..\.github\workflows\code-scan.yml = ..\.github\workflows\code-scan.yml
-		..\.github\dependabot.yml = ..\.github\dependabot.yml
+		..\.github\workflows\delete-old-packages.yml = ..\.github\workflows\delete-old-packages.yml
+		..\.github\workflows\dependabot-auto-approve.yml = ..\.github\workflows\dependabot-auto-approve.yml
+		..\.github\workflows\dependabot-auto-merge.yml = ..\.github\workflows\dependabot-auto-merge.yml
+		..\.github\workflows\documentation.yml = ..\.github\workflows\documentation.yml
 		..\.github\workflows\sonarcloud.yml = ..\.github\workflows\sonarcloud.yml
 	EndProjectSection
 EndProject
@@ -26,9 +30,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{695F47B0-A80
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{8315C2AB-046F-4BE5-B417-E4CB97AA6A34}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Changelogs", "Changelogs", "{8315C2AB-046F-4BE5-B417-E4CB97AA6A34}"
 	ProjectSection(SolutionItems) = preProject
-		..\Changelog.md = ..\Changelog.md
+		..\Changelogs\old-versions.md = ..\Changelogs\old-versions.md
+		..\Changelogs\v1.2.0.md = ..\Changelogs\v1.2.0.md
+		..\Changelogs\v1.3.0.md = ..\Changelogs\v1.3.0.md
+		..\Changelogs\v1.4.0.md = ..\Changelogs\v1.4.0.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contributing", "Contributing", "{EDB5D86C-D40A-4481-AE9E-97C456190749}"
@@ -44,16 +51,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information"
 		..\.github\CODEOWNERS = ..\.github\CODEOWNERS
 		..\LICENSE.md = ..\LICENSE.md
 		..\README.md = ..\README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{CBAF46D6-612D-4850-8238-21A7079542D9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v1.4.0", "v1.4.0", "{27CA1632-1E0D-4136-BA68-0490E3191BCB}"
-	ProjectSection(SolutionItems) = preProject
-		..\Postman\v1.4.0\README.md = ..\Postman\v1.4.0\README.md
-		..\Postman\v1.4.0\Trakt_API_Environment.postman_environment.json = ..\Postman\v1.4.0\Trakt_API_Environment.postman_environment.json
-		..\Postman\v1.4.0\Trakt_API_Requests.postman_collection.json = ..\Postman\v1.4.0\Trakt_API_Requests.postman_collection.json
-		..\Postman\v1.4.0\Trakt_API_Staging_Environment.postman_environment.json = ..\Postman\v1.4.0\Trakt_API_Staging_Environment.postman_environment.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Directory Build Properties", "Directory Build Properties", "{3DC8C555-C99D-4991-B74A-C75E966703DB}"
@@ -197,8 +194,6 @@ Global
 		{8315C2AB-046F-4BE5-B417-E4CB97AA6A34} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{EDB5D86C-D40A-4481-AE9E-97C456190749} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{02EDFC5A-10AE-4653-AF73-F0C2E30CFFB3} = {E4690B7D-5380-4003-99C3-2091827DB262}
-		{CBAF46D6-612D-4850-8238-21A7079542D9} = {E4690B7D-5380-4003-99C3-2091827DB262}
-		{27CA1632-1E0D-4136-BA68-0490E3191BCB} = {CBAF46D6-612D-4850-8238-21A7079542D9}
 		{3DC8C555-C99D-4991-B74A-C75E966703DB} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{565BDF15-9747-4793-AE1A-70D5E0F04FB0} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{818576FB-5FF1-430E-A6A6-CDEB87536F03} = {E4690B7D-5380-4003-99C3-2091827DB262}
