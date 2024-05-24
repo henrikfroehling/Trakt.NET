@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Product>Trakt.NET.SourceGenerators</Product>
-    <Title>Trakt.NET.SourceGenerators</Title>
+    <Product>Trakt.NET.SourceGeneration</Product>
+    <Title>Trakt.NET.SourceGeneration</Title>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>

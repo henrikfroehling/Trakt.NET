@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using TraktNET.SourceGenerators;
+using TraktNET.SourceGeneration;
 
 namespace TraktNET
 {

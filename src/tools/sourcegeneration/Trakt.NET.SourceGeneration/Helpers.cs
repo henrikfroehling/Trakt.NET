@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace TraktNET.SourceGenerators
+namespace TraktNET.SourceGeneration
 {
     internal static class Helpers
     {

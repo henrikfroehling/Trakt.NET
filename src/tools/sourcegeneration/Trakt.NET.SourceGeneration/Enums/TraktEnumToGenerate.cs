@@ -1,4 +1,4 @@
-﻿namespace TraktNET.SourceGenerators.Enums
+﻿namespace TraktNET.SourceGeneration.Enums
 {
     internal readonly record struct TraktEnumMemberToGenerate
     {

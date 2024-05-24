@@ -4,9 +4,9 @@ using Microsoft.CodeAnalysis.Text;
 using System.Collections.Immutable;
 using System.Text;
 
-using CompilationTuple = (Microsoft.CodeAnalysis.Compilation Left, System.Collections.Immutable.ImmutableArray<TraktNET.SourceGenerators.Enums.TraktEnumToGenerate?> Right);
+using CompilationTuple = (Microsoft.CodeAnalysis.Compilation Left, System.Collections.Immutable.ImmutableArray<TraktNET.SourceGeneration.Enums.TraktEnumToGenerate?> Right);
 
-namespace TraktNET.SourceGenerators.Enums
+namespace TraktNET.SourceGeneration.Enums
 {
     [Generator]
     public sealed class TraktEnumSourceGenerator : IIncrementalGenerator

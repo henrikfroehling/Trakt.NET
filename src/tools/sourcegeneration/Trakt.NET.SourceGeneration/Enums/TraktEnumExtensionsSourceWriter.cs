@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace TraktNET.SourceGenerators.Enums
+namespace TraktNET.SourceGeneration.Enums
 {
     internal sealed class TraktEnumExtensionsSourceWriter
     {
