@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Trakt.NET.SourceGeneration": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\..\\libs\\Trakt.NET\\Trakt.NET.csproj"
+    }
+  }
+}

@@ -1,4 +1,6 @@
-﻿namespace TraktNET.SourceGeneration.Enums
+﻿using TraktNET.SourceGeneration.Common;
+
+namespace TraktNET.SourceGeneration.Enums
 {
     internal static class EnumConstants
     {
@@ -30,7 +32,7 @@ namespace " + Constants.Namespace + @"
     /// <summary>Provides extension methods and a Json converter for an enum.</summary>
 " + Constants.ExcludeCodeCoverage + @"
     [global::System.AttributeUsage(global::System.AttributeTargets.Enum, AllowMultiple = false, Inherited = false)]
-    public sealed class " + TraktEnumAttributeName + @" : global::System.Attribute
+    public class " + TraktEnumAttributeName + @" : global::System.Attribute
     {
     }
 }
@@ -61,7 +63,8 @@ namespace " + Constants.Namespace + @"
     ///<summary>Provides extension methods for an enum which can be used as a request parameter.</summary>
 " + Constants.ExcludeCodeCoverage + @"
     [global::System.AttributeUsage(global::System.AttributeTargets.Enum, AllowMultiple = false, Inherited = false)]
-    public sealed class " + TraktParameterEnumAttributeName + @" : global::System.Attribute
+    public sealed class " + TraktParameterEnumAttributeName + @" : " + TraktEnumAttributeName +
+@"
     {
         public " + TraktParameterEnumAttributeName + @"(string uriParameterName)
             => UriParameterName = uriParameterName;
@@ -75,7 +78,11 @@ namespace " + Constants.Namespace + @"
         {
             internal const string InitialEnumExtraction = "InitialEnumExtraction";
 
-            internal const string NullFilteredEnums = "NullFilteredEnums";
+            internal const string FilteredEnums = "FilteredEnums";
+
+            internal const string InitialParameterEnumExtraction = "InitialParameterEnumExtraction";
+
+            internal const string FilteredParameterEnums = "FilteredParameterEnums";
         }
     }
 }

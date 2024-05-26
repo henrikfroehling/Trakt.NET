@@ -12,21 +12,21 @@ using GenerationSpecificationTuple =
 namespace TraktNET.SourceGeneration.Enums
 {
     [Generator]
-    public sealed class TraktEnumSourceGenerator : TraktEnumSourceGeneratorBase, IIncrementalGenerator
+    public sealed class TraktParameterEnumSourceGenerator : TraktEnumSourceGeneratorBase, IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context) => InitializeGenerator(context);
 
         protected override IncrementalValuesProvider<GenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
             IncrementalGeneratorInitializationContext context)
-            => CombineAndSelectEnumsWithAttribute(context, EnumConstants.FullTraktEnumAttributeName,
-                EnumConstants.TrackingNames.InitialEnumExtraction, EnumConstants.TrackingNames.FilteredEnums);
+            => CombineAndSelectEnumsWithAttribute(context, EnumConstants.FullTraktParameterEnumAttributeName,
+                EnumConstants.TrackingNames.InitialParameterEnumExtraction, EnumConstants.TrackingNames.FilteredParameterEnums);
 
         protected override GenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple input, CancellationToken cancellationToken)
         {
             TraktEnumDeclarationParser parser = new(input.KnownEnumSymbols);
 
             EnumGenerationSpecification? enumGenerationSpecification =
-                parser.ParseTraktEnumDeclaration(input.EnumDeclarationContext.ContextClass, input.EnumDeclarationContext.SemanticModel, cancellationToken);
+                parser.ParseTraktParameterEnumDeclaration(input.EnumDeclarationContext.ContextClass, input.EnumDeclarationContext.SemanticModel, cancellationToken);
 
             var diagnostics = parser.Diagnostics.ToImmutableEquatableArray();
             return (enumGenerationSpecification, diagnostics);

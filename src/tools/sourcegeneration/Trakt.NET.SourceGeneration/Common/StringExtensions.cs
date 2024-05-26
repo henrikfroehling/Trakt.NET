@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 
-namespace TraktNET.SourceGeneration
+namespace TraktNET.SourceGeneration.Common
 {
-    internal static class Helpers
+    internal static class StringExtensions
     {
         internal static string ToLowercaseNamingConvention(this string value) => CapitalLetter.Replace(value, "_").ToLowerInvariant();
 

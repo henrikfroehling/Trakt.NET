@@ -8,7 +8,6 @@ namespace TraktNET
     /// This enum can be used as a flag and multiple values can be combined.<para />
     /// See <a href ="https://trakt.docs.apiary.io/#introduction/extended-info">"Trakt API Documentation - Extended Info"</a> for more information.
     /// </summary>
-    [TraktEnum]
     [TraktParameterEnum("extended")]
     [Flags]
     [JsonConverter(typeof(TraktExtendedInfoJsonConverter))]
