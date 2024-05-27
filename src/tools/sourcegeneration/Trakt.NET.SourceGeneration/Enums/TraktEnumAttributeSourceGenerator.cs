@@ -12,7 +12,7 @@ namespace TraktNET.SourceGeneration.Enums
             context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktEnumAttributeFilename,
                 SourceText.From(EnumConstants.TraktEnumAttribute, Encoding.UTF8)));
 
-            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktEnumMemberJsonValueAttributeFilename,
+            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktEnumMemberAttributeFilename,
                 SourceText.From(EnumConstants.TraktEnumMemberJsonValueAttribute, Encoding.UTF8)));
 
             context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktParameterEnumAttributeFilename,

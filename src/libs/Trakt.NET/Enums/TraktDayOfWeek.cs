@@ -12,31 +12,31 @@ namespace TraktNET
         Unspecified,
 
         /// <summary>The weekday is monday.</summary>
-        [TraktEnumMemberJsonValue("Monday")]
+        [TraktEnumMember("Monday")]
         Monday,
 
         /// <summary>The weekday is tuesday.</summary>
-        [TraktEnumMemberJsonValue("Tuesday")]
+        [TraktEnumMember("Tuesday")]
         Tuesday,
 
         /// <summary>The weekday is wednesday.</summary>
-        [TraktEnumMemberJsonValue("Wednesday")]
+        [TraktEnumMember("Wednesday")]
         Wednesday,
 
         /// <summary>The weekday is thursday.</summary>
-        [TraktEnumMemberJsonValue("Thursday")]
+        [TraktEnumMember("Thursday")]
         Thursday,
 
         /// <summary>The weekday is friday.</summary>
-        [TraktEnumMemberJsonValue("Friday")]
+        [TraktEnumMember("Friday")]
         Friday,
 
         /// <summary>The weekday is saturday.</summary>
-        [TraktEnumMemberJsonValue("Saturday")]
+        [TraktEnumMember("Saturday")]
         Saturday,
 
         /// <summary>The weekday is sunday.</summary>
-        [TraktEnumMemberJsonValue("Sunday")]
+        [TraktEnumMember("Sunday")]
         Sunday
     }
 }

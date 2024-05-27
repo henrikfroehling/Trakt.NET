@@ -24,11 +24,11 @@ namespace TraktNET
         Production,
 
         /// <summary>The visual effects department.</summary>
-        [TraktEnumMemberJsonValue("visual effects")]
+        [TraktEnumMember("visual effects")]
         VisualEffects,
 
         /// <summary>The costume and make-up department.</summary>
-        [TraktEnumMemberJsonValue("costume & make-up", DisplayName = "Costume & Make-Up")]
+        [TraktEnumMember("costume & make-up", DisplayName = "Costume & Make-Up")]
         CostumeMakeup,
 
         /// <summary>The camera department.</summary>

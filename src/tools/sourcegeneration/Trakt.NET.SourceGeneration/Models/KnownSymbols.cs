@@ -1,10 +1,16 @@
 ﻿using Microsoft.CodeAnalysis;
+using TraktNET.SourceGeneration.Common;
 
 namespace TraktNET.SourceGeneration.Models
 {
     public class KnownSymbols(Compilation compilation)
     {
+        private OptionalValue<INamedTypeSymbol?> _systemFlagsAttributeType;
+
         public Compilation Compilation { get; } = compilation;
+
+        public INamedTypeSymbol? SystemFlagsAttributeType
+            => GetOrResolveType(Constants.FullSystemFlagsAttributeName, ref _systemFlagsAttributeType);
 
         protected INamedTypeSymbol? GetOrResolveType(string fullQualifiedName, ref OptionalValue<INamedTypeSymbol?> symbol)
         {

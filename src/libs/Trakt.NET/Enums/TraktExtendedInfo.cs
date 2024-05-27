@@ -14,7 +14,7 @@ namespace TraktNET
     public enum TraktExtendedInfo
     {
         /// <summary>No additional data should be retrieved.</summary>
-        [TraktEnumMemberJsonValue("")]
+        [TraktEnumMember("")]
         None = 0,
 
         /// <summary>Metadata information should be retrieved.</summary>
@@ -24,7 +24,7 @@ namespace TraktNET
         Full = 2,
 
         /// <summary>No seasons information should be retrieved.</summary>
-        [TraktEnumMemberJsonValue("noseasons")]
+        [TraktEnumMember("noseasons")]
         NoSeasons = 4,
 
         /// <summary>Episodes information should be retrieved.</summary>

@@ -6,21 +6,19 @@ namespace TraktNET.SourceGeneration.Enums
     {
         internal const string TraktEnumAttributeName = "TraktEnumAttribute";
 
-        internal const string TraktEnumMemberJsonValueAttributeName = "TraktEnumMemberJsonValueAttribute";
+        internal const string TraktEnumMemberAttributeName = "TraktEnumMemberAttribute";
 
         internal const string TraktParameterEnumAttributeName = "TraktParameterEnumAttribute";
 
         internal const string FullTraktEnumAttributeName = Constants.Namespace + "." + TraktEnumAttributeName;
 
-        internal const string FullTraktEnumMemberJsonValueAttributeName = Constants.Namespace + "." + TraktEnumMemberJsonValueAttributeName;
+        internal const string FullTraktEnumMemberAttributeName = Constants.Namespace + "." + TraktEnumMemberAttributeName;
 
         internal const string FullTraktParameterEnumAttributeName = Constants.Namespace + "." + TraktParameterEnumAttributeName;
 
-        internal const string FullSystemFlagsAttributeName = "System.FlagsAttribute";
-
         internal const string GeneratedTraktEnumAttributeFilename = TraktEnumAttributeName + Constants.GeneratedFilenameSuffix;
 
-        internal const string GeneratedTraktEnumMemberJsonValueAttributeFilename = TraktEnumMemberJsonValueAttributeName + Constants.GeneratedFilenameSuffix;
+        internal const string GeneratedTraktEnumMemberAttributeFilename = TraktEnumMemberAttributeName + Constants.GeneratedFilenameSuffix;
 
         internal const string GeneratedTraktParameterEnumAttributeFilename = TraktParameterEnumAttributeName + Constants.GeneratedFilenameSuffix;
 
@@ -46,9 +44,9 @@ namespace " + Constants.Namespace + @"
     /// <summary>Provides a custom Json value and optional display name for an enum member.</summary>
 " + Constants.ExcludeCodeCoverage + @"
     [global::System.AttributeUsage(global::System.AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
-    public sealed class " + TraktEnumMemberJsonValueAttributeName + @" : global::System.Attribute
+    public sealed class " + TraktEnumMemberAttributeName + @" : global::System.Attribute
     {
-        public " + TraktEnumMemberJsonValueAttributeName + @"(string jsonValue)
+        public " + TraktEnumMemberAttributeName + @"(string jsonValue)
             => JsonValue = jsonValue;
 
         public string JsonValue { get; }

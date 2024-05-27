@@ -24,5 +24,7 @@ namespace TraktNET.SourceGeneration.Common
             """;
 
         internal const string GeneratedFilenameSuffix = ".g.cs";
+
+        internal const string FullSystemFlagsAttributeName = "System.FlagsAttribute";
     }
 }
