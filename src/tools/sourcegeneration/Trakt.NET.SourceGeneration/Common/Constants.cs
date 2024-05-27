@@ -13,6 +13,7 @@ namespace TraktNET.SourceGeneration.Common
             //-----------------------------------------------------------------------------------------------------
 
             #nullable enable
+
             """;
 
         internal const string ExcludeCodeCoverage = """

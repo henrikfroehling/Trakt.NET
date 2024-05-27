@@ -50,7 +50,6 @@ namespace TraktNET.SourceGeneration.Enums
             var sourceWriter = new SourceWriter();
 
             sourceWriter.WriteLine(Constants.Header);
-            sourceWriter.WriteEmptyLine();
 
             foreach (string @using in Usings)
             {
