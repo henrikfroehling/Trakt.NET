@@ -11,7 +11,17 @@
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
+  <PropertyGroup Condition="('$(TargetFramework)' == 'net6.0') Or ('$(TargetFramework)' == 'net7.0') Or ('$(TargetFramework)' == 'net8.0')">
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Description>A .NET wrapper library with which developers can build .NET applications that integrate with the Trakt.tv API and access its features and data.</Description>
     <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
