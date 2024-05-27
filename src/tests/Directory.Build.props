@@ -1,4 +1,5 @@
 <Project>
+
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
@@ -35,4 +36,5 @@
   <ItemGroup Condition="'$(IsTestProject)' == 'true' AND '$(IsTestUtilityProject)' != 'true'">
     <ProjectReference Include="..\Trakt.NET.Tests.Utility\Trakt.NET.Tests.Utility.csproj" />
   </ItemGroup>
+
 </Project>

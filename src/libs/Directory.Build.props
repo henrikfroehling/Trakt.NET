@@ -1,4 +1,5 @@
 <Project>
+
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
@@ -62,4 +63,5 @@
       </AssemblyAttribute>
     </ItemGroup>
   </Target>
+
 </Project>

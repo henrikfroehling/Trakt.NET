@@ -1,10 +1,15 @@
 <Project>
+
+  <PropertyGroup>
+    <LibraryCopyright>© 2016 - $([System.DateTime]::Now.ToString("yyyy")) by Henrik Fröhling and Contributors</LibraryCopyright>
+  </PropertyGroup>
+
   <PropertyGroup>
     <IsTestProject>$(MSBuildProjectName.EndsWith('Tests'))</IsTestProject>
     <IsTestUtilityProject>$(MSBuildProjectName.EndsWith('Tests.Utility'))</IsTestUtilityProject>
 
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <Copyright>Copyright (c) 2016 - now by Henrik Fröhling and Contributors</Copyright>
+    <Copyright>$(LibraryCopyright)</Copyright>
 
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
