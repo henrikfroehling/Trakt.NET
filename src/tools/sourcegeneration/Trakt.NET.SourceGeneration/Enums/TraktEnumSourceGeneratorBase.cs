@@ -27,7 +27,7 @@ namespace TraktNET.SourceGeneration.Enums
         protected abstract IncrementalValuesProvider<GenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
             IncrementalGeneratorInitializationContext context);
 
-        protected abstract GenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple input, CancellationToken cancellationToken);
+        protected abstract GenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple enumDeclarationInput, CancellationToken cancellationToken);
 
         protected IncrementalValuesProvider<GenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
             IncrementalGeneratorInitializationContext context, string enumAttributeName, string initialTrackingName,

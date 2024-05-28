@@ -21,12 +21,12 @@ namespace TraktNET.SourceGeneration.Enums
             => CombineAndSelectEnumsWithAttribute(context, EnumConstants.FullTraktEnumAttributeName,
                 EnumConstants.TrackingNames.InitialEnumExtraction, EnumConstants.TrackingNames.FilteredEnums);
 
-        protected override GenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple input, CancellationToken cancellationToken)
+        protected override GenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple enumDeclarationInput, CancellationToken cancellationToken)
         {
-            TraktEnumDeclarationParser parser = new(input.KnownEnumSymbols);
+            TraktEnumDeclarationParser parser = new(enumDeclarationInput.KnownEnumSymbols);
 
             EnumGenerationSpecification? enumGenerationSpecification =
-                parser.ParseTraktEnumDeclaration(input.EnumDeclarationContext.ContextClass, input.EnumDeclarationContext.SemanticModel, cancellationToken);
+                parser.ParseTraktEnumDeclaration(enumDeclarationInput.EnumDeclarationContext.ContextClass, enumDeclarationInput.EnumDeclarationContext.SemanticModel, cancellationToken);
 
             var diagnostics = parser.Diagnostics.ToImmutableEquatableArray();
             return (enumGenerationSpecification, diagnostics);
