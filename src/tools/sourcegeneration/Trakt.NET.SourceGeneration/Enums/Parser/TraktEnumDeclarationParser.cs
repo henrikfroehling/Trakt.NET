@@ -14,7 +14,6 @@ namespace TraktNET.SourceGeneration.Enums
         private INamedTypeSymbol? _enumDeclarationSymbol;
         private Location? _enumDeclarationLocation;
         private bool _hasFlagsAttribute;
-        private bool _hasParameterEnumAttribute;
         private string _parameterEnumAttributeValue = string.Empty;
         private readonly List<EnumMemberGenerationSpecification> _enumMembers = [];
 
@@ -52,13 +51,11 @@ namespace TraktNET.SourceGeneration.Enums
                 Name = _enumDeclarationSymbol!.Name,
                 Namespace = _enumDeclarationSymbol!.ContainingNamespace.ToDisplayString(),
                 HasFlagsAttribute = _hasFlagsAttribute,
-                HasTraktParameterEnumAttribute = _hasParameterEnumAttribute,
-                ParameterEnumAttributeValue = _parameterEnumAttributeValue,
                 Members = _enumMembers
             };
         }
 
-        public EnumGenerationSpecification? ParseTraktParameterEnumDeclaration(EnumDeclarationSyntax enumDeclaration,
+        public ParameterEnumGenerationSpecification? ParseTraktParameterEnumDeclaration(EnumDeclarationSyntax enumDeclaration,
             SemanticModel semanticModel, CancellationToken cancellationToken)
         {
             if (!_compilationContainsTraktEnumTypes)
@@ -77,12 +74,11 @@ namespace TraktNET.SourceGeneration.Enums
 
             ParseEnumMembers(_enumDeclarationSymbol!, cancellationToken);
 
-            return new EnumGenerationSpecification
+            return new ParameterEnumGenerationSpecification
             {
                 Name = _enumDeclarationSymbol!.Name,
                 Namespace = _enumDeclarationSymbol!.ContainingNamespace.ToDisplayString(),
                 HasFlagsAttribute = _hasFlagsAttribute,
-                HasTraktParameterEnumAttribute = _hasParameterEnumAttribute,
                 ParameterEnumAttributeValue = _parameterEnumAttributeValue,
                 Members = _enumMembers
             };
@@ -130,7 +126,6 @@ namespace TraktNET.SourceGeneration.Enums
                     }
                     else
                     {
-                        _hasParameterEnumAttribute = true;
                         _parameterEnumAttributeValue = parameterEnumValue!;
                     }
                 }
@@ -171,9 +166,8 @@ namespace TraktNET.SourceGeneration.Enums
                             attributeLocation = attributeClass!.Locations[0];
 
                         ImmutableArray<TypedConstant> constructorArguments = attributeData.ConstructorArguments;
-                        string? value = constructorArguments[0].Value as string;
 
-                        if (value == null)
+                        if (constructorArguments[0].Value is not string value)
                         {
                             ReportDiagnostic(DiagnosticDescriptors.InvalidJsonValue, attributeLocation);
                             addMember = false;
@@ -187,9 +181,7 @@ namespace TraktNET.SourceGeneration.Enums
 
                         if (namedArguments.TryGetValue(EnumConstants.TraktEnumMemberJsonValuePropertyDisplayName, out TypedConstant displayNameConstant))
                         {
-                            string? displayNameValue = displayNameConstant.Value as string;
-
-                            if (displayNameValue == null)
+                            if (displayNameConstant.Value is not string displayNameValue)
                             {
                                 ReportDiagnostic(DiagnosticDescriptors.InvalidDisplayNameValue, attributeLocation);
                                 addMember = false;

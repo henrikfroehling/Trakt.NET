@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace TraktNET.SourceGeneration.Common
 {
-    internal abstract class SourceEmitter<T>(SourceProductionContext context)
+    public abstract class SourceEmitter<T>(SourceProductionContext context)
     {
         protected readonly SourceProductionContext _context = context;
 

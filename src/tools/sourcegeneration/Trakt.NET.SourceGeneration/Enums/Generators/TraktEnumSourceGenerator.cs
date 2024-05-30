@@ -1,27 +1,19 @@
 ﻿using Microsoft.CodeAnalysis;
 using TraktNET.SourceGeneration.Models;
 
-using EnumDeclarationSyntaxTuple =
-    ((Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax ContextClass, Microsoft.CodeAnalysis.SemanticModel SemanticModel) EnumDeclarationContext,
-    TraktNET.SourceGeneration.Enums.KnownEnumSymbols KnownEnumSymbols);
-
-using GenerationSpecificationTuple =
-    (TraktNET.SourceGeneration.Enums.EnumGenerationSpecification? EnumGenerationSpecification,
-        TraktNET.SourceGeneration.Models.ImmutableEquatableArray<TraktNET.SourceGeneration.Models.DiagnosticInfo> Diagnostics);
-
 namespace TraktNET.SourceGeneration.Enums
 {
     [Generator]
-    public sealed class TraktEnumSourceGenerator : TraktEnumSourceGeneratorBase, IIncrementalGenerator
+    public sealed class TraktEnumSourceGenerator : TraktEnumSourceGeneratorBase<EnumGenerationSpecification>, IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context) => InitializeGenerator(context);
 
-        protected override IncrementalValuesProvider<GenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
+        protected override IncrementalValuesProvider<EnumGenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
             IncrementalGeneratorInitializationContext context)
             => CombineAndSelectEnumsWithAttribute(context, EnumConstants.FullTraktEnumAttributeName,
                 EnumConstants.TrackingNames.InitialEnumExtraction, EnumConstants.TrackingNames.FilteredEnums);
 
-        protected override GenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple enumDeclarationInput, CancellationToken cancellationToken)
+        protected override EnumGenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple enumDeclarationInput, CancellationToken cancellationToken)
         {
             TraktEnumDeclarationParser parser = new(enumDeclarationInput.KnownEnumSymbols);
 
@@ -31,5 +23,8 @@ namespace TraktNET.SourceGeneration.Enums
             var diagnostics = parser.Diagnostics.ToImmutableEquatableArray();
             return (enumGenerationSpecification, diagnostics);
         }
+
+        protected override EnumSourceEmitterBase<EnumGenerationSpecification> CreateSourceEmitter(SourceProductionContext context)
+            => new EnumSourceEmitter(context);
     }
 }

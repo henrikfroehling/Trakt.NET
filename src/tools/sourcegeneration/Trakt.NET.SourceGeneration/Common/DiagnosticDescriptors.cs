@@ -17,7 +17,7 @@ namespace TraktNET.SourceGeneration.Common
         public static DiagnosticDescriptor InvalidDisplayNameValue { get; } = new(
             id: "TRAKTNET1002",
             title: "Invalid display name value for Trakt enum member.",
-            messageFormat: "Display name for Trakt enum member is null.",
+            messageFormat: "Display name for Trakt enum member is null or not of type 'string'.",
             category: Category,
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -25,7 +25,7 @@ namespace TraktNET.SourceGeneration.Common
         public static DiagnosticDescriptor InvalidJsonValue { get; } = new(
             id: "TRAKTNET1003",
             title: "Invalid json value for Trakt enum member.",
-            messageFormat: "Json value for Trakt enum member is null.",
+            messageFormat: "Json value for Trakt enum member is null or not of type 'string'.",
             category: Category,
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true);

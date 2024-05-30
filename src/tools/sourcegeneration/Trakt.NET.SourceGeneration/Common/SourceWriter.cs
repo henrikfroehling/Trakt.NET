@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TraktNET.SourceGeneration.Common
 {
-    internal sealed class SourceWriter
+    public sealed class SourceWriter
     {
         private const char IndentationChar = ' ';
         private const uint CharsPerIndentation = 4;

@@ -1,21 +1,21 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using TraktNET.SourceGeneration.Models;
-
-using EnumDeclarationSyntaxTuple =
+﻿global using EnumDeclarationSyntaxTuple =
     ((Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax ContextClass, Microsoft.CodeAnalysis.SemanticModel SemanticModel) EnumDeclarationContext,
     TraktNET.SourceGeneration.Enums.KnownEnumSymbols KnownEnumSymbols);
 
-using GenerationSpecificationTuple =
+global using EnumGenerationSpecificationTuple =
     (TraktNET.SourceGeneration.Enums.EnumGenerationSpecification? EnumGenerationSpecification,
         TraktNET.SourceGeneration.Models.ImmutableEquatableArray<TraktNET.SourceGeneration.Models.DiagnosticInfo> Diagnostics);
 
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using TraktNET.SourceGeneration.Models;
+
 namespace TraktNET.SourceGeneration.Enums
 {
-    public abstract class TraktEnumSourceGeneratorBase
+    public abstract class TraktEnumSourceGeneratorBase<T> where T : EnumGenerationSpecification
     {
         protected IncrementalValueProvider<KnownEnumSymbols> _knownEnumTypeSymbols;
-        protected IncrementalValuesProvider<GenerationSpecificationTuple> _enumGenerationSpecifications;
+        protected IncrementalValuesProvider<EnumGenerationSpecificationTuple> _enumGenerationSpecifications;
 
         protected void InitializeGenerator(IncrementalGeneratorInitializationContext context)
         {
@@ -24,12 +24,14 @@ namespace TraktNET.SourceGeneration.Enums
             context.RegisterSourceOutput(_enumGenerationSpecifications, ReportDiagnosticsAndEmitSource);
         }
 
-        protected abstract IncrementalValuesProvider<GenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
+        protected abstract IncrementalValuesProvider<EnumGenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
             IncrementalGeneratorInitializationContext context);
 
-        protected abstract GenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple enumDeclarationInput, CancellationToken cancellationToken);
+        protected abstract EnumGenerationSpecificationTuple ParseEnumDeclaration(EnumDeclarationSyntaxTuple enumDeclarationInput, CancellationToken cancellationToken);
 
-        protected IncrementalValuesProvider<GenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
+        protected abstract EnumSourceEmitterBase<T> CreateSourceEmitter(SourceProductionContext context);
+
+        protected IncrementalValuesProvider<EnumGenerationSpecificationTuple> CombineAndSelectEnumsWithAttribute(
             IncrementalGeneratorInitializationContext context, string enumAttributeName, string initialTrackingName,
             string filteredTrackingName)
             => context.SyntaxProvider
@@ -41,7 +43,7 @@ namespace TraktNET.SourceGeneration.Enums
                 .Select(ParseEnumDeclaration)
                 .WithTrackingName(filteredTrackingName);
 
-        protected static void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, GenerationSpecificationTuple input)
+        protected void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, EnumGenerationSpecificationTuple input)
         {
             foreach (DiagnosticInfo diagnosticInfo in input.Diagnostics)
             {
@@ -53,8 +55,8 @@ namespace TraktNET.SourceGeneration.Enums
                 return;
             }
 
-            EnumSourceEmitter enumSourceEmitter = new(sourceProductionContext);
-            enumSourceEmitter.Emit(input.EnumGenerationSpecification);
+            EnumSourceEmitterBase<T> enumSourceEmitter = CreateSourceEmitter(sourceProductionContext);
+            enumSourceEmitter.Emit((T)input.EnumGenerationSpecification);
         }
     }
 }
