@@ -88,7 +88,7 @@ namespace " + RequestsNamespace + @"
 {
     ///<summary>Creates a Trakt GET request.</summary>
 " + Constants.ExcludeCodeCoverage + @"
-    [global::System.AttributeUsage(global::System.AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    [global::System.AttributeUsage(global::System.AttributeTargets.Class | global::System.AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
     public sealed class " + TraktGetRequestAttributeName + @" : " + TraktRequestAttributeName + @"
     {
         public " + TraktGetRequestAttributeName + @"(string path) : base(HttpMethod.Get, path) {}
@@ -101,7 +101,7 @@ namespace " + RequestsNamespace + @"
 {
     ///<summary>Creates a Trakt POST request.</summary>
 " + Constants.ExcludeCodeCoverage + @"
-    [global::System.AttributeUsage(global::System.AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    [global::System.AttributeUsage(global::System.AttributeTargets.Class | global::System.AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
     public sealed class " + TraktPostRequestAttributeName + @" : " + TraktRequestAttributeName + @"
     {
         public " + TraktPostRequestAttributeName + @"(string path) : base(HttpMethod.Post, path) {}
@@ -114,7 +114,7 @@ namespace " + RequestsNamespace + @"
 {
     ///<summary>Creates a Trakt PUT request.</summary>
 " + Constants.ExcludeCodeCoverage + @"
-    [global::System.AttributeUsage(global::System.AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    [global::System.AttributeUsage(global::System.AttributeTargets.Class | global::System.AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
     public sealed class " + TraktPutRequestAttributeName + @" : " + TraktRequestAttributeName + @"
     {
         public " + TraktPutRequestAttributeName + @"(string path) : base(HttpMethod.Put, path) {}
@@ -127,12 +127,31 @@ namespace " + RequestsNamespace + @"
 {
     ///<summary>Creates a Trakt DELETE request.</summary>
 " + Constants.ExcludeCodeCoverage + @"
-    [global::System.AttributeUsage(global::System.AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    [global::System.AttributeUsage(global::System.AttributeTargets.Class | global::System.AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
     public sealed class " + TraktDeleteRequestAttributeName + @" : " + TraktRequestAttributeName + @"
     {
         public " + TraktDeleteRequestAttributeName + @"(string path) : base(HttpMethod.Delete, path) {}
     }
 }
 ";
+
+        internal static class TrackingNames
+        {
+            internal const string InitialGetRequestsExtraction = "InitialGetRequestsExtraction";
+
+            internal const string FilteredGetRequests = "FilteredGetRequests";
+
+            internal const string InitialPostRequestsExtraction = "InitialPostRequestsExtraction";
+
+            internal const string FilteredPostRequests = "FilteredPostRequests";
+
+            internal const string InitialPutRequestsExtraction = "InitialPutRequestsExtraction";
+
+            internal const string FilteredPutRequests = "FilteredPutRequests";
+
+            internal const string InitialDeleteRequestsExtraction = "InitialDeleteRequestsExtraction";
+
+            internal const string FilteredDeleteRequests = "FilteredDeleteRequests";
+        }
     }
 }
