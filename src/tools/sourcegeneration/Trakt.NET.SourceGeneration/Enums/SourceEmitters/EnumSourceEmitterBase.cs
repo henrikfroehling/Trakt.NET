@@ -43,7 +43,7 @@ namespace TraktNET.SourceGeneration.Enums
 
             WriteNamespaceEnd();
 
-            AddSource(_enumName + EnumConstants.GeneratedTraktEnumFileExtension, _sourceWriter.ToSourceText());
+            AddSource(_enumName + Constants.GeneratedFilenameSuffix, _sourceWriter.ToSourceText());
         }
 
         protected virtual void Setup(T enumGenerationSpecification)

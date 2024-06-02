@@ -2,7 +2,7 @@ namespace TraktNET.SourceGeneration.Common
 {
     internal static class Constants
     {
-        internal const string Namespace = "TraktNET.SourceGeneration";
+        internal const string LibraryNamespace = "TraktNET";
 
         internal const string Header = """
             //-----------------------------------------------------------------------------------------------------

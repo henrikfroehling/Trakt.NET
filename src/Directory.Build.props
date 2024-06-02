@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <LibraryCopyright>© 2016 - $([System.DateTime]::Now.ToString("yyyy")) by Henrik Fröhling and Contributors</LibraryCopyright>
+    <LibTargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;net7.0;net8.0</LibTargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>

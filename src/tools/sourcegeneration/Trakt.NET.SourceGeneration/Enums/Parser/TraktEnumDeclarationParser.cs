@@ -108,7 +108,9 @@ namespace TraktNET.SourceGeneration.Enums
                 Location? attributeLocation = null;
 
                 if (attributeClass!.Locations.Length > 0)
+                {
                     attributeLocation = attributeClass!.Locations[0];
+                }
 
                 if (SymbolEqualityComparer.Default.Equals(attributeClass, _knownEnumSymbols.SystemFlagsAttributeType))
                 {
@@ -179,7 +181,7 @@ namespace TraktNET.SourceGeneration.Enums
 
                         var namedArguments = attributeData.NamedArguments.ToImmutableDictionary();
 
-                        if (namedArguments.TryGetValue(EnumConstants.TraktEnumMemberJsonValuePropertyDisplayName, out TypedConstant displayNameConstant))
+                        if (namedArguments.TryGetValue(EnumConstants.TraktEnumMemberPropertyDisplayName, out TypedConstant displayNameConstant))
                         {
                             if (displayNameConstant.Value is not string displayNameValue)
                             {

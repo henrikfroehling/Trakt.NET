@@ -3,7 +3,6 @@
   <PropertyGroup>
     <Product>Trakt.NET.SourceGeneration</Product>
     <Title>Trakt.NET.SourceGeneration</Title>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
