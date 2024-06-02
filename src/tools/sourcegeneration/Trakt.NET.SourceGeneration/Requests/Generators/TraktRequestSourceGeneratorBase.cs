@@ -29,6 +29,8 @@ namespace TraktNET.SourceGeneration.Requests
 
         protected abstract RequestGenerationSpecificationTuple ParseClassDeclaration(RequestClassDeclarationSyntaxTuple classDeclarationInput, CancellationToken cancellationToken);
 
+        protected abstract RequestSourceEmitterBase<T> CreateSourceEmitter(SourceProductionContext context);
+
         protected IncrementalValuesProvider<RequestGenerationSpecificationTuple> CombineAndSelectRequestsWithAttribute(
             IncrementalGeneratorInitializationContext context, string requestAttributeName, string initialTrackingName,
             string filteredTrackingName)
@@ -41,7 +43,7 @@ namespace TraktNET.SourceGeneration.Requests
                 .Select(ParseClassDeclaration)
                 .WithTrackingName(filteredTrackingName);
 
-        protected static void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, RequestGenerationSpecificationTuple input)
+        protected void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, RequestGenerationSpecificationTuple input)
         {
             foreach (DiagnosticInfo diagnosticInfo in input.Diagnostics)
             {
@@ -53,8 +55,8 @@ namespace TraktNET.SourceGeneration.Requests
                 return;
             }
 
-            //EnumSourceEmitter enumSourceEmitter = new(sourceProductionContext);
-            //enumSourceEmitter.Emit(input.EnumGenerationSpecification);
+            RequestSourceEmitterBase<T> requestSourceEmitter = CreateSourceEmitter(sourceProductionContext);
+            requestSourceEmitter.Emit((T)input.RequestGenerationSpecification);
         }
     }
 }

@@ -1,23 +1,21 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace TraktNET.SourceGeneration.Requests
+﻿namespace TraktNET.SourceGeneration.Requests
 {
     internal sealed class TraktPutRequestParser : TraktRequestParser<PutRequestGenerationSpecification>
     {
-        private readonly bool _compilationContainsPutRequestType;
-
         internal TraktPutRequestParser(KnownRequestSymbols knownRequestSymbols) : base(knownRequestSymbols)
-            => _compilationContainsPutRequestType = _knownRequestSymbols.TraktPutRequestAttributeType != null;
+            => _compilationContainsRequestType = _knownRequestSymbols.TraktPutRequestAttributeType != null;
 
-        internal override PutRequestGenerationSpecification? Parse(ClassDeclarationSyntax classDeclaration, SemanticModel semanticModel, CancellationToken cancellationToken)
-        {
-            if (!_compilationContainsPutRequestType)
+        protected override PutRequestGenerationSpecification? CreateSpecification()
+            => new()
             {
-                return null;
-            }
-
-            return null;
-        }
+                Name = _requestClassDeclarationSymbol!.Name,
+                Namespace = _requestClassDeclarationSymbol!.ContainingNamespace.ToDisplayString(),
+                HttpMethodValue = _httpMethodValue,
+                UriPath = _uriPath,
+                OAuthRequirementValue = _requestOAuthRequirementValue,
+                SupportsExtendedInfo = _requestSupportsExtendedInfo,
+                SupportsPagination = _requestSupportsPagination,
+                HasOAuthRequirementDefined = _requestHasOAuthRequirementDefined
+            };
     }
 }

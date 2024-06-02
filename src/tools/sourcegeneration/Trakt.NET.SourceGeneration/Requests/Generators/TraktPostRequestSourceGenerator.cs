@@ -24,5 +24,8 @@ namespace TraktNET.SourceGeneration.Requests
             var diagnostics = parser.Diagnostics.ToImmutableEquatableArray();
             return (requestGenerationSpecification, diagnostics);
         }
+
+        protected override RequestSourceEmitterBase<PostRequestGenerationSpecification> CreateSourceEmitter(SourceProductionContext context)
+            => new PostRequestSourceEmitter(context);
     }
 }

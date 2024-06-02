@@ -3,13 +3,14 @@ using TraktNET.SourceGeneration.Models;
 
 namespace TraktNET.SourceGeneration.Requests
 {
-    public sealed class KnownRequestSymbols(Compilation compilation) : KnownSymbols(compilation)
+    public sealed class KnownRequestSymbols : KnownSymbols
     {
         private OptionalValue<INamedTypeSymbol?> _traktOAuthRequirementEnumType;
         private OptionalValue<INamedTypeSymbol?> _traktGetRequestAttributeType;
         private OptionalValue<INamedTypeSymbol?> _traktPostRequestAttributeType;
         private OptionalValue<INamedTypeSymbol?> _traktPutRequestAttributeType;
         private OptionalValue<INamedTypeSymbol?> _traktDeleteRequestAttributeType;
+        private OptionalValue<INamedTypeSymbol?> _traktExtendedInfoEnumType;
 
         public INamedTypeSymbol? TraktOAuthRequirementEnumType
             => GetOrResolveType(RequestConstants.FullTraktOAuthRequirementName, ref _traktOAuthRequirementEnumType);
@@ -25,5 +26,26 @@ namespace TraktNET.SourceGeneration.Requests
 
         public INamedTypeSymbol? TraktDeleteRequestAttributeType
             => GetOrResolveType(RequestConstants.FullTraktDeleteRequestAttributeName, ref _traktDeleteRequestAttributeType);
+
+        public INamedTypeSymbol? TraktExtendedInfoEnumType
+            => GetOrResolveType(RequestConstants.FullTraktExtendedInfoName, ref _traktExtendedInfoEnumType);
+
+        public List<IFieldSymbol> TraktOAuthRequirementValues { get; } = [];
+
+        public KnownRequestSymbols(Compilation compilation) : base(compilation)
+        {
+            if (TraktOAuthRequirementEnumType != null)
+            {
+                foreach (ISymbol enumMember in TraktOAuthRequirementEnumType.GetMembers())
+                {
+                    if (enumMember is not IFieldSymbol enumField || enumField.ConstantValue == null)
+                    {
+                        continue;
+                    }
+
+                    TraktOAuthRequirementValues.Add(enumField);
+                }
+            }
+        }
     }
 }
