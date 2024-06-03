@@ -3,22 +3,22 @@ using TraktNET.SourceGeneration.Common;
 
 namespace TraktNET.SourceGeneration.Requests
 {
-    public abstract class RequestSourceEmitterBase<T>(SourceProductionContext context) : SourceEmitter<T>(context) where T : RequestGenerationSpecification
+    public sealed class RequestSourceEmitter(SourceProductionContext context) : SourceEmitter<RequestGenerationSpecification>(context)
     {
         private static readonly IReadOnlyList<string> Usings = [];
 
-        protected SourceWriter _sourceWriter = new();
+        private readonly SourceWriter _sourceWriter = new();
 
-        protected string _requestName = string.Empty;
-        protected string _requestNamespace = string.Empty;
-        protected string _httpMethodValue = string.Empty;
-        protected string _uriPath = string.Empty;
-        protected string _oauthRequirementValue = string.Empty;
-        protected bool _supportsExtendedInfo;
-        protected bool _supportsPagination;
-        protected bool _hasOAuthRequirementDefined;
+        private string _requestName = string.Empty;
+        private string _requestNamespace = string.Empty;
+        private string _httpMethodValue = string.Empty;
+        private string _uriPath = string.Empty;
+        private string _oauthRequirementValue = string.Empty;
+        private bool _supportsExtendedInfo;
+        private bool _supportsPagination;
+        private bool _hasOAuthRequirementDefined;
 
-        public override void Emit(T generationSpecification)
+        public override void Emit(RequestGenerationSpecification generationSpecification)
         {
             if (generationSpecification == null)
             {
@@ -35,7 +35,7 @@ namespace TraktNET.SourceGeneration.Requests
             AddSource(_requestName + Constants.GeneratedFilenameSuffix, _sourceWriter.ToSourceText());
         }
 
-        protected virtual void Setup(T enumGenerationSpecification)
+        private void Setup(RequestGenerationSpecification enumGenerationSpecification)
         {
             _requestName = enumGenerationSpecification.Name;
             _requestNamespace = enumGenerationSpecification.Namespace!;
@@ -87,7 +87,7 @@ namespace TraktNET.SourceGeneration.Requests
             _sourceWriter.WriteLine('}');
         }
 
-        protected virtual void WriteRequestClassContent()
+        private void WriteRequestClassContent()
         {
             bool needsEmptyLine = false;
 

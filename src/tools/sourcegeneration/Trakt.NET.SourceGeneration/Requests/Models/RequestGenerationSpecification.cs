@@ -1,6 +1,6 @@
 ﻿namespace TraktNET.SourceGeneration.Requests
 {
-    public abstract record RequestGenerationSpecification
+    public sealed record RequestGenerationSpecification
     {
         public required string Name { get; init; }
 

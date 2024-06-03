@@ -8,25 +8,32 @@ using TraktNET.SourceGeneration.Models;
 
 namespace TraktNET.SourceGeneration.Requests
 {
-    internal abstract class TraktRequestParser<T> where T : RequestGenerationSpecification
+    internal sealed class TraktRequestParser
     {
-        protected readonly KnownRequestSymbols _knownRequestSymbols;
-        protected bool _compilationContainsRequestType;
-        protected INamedTypeSymbol? _requestClassDeclarationSymbol;
-        protected Location? _requestClassDeclarationLocation;
+        private readonly KnownRequestSymbols _knownRequestSymbols;
+        private readonly bool _compilationContainsRequestType;
+        private INamedTypeSymbol? _requestClassDeclarationSymbol;
+        private Location? _requestClassDeclarationLocation;
 
-        protected string _httpMethodValue = string.Empty;
-        protected string _uriPath = string.Empty;
-        protected bool _requestSupportsExtendedInfo;
-        protected bool _requestSupportsPagination;
-        protected bool _requestHasOAuthRequirementDefined;
-        protected string _requestOAuthRequirementValue = string.Empty;
+        private string _httpMethodValue = string.Empty;
+        private string _uriPath = string.Empty;
+        private bool _requestSupportsExtendedInfo;
+        private bool _requestSupportsPagination;
+        private bool _requestHasOAuthRequirementDefined;
+        private string _requestOAuthRequirementValue = string.Empty;
 
         internal List<DiagnosticInfo> Diagnostics { get; } = [];
 
-        internal TraktRequestParser(KnownRequestSymbols knownRequestSymbols) => _knownRequestSymbols = knownRequestSymbols;
+        internal TraktRequestParser(KnownRequestSymbols knownRequestSymbols)
+        {
+            _knownRequestSymbols = knownRequestSymbols;
 
-        internal T? Parse(ClassDeclarationSyntax classDeclaration, SemanticModel semanticModel, CancellationToken cancellationToken)
+            _compilationContainsRequestType = _knownRequestSymbols.TraktGetRequestAttributeType != null
+                || _knownRequestSymbols.TraktPostRequestAttributeType != null || _knownRequestSymbols.TraktPutRequestAttributeType != null
+                || _knownRequestSymbols.TraktDeleteRequestAttributeType != null;
+        }
+
+        internal RequestGenerationSpecification? Parse(ClassDeclarationSyntax classDeclaration, SemanticModel semanticModel, CancellationToken cancellationToken)
         {
             if (!_compilationContainsRequestType)
             {
@@ -69,9 +76,20 @@ namespace TraktNET.SourceGeneration.Requests
             return true;
         }
 
-        protected abstract T? CreateSpecification();
+        private RequestGenerationSpecification? CreateSpecification()
+            => new()
+            {
+                Name = _requestClassDeclarationSymbol!.Name,
+                Namespace = _requestClassDeclarationSymbol!.ContainingNamespace.ToDisplayString(),
+                HttpMethodValue = _httpMethodValue,
+                UriPath = _uriPath,
+                OAuthRequirementValue = _requestOAuthRequirementValue,
+                SupportsExtendedInfo = _requestSupportsExtendedInfo,
+                SupportsPagination = _requestSupportsPagination,
+                HasOAuthRequirementDefined = _requestHasOAuthRequirementDefined
+            };
 
-        protected void ReportDiagnostic(DiagnosticDescriptor descriptor, Location? location)
+        private void ReportDiagnostic(DiagnosticDescriptor descriptor, Location? location)
         {
             Debug.Assert(_requestClassDeclarationLocation != null);
 

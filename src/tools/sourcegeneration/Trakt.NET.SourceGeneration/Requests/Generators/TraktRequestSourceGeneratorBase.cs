@@ -12,7 +12,7 @@ using TraktNET.SourceGeneration.Models;
 
 namespace TraktNET.SourceGeneration.Requests
 {
-    public abstract class TraktRequestSourceGeneratorBase<T> where T : RequestGenerationSpecification
+    public abstract class TraktRequestSourceGeneratorBase
     {
         protected IncrementalValueProvider<KnownRequestSymbols> _knownRequestTypeSymbols;
         protected IncrementalValuesProvider<RequestGenerationSpecificationTuple> _requestGenerationSpecifications;
@@ -23,13 +23,6 @@ namespace TraktNET.SourceGeneration.Requests
             _requestGenerationSpecifications = CombineAndSelectRequestsWithAttribute(context);
             context.RegisterSourceOutput(_requestGenerationSpecifications, ReportDiagnosticsAndEmitSource);
         }
-
-        protected abstract IncrementalValuesProvider<RequestGenerationSpecificationTuple> CombineAndSelectRequestsWithAttribute(
-            IncrementalGeneratorInitializationContext context);
-
-        protected abstract RequestGenerationSpecificationTuple ParseClassDeclaration(RequestClassDeclarationSyntaxTuple classDeclarationInput, CancellationToken cancellationToken);
-
-        protected abstract RequestSourceEmitterBase<T> CreateSourceEmitter(SourceProductionContext context);
 
         protected IncrementalValuesProvider<RequestGenerationSpecificationTuple> CombineAndSelectRequestsWithAttribute(
             IncrementalGeneratorInitializationContext context, string requestAttributeName, string initialTrackingName,
@@ -43,7 +36,22 @@ namespace TraktNET.SourceGeneration.Requests
                 .Select(ParseClassDeclaration)
                 .WithTrackingName(filteredTrackingName);
 
-        protected void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, RequestGenerationSpecificationTuple input)
+        protected abstract IncrementalValuesProvider<RequestGenerationSpecificationTuple> CombineAndSelectRequestsWithAttribute(
+            IncrementalGeneratorInitializationContext context);
+
+        private RequestGenerationSpecificationTuple ParseClassDeclaration(RequestClassDeclarationSyntaxTuple classDeclarationInput, CancellationToken cancellationToken)
+        {
+            var parser = new TraktRequestParser(classDeclarationInput.KnownRequestSymbols);
+
+            RequestGenerationSpecification? requestGenerationSpecification =
+                parser.Parse(classDeclarationInput.ClassDeclarationContext.ContextClass,
+                    classDeclarationInput.ClassDeclarationContext.SemanticModel, cancellationToken);
+
+            var diagnostics = parser.Diagnostics.ToImmutableEquatableArray();
+            return (requestGenerationSpecification, diagnostics);
+        }
+
+        private void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, RequestGenerationSpecificationTuple input)
         {
             foreach (DiagnosticInfo diagnosticInfo in input.Diagnostics)
             {
@@ -55,8 +63,8 @@ namespace TraktNET.SourceGeneration.Requests
                 return;
             }
 
-            RequestSourceEmitterBase<T> requestSourceEmitter = CreateSourceEmitter(sourceProductionContext);
-            requestSourceEmitter.Emit((T)input.RequestGenerationSpecification);
+            RequestSourceEmitter requestSourceEmitter = new(sourceProductionContext);
+            requestSourceEmitter.Emit(input.RequestGenerationSpecification);
         }
     }
 }
