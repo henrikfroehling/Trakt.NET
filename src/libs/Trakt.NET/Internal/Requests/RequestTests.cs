@@ -29,7 +29,7 @@
         // source generator creates a sealed partial class TraktPutRequest : HttpRequestMessage
     }
 
-    [TraktDeleteRequest("notes/{id}")]
+    [TraktDeleteRequest("notes/{id:int?}")]
     internal sealed partial class TraktDeleteRequest
     {
         // source generator creates a sealed partial class TraktDeleteRequest : HttpRequestMessage

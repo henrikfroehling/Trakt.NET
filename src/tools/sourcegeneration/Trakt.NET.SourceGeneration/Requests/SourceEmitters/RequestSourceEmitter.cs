@@ -18,6 +18,9 @@ namespace TraktNET.SourceGeneration.Requests
         private bool _supportsPagination;
         private bool _hasOAuthRequirementDefined;
 
+        private readonly List<UriSegment> _uriSegments = [];
+        private readonly List<PlaceHolder> _uriPlaceHolders = [];
+
         public override void Emit(RequestGenerationSpecification generationSpecification)
         {
             if (generationSpecification == null)
@@ -45,6 +48,8 @@ namespace TraktNET.SourceGeneration.Requests
             _supportsExtendedInfo = enumGenerationSpecification.SupportsExtendedInfo;
             _supportsPagination = enumGenerationSpecification.SupportsPagination;
             _hasOAuthRequirementDefined = enumGenerationSpecification.HasOAuthRequirementDefined;
+
+            ParseRequestUri();
         }
 
         private void WriteHeaderAndUsings()
@@ -90,6 +95,25 @@ namespace TraktNET.SourceGeneration.Requests
         private void WriteRequestClassContent()
         {
             bool needsEmptyLine = false;
+
+            if (_uriPlaceHolders.Count > 0)
+            {
+                foreach (PlaceHolder placeHolder in _uriPlaceHolders)
+                {
+                    string modifier = "internal";
+                    string setOrInit = "set";
+
+                    // TODO Check for language support for "required" and "init" keywords
+                    //if (placeHolder.IsRequired)
+                    //{
+                    //    modifier += " required";
+                    //    setOrInit = "init";
+                    //}
+
+                    _sourceWriter.WriteLine($"{modifier} {placeHolder.ValueType} {placeHolder.Name} {{ get; {setOrInit}; }}");
+                    _sourceWriter.WriteEmptyLine();
+                }
+            }
 
             if (_supportsExtendedInfo)
             {
@@ -152,47 +176,81 @@ namespace TraktNET.SourceGeneration.Requests
         private void WriteRequestConstructor()
             => _sourceWriter.WriteLine($"private {_requestName}() : base(HttpMethod.{_httpMethodValue}, (Uri?)null) {{}}");
 
+        private string BuildUriPath()
+        {
+            string uriPath = string.Empty;
+
+            if (_uriSegments.Count > 0)
+            {
+                foreach (UriSegment segment in _uriSegments)
+                {
+                    if (segment.SegmentType == UriSegmentType.Path)
+                    {
+                        uriPath += segment.Value;
+                    }
+                    else
+                    {
+                        uriPath += "{" + segment.Value + "}";
+                    }
+                }
+            }
+
+            return uriPath;
+        }
+
         private void WriteBuildUriMethod()
         {
-            _sourceWriter.WriteLine("internal void BuildUri()");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-
-            const string requestUriName = "requestUri";
-            const string firstParameterName = "firstParameter";
-
-            // TODO Parse URI path parameters and encode URI path
-
-            _sourceWriter.WriteLine($"string {requestUriName} = \"{_uriPath}\";");
-
             if (_supportsExtendedInfo || _supportsPagination)
             {
-                _sourceWriter.WriteLine($"bool {firstParameterName} = true;");
-            }
+                _sourceWriter.WriteLine("internal void BuildUri()");
+                _sourceWriter.WriteLine('{');
+                _sourceWriter.Indent();
 
-            if (_supportsExtendedInfo)
-            {
+                const string requestUriName = "requestUri";
+                const string firstParameterName = "firstParameter";
+
+                _sourceWriter.WriteLine($"string {requestUriName} = $\"{BuildUriPath()}\";");
+
+                if (_supportsExtendedInfo || _supportsPagination)
+                {
+                    _sourceWriter.WriteLine($"bool {firstParameterName} = true;");
+                }
+
+                if (_supportsExtendedInfo)
+                {
+                    _sourceWriter.WriteEmptyLine();
+                    WriteBuildUriExtendedInfo(requestUriName, firstParameterName);
+                }
+
+                if (_supportsPagination)
+                {
+                    _sourceWriter.WriteEmptyLine();
+                    WriteBuildUriPagination(requestUriName, firstParameterName);
+                }
+
                 _sourceWriter.WriteEmptyLine();
-                WriteBuildUriExtendedInfo(requestUriName, firstParameterName);
-            }
 
-            if (_supportsPagination)
+                _sourceWriter.WriteLine($"RequestUri = new Uri({requestUriName});");
+
+                _sourceWriter.DecrementIndent();
+                _sourceWriter.WriteLine('}');
+            }
+            else
             {
-                _sourceWriter.WriteEmptyLine();
-                WriteBuildUriPagination(requestUriName, firstParameterName);
+                string uriPath = $"\"{_uriPath}\"";
+
+                if (_uriPlaceHolders.Count > 0)
+                {
+                    uriPath = $"$\"{BuildUriPath()}\"";
+                }
+
+                _sourceWriter.WriteLine($"internal void BuildUri() => RequestUri = new Uri({uriPath});");
             }
-
-            _sourceWriter.WriteEmptyLine();
-
-            _sourceWriter.WriteLine($"RequestUri = new Uri({requestUriName});");
-
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
         }
 
         private void WriteBuildUriExtendedInfo(string requestUriName, string firstParameterName)
         {
-            _sourceWriter.WriteLine("if (ExtendedInfo.HasValue)");
+            _sourceWriter.WriteLine("if (ExtendedInfo.HasValue && ExtendedInfo.Value != TraktExtendedInfo.None)");
             _sourceWriter.WriteLine('{');
             _sourceWriter.Indent();
             _sourceWriter.WriteLine($"if ({firstParameterName})");
@@ -221,7 +279,7 @@ namespace TraktNET.SourceGeneration.Requests
 
         private void WriteBuildUriPaginationPage(string requestUriName, string firstParameterName)
         {
-            _sourceWriter.WriteLine("if (Page.HasValue)");
+            _sourceWriter.WriteLine("if (Page.HasValue && Page.Value > 0)");
             _sourceWriter.WriteLine('{');
             _sourceWriter.Indent();
             _sourceWriter.WriteLine($"if ({firstParameterName})");
@@ -243,7 +301,7 @@ namespace TraktNET.SourceGeneration.Requests
 
         private void WriteBuildUriPaginationLimit(string requestUriName, string firstParameterName)
         {
-            _sourceWriter.WriteLine("if (Limit.HasValue)");
+            _sourceWriter.WriteLine("if (Limit.HasValue && Limit.Value > 0)");
             _sourceWriter.WriteLine('{');
             _sourceWriter.Indent();
             _sourceWriter.WriteLine($"if ({firstParameterName})");
@@ -261,6 +319,102 @@ namespace TraktNET.SourceGeneration.Requests
             _sourceWriter.WriteLine('}');
             _sourceWriter.DecrementIndent();
             _sourceWriter.WriteLine('}');
+        }
+
+        private void ParseRequestUri()
+        {
+            int position = 0;
+            int startPosition = 0;
+
+            while (position < _uriPath.Length)
+            {
+                char character = _uriPath[position];
+
+                switch (character)
+                {
+                    case '{':
+                        string uriSegment = _uriPath.Substring(startPosition, position - startPosition);
+
+                        if (uriSegment.Length > 0)
+                        {
+                            _uriSegments.Add(new UriSegment
+                            {
+                                Value = uriSegment,
+                                SegmentType = UriSegmentType.Path
+                            });
+                        }
+
+                        position++;
+                        startPosition = position;
+                        break;
+                    case '}':
+                        string placeHolder = _uriPath.Substring(startPosition, position - startPosition);
+                        int colonIndex = placeHolder.IndexOf(':');
+
+                        if (placeHolder.Length > 0 && colonIndex > 0)
+                        {
+                            string placeHolderName = placeHolder.Substring(0, colonIndex);
+                            string placeHolderType = placeHolder.Substring(colonIndex + 1, placeHolder.Length - (colonIndex + 1));
+
+                            _uriSegments.Add(new UriSegment
+                            {
+                                Value = placeHolderName,
+                                SegmentType = UriSegmentType.PlaceHolder
+                            });
+
+                            _uriPlaceHolders.Add(new PlaceHolder
+                            {
+                                Name = placeHolderName,
+                                ValueType = placeHolderType,
+                                IsRequired = !placeHolderType.EndsWith("?", StringComparison.InvariantCulture)
+                                    || placeHolderType.EndsWith("!", StringComparison.InvariantCulture)
+                            });
+                        }
+
+                        position++;
+                        startPosition = position;
+                        break;
+                    default:
+                        position++;
+                        break;
+                }
+            }
+
+            if (position > startPosition)
+            {
+                string uriSegment = _uriPath.Substring(startPosition, position - startPosition);
+
+                if (uriSegment.Length > 0)
+                {
+                    _uriSegments.Add(new UriSegment
+                    {
+                        Value = uriSegment,
+                        SegmentType = UriSegmentType.Path
+                    });
+                }
+            }
+        }
+
+        private enum UriSegmentType
+        {
+            Path,
+            PlaceHolder
+        }
+
+        private readonly record struct UriSegment
+        {
+            public required string Value { get; init; }
+
+            public required UriSegmentType SegmentType { get; init; }
+        }
+
+        private readonly record struct PlaceHolder
+        {
+            public required string Name { get; init; }
+
+            public required string ValueType { get; init; }
+
+            public required bool IsRequired { get; init; }
         }
     }
 }
