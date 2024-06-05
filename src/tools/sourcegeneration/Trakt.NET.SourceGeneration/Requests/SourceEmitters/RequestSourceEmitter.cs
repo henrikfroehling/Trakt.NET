@@ -5,7 +5,10 @@ namespace TraktNET.SourceGeneration.Requests
 {
     public sealed class RequestSourceEmitter(SourceProductionContext context) : SourceEmitter<RequestGenerationSpecification>(context)
     {
-        private static readonly IReadOnlyList<string> Usings = [];
+        private static readonly IReadOnlyList<string> Usings = [
+            "System.Text",
+            "System.Web"
+        ];
 
         private readonly SourceWriter _sourceWriter = new();
 
@@ -17,6 +20,7 @@ namespace TraktNET.SourceGeneration.Requests
         private bool _supportsExtendedInfo;
         private bool _supportsPagination;
         private bool _hasOAuthRequirementDefined;
+        private bool _hasOptionalQueries;
 
         private readonly List<UriSegment> _uriSegments = [];
         private readonly List<PlaceHolder> _uriPlaceHolders = [];
@@ -48,6 +52,7 @@ namespace TraktNET.SourceGeneration.Requests
             _supportsExtendedInfo = enumGenerationSpecification.SupportsExtendedInfo;
             _supportsPagination = enumGenerationSpecification.SupportsPagination;
             _hasOAuthRequirementDefined = enumGenerationSpecification.HasOAuthRequirementDefined;
+            _hasOptionalQueries = _supportsExtendedInfo || _supportsPagination;
 
             ParseRequestUri();
         }
@@ -103,12 +108,11 @@ namespace TraktNET.SourceGeneration.Requests
                     string modifier = "internal";
                     string setOrInit = "set";
 
-                    // TODO Check for language support for "required" and "init" keywords
-                    //if (placeHolder.IsRequired)
-                    //{
-                    //    modifier += " required";
-                    //    setOrInit = "init";
-                    //}
+                    if (placeHolder.IsRequired)
+                    {
+                        modifier += " required";
+                        setOrInit = "init";
+                    }
 
                     _sourceWriter.WriteLine($"{modifier} {placeHolder.ValueType} {placeHolder.Name} {{ get; {setOrInit}; }}");
                     _sourceWriter.WriteEmptyLine();
@@ -200,37 +204,56 @@ namespace TraktNET.SourceGeneration.Requests
 
         private void WriteBuildUriMethod()
         {
-            if (_supportsExtendedInfo || _supportsPagination)
+            if (_hasOptionalQueries)
             {
                 _sourceWriter.WriteLine("internal void BuildUri()");
                 _sourceWriter.WriteLine('{');
                 _sourceWriter.Indent();
 
                 const string requestUriName = "requestUri";
-                const string firstParameterName = "firstParameter";
+
+                _sourceWriter.WriteLine("List<string> queries = [];");
 
                 _sourceWriter.WriteLine($"string {requestUriName} = $\"{BuildUriPath()}\";");
-
-                if (_supportsExtendedInfo || _supportsPagination)
-                {
-                    _sourceWriter.WriteLine($"bool {firstParameterName} = true;");
-                }
 
                 if (_supportsExtendedInfo)
                 {
                     _sourceWriter.WriteEmptyLine();
-                    WriteBuildUriExtendedInfo(requestUriName, firstParameterName);
+
+                    _sourceWriter.WriteLine("if (ExtendedInfo.HasValue && ExtendedInfo.Value != TraktExtendedInfo.None)");
+                    _sourceWriter.WriteLine('{');
+                    _sourceWriter.Indent();
+                    _sourceWriter.WriteLine("queries.Add(ExtendedInfo.Value.ToUriPath());");
+                    _sourceWriter.DecrementIndent();
+                    _sourceWriter.WriteLine('}');
                 }
 
                 if (_supportsPagination)
                 {
                     _sourceWriter.WriteEmptyLine();
-                    WriteBuildUriPagination(requestUriName, firstParameterName);
+
+                    _sourceWriter.WriteLine("if (Page.HasValue && Page.Value > 0)");
+                    _sourceWriter.WriteLine('{');
+                    _sourceWriter.Indent();
+                    _sourceWriter.WriteLine("queries.Add($\"page={Page.Value}\");");
+                    _sourceWriter.DecrementIndent();
+                    _sourceWriter.WriteLine('}');
+
+                    _sourceWriter.WriteEmptyLine();
+
+                    _sourceWriter.WriteLine("if (Limit.HasValue && Limit.Value > 0)");
+                    _sourceWriter.WriteLine('{');
+                    _sourceWriter.Indent();
+                    _sourceWriter.WriteLine("queries.Add($\"limit={Limit.Value}\");");
+                    _sourceWriter.DecrementIndent();
+                    _sourceWriter.WriteLine('}');
                 }
 
                 _sourceWriter.WriteEmptyLine();
 
-                _sourceWriter.WriteLine($"RequestUri = new Uri({requestUriName});");
+                _sourceWriter.WriteLine($"{requestUriName} = {requestUriName} + \"?\" + string.Join(\"&\", queries);");
+                _sourceWriter.WriteLine($"string? encodedUriPath = HttpUtility.UrlEncode({requestUriName}, Encoding.UTF8);");
+                _sourceWriter.WriteLine("RequestUri = new Uri(encodedUriPath);");
 
                 _sourceWriter.DecrementIndent();
                 _sourceWriter.WriteLine('}');
@@ -244,81 +267,15 @@ namespace TraktNET.SourceGeneration.Requests
                     uriPath = $"$\"{BuildUriPath()}\"";
                 }
 
-                _sourceWriter.WriteLine($"internal void BuildUri() => RequestUri = new Uri({uriPath});");
+                _sourceWriter.WriteLine("internal void BuildUri()");
+                _sourceWriter.WriteLine('{');
+                _sourceWriter.Indent();
+                _sourceWriter.WriteLine($"string uriPath = {uriPath};");
+                _sourceWriter.WriteLine("string? encodedUriPath = HttpUtility.UrlEncode(uriPath, Encoding.UTF8);");
+                _sourceWriter.WriteLine("RequestUri = new Uri(encodedUriPath);");
+                _sourceWriter.DecrementIndent();
+                _sourceWriter.WriteLine('}');
             }
-        }
-
-        private void WriteBuildUriExtendedInfo(string requestUriName, string firstParameterName)
-        {
-            _sourceWriter.WriteLine("if (ExtendedInfo.HasValue && ExtendedInfo.Value != TraktExtendedInfo.None)");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"if ({firstParameterName})");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"{requestUriName} += $\"?{{ExtendedInfo.Value.ToUriPath()}}\";");
-            _sourceWriter.WriteLine($"{firstParameterName} = false;");
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-            _sourceWriter.WriteLine("else");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"{requestUriName} += $\"&{{ExtendedInfo.Value.ToUriPath()}}\";");
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-        }
-
-        private void WriteBuildUriPagination(string requestUriName, string firstParameterName)
-        {
-            WriteBuildUriPaginationPage(requestUriName, firstParameterName);
-            _sourceWriter.WriteEmptyLine();
-            WriteBuildUriPaginationLimit(requestUriName, firstParameterName);
-        }
-
-        private void WriteBuildUriPaginationPage(string requestUriName, string firstParameterName)
-        {
-            _sourceWriter.WriteLine("if (Page.HasValue && Page.Value > 0)");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"if ({firstParameterName})");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"{requestUriName} += $\"?page={{Page.Value}}\";");
-            _sourceWriter.WriteLine($"{firstParameterName} = false;");
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-            _sourceWriter.WriteLine("else");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"{requestUriName} += $\"&page={{Page.Value}}\";");
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-        }
-
-        private void WriteBuildUriPaginationLimit(string requestUriName, string firstParameterName)
-        {
-            _sourceWriter.WriteLine("if (Limit.HasValue && Limit.Value > 0)");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"if ({firstParameterName})");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"{requestUriName} += $\"?limit={{Limit.Value}}\";");
-            _sourceWriter.WriteLine($"{firstParameterName} = false;");
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-            _sourceWriter.WriteLine("else");
-            _sourceWriter.WriteLine('{');
-            _sourceWriter.Indent();
-            _sourceWriter.WriteLine($"{requestUriName} += $\"&limit={{Limit.Value}}\";");
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
-            _sourceWriter.DecrementIndent();
-            _sourceWriter.WriteLine('}');
         }
 
         private void ParseRequestUri()
