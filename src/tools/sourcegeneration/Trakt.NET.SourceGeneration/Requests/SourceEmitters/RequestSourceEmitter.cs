@@ -1,4 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
+using System.Buffers;
+using System.Runtime.CompilerServices;
 using TraktNET.SourceGeneration.Common;
 
 namespace TraktNET.SourceGeneration.Requests
@@ -22,8 +24,9 @@ namespace TraktNET.SourceGeneration.Requests
         private bool _hasOAuthRequirementDefined;
         private bool _hasOptionalQueries;
 
-        private readonly List<UriSegment> _uriSegments = [];
+        private string _resolvedUriPath = string.Empty;
         private readonly List<PlaceHolder> _uriPlaceHolders = [];
+        private bool _hasOptionalPlaceholders;
 
         public override void Emit(RequestGenerationSpecification generationSpecification)
         {
@@ -180,28 +183,6 @@ namespace TraktNET.SourceGeneration.Requests
         private void WriteRequestConstructor()
             => _sourceWriter.WriteLine($"private {_requestName}() : base(HttpMethod.{_httpMethodValue}, (Uri?)null) {{}}");
 
-        private string BuildUriPath()
-        {
-            string uriPath = string.Empty;
-
-            if (_uriSegments.Count > 0)
-            {
-                foreach (UriSegment segment in _uriSegments)
-                {
-                    if (segment.SegmentType == UriSegmentType.Path)
-                    {
-                        uriPath += segment.Value;
-                    }
-                    else
-                    {
-                        uriPath += "{" + segment.Value + "}";
-                    }
-                }
-            }
-
-            return uriPath;
-        }
-
         private void WriteBuildUriMethod()
         {
             if (_hasOptionalQueries)
@@ -214,7 +195,14 @@ namespace TraktNET.SourceGeneration.Requests
 
                 _sourceWriter.WriteLine("List<string> queries = [];");
 
-                _sourceWriter.WriteLine($"string {requestUriName} = $\"{BuildUriPath()}\";");
+                if (_hasOptionalPlaceholders)
+                {
+                    _sourceWriter.WriteLine($"string {requestUriName} = $\"{_resolvedUriPath}\".Replace(\"//\", \"/\");");
+                }
+                else
+                {
+                    _sourceWriter.WriteLine($"string {requestUriName} = $\"{_resolvedUriPath}\";");
+                }
 
                 if (_supportsExtendedInfo)
                 {
@@ -260,17 +248,19 @@ namespace TraktNET.SourceGeneration.Requests
             }
             else
             {
-                string uriPath = $"\"{_uriPath}\"";
-
-                if (_uriPlaceHolders.Count > 0)
-                {
-                    uriPath = $"$\"{BuildUriPath()}\"";
-                }
-
                 _sourceWriter.WriteLine("internal void BuildUri()");
                 _sourceWriter.WriteLine('{');
                 _sourceWriter.Indent();
-                _sourceWriter.WriteLine($"string uriPath = {uriPath};");
+
+                if (_hasOptionalPlaceholders)
+                {
+                    _sourceWriter.WriteLine($"string uriPath = $\"{_resolvedUriPath}\".Replace(\"//\", \"/\");");
+                }
+                else
+                {
+                    _sourceWriter.WriteLine($"string uriPath = $\"{_resolvedUriPath}\";");
+                }
+
                 _sourceWriter.WriteLine("string? encodedUriPath = HttpUtility.UrlEncode(uriPath, Encoding.UTF8);");
                 _sourceWriter.WriteLine("RequestUri = new Uri(encodedUriPath);");
                 _sourceWriter.DecrementIndent();
@@ -280,89 +270,147 @@ namespace TraktNET.SourceGeneration.Requests
 
         private void ParseRequestUri()
         {
-            int position = 0;
-            int startPosition = 0;
+            const int StackallocCharThreshold = 128;
 
-            while (position < _uriPath.Length)
+            char[]? rentedBuffer = null;
+            ReadOnlySpan<char> uriPath = _uriPath.AsSpan();
+            int initialBufferLength = (int)(1.2 * uriPath.Length);
+
+            Span<char> destination = initialBufferLength <= StackallocCharThreshold
+                ? stackalloc char[StackallocCharThreshold]
+                : (rentedBuffer = ArrayPool<char>.Shared.Rent(initialBufferLength));
+
+            UriParserState state = UriParserState.Default;
+            int charsWritten = 0;
+
+            bool firstPlaceHolderNameLetterNeedsToBeUppercase = false;
+            int placeHolderNameStartPosition = 0;
+            int placeHolderTypeStartPosition = 0;
+
+            string placeHolderName = string.Empty;
+            string placeHolderType = string.Empty;
+
+            for (int i = 0; i < uriPath.Length; i++)
             {
-                char character = _uriPath[position];
+                char currentCharacter = uriPath[i];
 
-                switch (character)
+                switch (state)
                 {
-                    case '{':
-                        string uriSegment = _uriPath.Substring(startPosition, position - startPosition);
-
-                        if (uriSegment.Length > 0)
-                        {
-                            _uriSegments.Add(new UriSegment
-                            {
-                                Value = uriSegment,
-                                SegmentType = UriSegmentType.Path
-                            });
-                        }
-
-                        position++;
-                        startPosition = position;
-                        break;
-                    case '}':
-                        string placeHolder = _uriPath.Substring(startPosition, position - startPosition);
-                        int colonIndex = placeHolder.IndexOf(':');
-
-                        if (placeHolder.Length > 0 && colonIndex > 0)
-                        {
-                            string placeHolderName = placeHolder.Substring(0, colonIndex);
-                            string placeHolderType = placeHolder.Substring(colonIndex + 1, placeHolder.Length - (colonIndex + 1));
-
-                            _uriSegments.Add(new UriSegment
-                            {
-                                Value = placeHolderName,
-                                SegmentType = UriSegmentType.PlaceHolder
-                            });
-
-                            _uriPlaceHolders.Add(new PlaceHolder
-                            {
-                                Name = placeHolderName,
-                                ValueType = placeHolderType,
-                                IsRequired = !placeHolderType.EndsWith("?", StringComparison.InvariantCulture)
-                                    || placeHolderType.EndsWith("!", StringComparison.InvariantCulture)
-                            });
-                        }
-
-                        position++;
-                        startPosition = position;
-                        break;
-                    default:
-                        position++;
-                        break;
-                }
-            }
-
-            if (position > startPosition)
-            {
-                string uriSegment = _uriPath.Substring(startPosition, position - startPosition);
-
-                if (uriSegment.Length > 0)
-                {
-                    _uriSegments.Add(new UriSegment
+                    case UriParserState.ParsingPlaceHolderName:
                     {
-                        Value = uriSegment,
-                        SegmentType = UriSegmentType.Path
-                    });
+                        switch (currentCharacter)
+                        {
+                            case ':':
+                                state = UriParserState.ParsingPlaceHolderType;
+                                placeHolderTypeStartPosition = i + 1;
+                                placeHolderName = destination.Slice(placeHolderNameStartPosition, charsWritten - placeHolderNameStartPosition).ToString();
+                                placeHolderNameStartPosition = 0;
+                                break;
+                            case '_':
+                                // Ignore this character, so '_' gets removed from the name.
+                                firstPlaceHolderNameLetterNeedsToBeUppercase = true;
+                                break;
+                            default:
+                            {
+                                if (firstPlaceHolderNameLetterNeedsToBeUppercase)
+                                {
+                                    // Flip last bit to switch character casing.
+                                    WriteChar((char)(currentCharacter ^ 32), ref destination);
+                                    firstPlaceHolderNameLetterNeedsToBeUppercase = false;
+                                }
+                                else
+                                {
+                                    WriteChar(currentCharacter, ref destination);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        break;
+                    }
+                    case UriParserState.ParsingPlaceHolderType:
+                    {
+                        switch (currentCharacter)
+                        {
+                            case '}':
+                                WriteChar(currentCharacter, ref destination);
+                                state = UriParserState.Default;
+                                placeHolderType = uriPath.Slice(placeHolderTypeStartPosition, i - placeHolderTypeStartPosition).ToString();
+                                placeHolderTypeStartPosition = 0;
+
+                                bool isOptional = placeHolderType.IndexOf('?') >= 0;
+                                _hasOptionalPlaceholders = _hasOptionalPlaceholders || isOptional;
+
+                                _uriPlaceHolders.Add(new PlaceHolder
+                                {
+                                    Name = placeHolderName,
+                                    ValueType = placeHolderType,
+                                    IsRequired = !isOptional
+                                });
+
+                                break;
+                            default:
+                                // Just proceed with the current character.
+                                break;
+                        }
+
+                        break;
+                    }
+                    case UriParserState.Default:
+                    {
+                        switch (currentCharacter)
+                        {
+                            case '{':
+                                WriteChar(currentCharacter, ref destination);
+                                state = UriParserState.ParsingPlaceHolderName;
+                                placeHolderNameStartPosition = i + 1;
+                                firstPlaceHolderNameLetterNeedsToBeUppercase = true;
+                                break;
+                            default:
+                                WriteChar(currentCharacter, ref destination);
+                                break;
+                        }
+
+                        break;
+                    }
                 }
             }
-        }
 
-        private enum UriSegmentType
-        {
-            Path,
-            PlaceHolder
-        }
+            _resolvedUriPath = destination.Slice(0, charsWritten).ToString();
 
-        private readonly record struct UriSegment
-        {
-            public required string Value { get; init; }
+            if (rentedBuffer != null)
+            {
+                destination.Slice(0, charsWritten).Clear();
+                ArrayPool<char>.Shared.Return(rentedBuffer);
+            }
 
-            public required UriSegmentType SegmentType { get; init; }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            void WriteChar(char value, ref Span<char> destination)
+            {
+                if (charsWritten == destination.Length)
+                {
+                    ExpandBuffer(ref destination);
+                }
+
+                destination[charsWritten++] = value;
+            }
+
+            void ExpandBuffer(ref Span<char> destination)
+            {
+                int newSize = checked(destination.Length * 2);
+                char[] newBuffer = ArrayPool<char>.Shared.Rent(newSize);
+                destination.CopyTo(newBuffer);
+
+                if (rentedBuffer != null)
+                {
+                    destination.Slice(0, charsWritten).Clear();
+                    ArrayPool<char>.Shared.Return(rentedBuffer);
+                }
+
+                rentedBuffer = newBuffer;
+                destination = rentedBuffer;
+            }
         }
 
         private readonly record struct PlaceHolder
@@ -372,6 +420,13 @@ namespace TraktNET.SourceGeneration.Requests
             public required string ValueType { get; init; }
 
             public required bool IsRequired { get; init; }
+        }
+
+        private enum UriParserState
+        {
+            Default,
+            ParsingPlaceHolderName,
+            ParsingPlaceHolderType
         }
     }
 }

@@ -17,13 +17,13 @@
         // "limit" gets an automatically generated "int" property by source generator
     }
 
-    [TraktPostRequest("notes")]
+    [TraktPostRequest("notes/{id_name:string?}")]
     internal sealed partial class TraktPostRequest
     {
         // source generator creates a sealed partial class TraktPostRequest : HttpRequestMessage
     }
 
-    [TraktPutRequest("notes")]
+    [TraktPutRequest("notes/{id_test:int}")]
     internal sealed partial class TraktPutRequest
     {
         // source generator creates a sealed partial class TraktPutRequest : HttpRequestMessage
