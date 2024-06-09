@@ -49,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\libs\Trakt.NET\Trakt.NET.csproj">
+    <ProjectReference Include="..\..\..\..\libs\Trakt.NET\Trakt.NET.csproj">
       <Project>{b8e93ac4-b8e3-4dd9-8df2-81ad047d9248}</Project>
       <Name>Trakt.NET</Name>
     </ProjectReference>

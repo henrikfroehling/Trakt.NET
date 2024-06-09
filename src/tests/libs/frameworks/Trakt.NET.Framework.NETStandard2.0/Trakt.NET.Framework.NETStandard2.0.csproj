@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\libs\Trakt.NET\Trakt.NET.csproj" />
+    <ProjectReference Include="..\..\..\..\libs\Trakt.NET\Trakt.NET.csproj" />
   </ItemGroup>
 
 </Project>
