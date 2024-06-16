@@ -15,7 +15,7 @@ namespace TraktNET.SourceGeneration
                 MetadataReference.CreateFromFile(typeof(TestHelper).Assembly.Location),
 
                 // Reference for the Trakt library containing the attributes
-                MetadataReference.CreateFromFile(typeof(TraktEnumAttribute).Assembly.Location)
+                MetadataReference.CreateFromFile(typeof(TraktClient).Assembly.Location)
             };
 
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(source);

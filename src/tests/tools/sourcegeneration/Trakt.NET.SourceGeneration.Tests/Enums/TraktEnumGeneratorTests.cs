@@ -1,9 +1,9 @@
 ﻿namespace TraktNET.SourceGeneration.Enums
 {
-    public sealed class TraktEnumAttributeGeneratorTests
+    public sealed class TraktEnumGeneratorTests
     {
         [Fact]
-        public Task GeneratesEnumExtensionsCorrectly()
+        public Task TestGeneratesEnumExtensions()
         {
             string source = """
                 using TraktNET;
@@ -20,11 +20,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums", "SourceGeneration.EnumTests", source);
+            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums",
+                "SourceGeneration.EnumTests", source);
         }
 
         [Fact]
-        public Task GeneratesEnumExtensionsWithCustomEnumMemberCorrectly()
+        public Task TestGeneratesEnumExtensionsWithCustomEnumMember()
         {
             string source = """
                 using TraktNET;
@@ -45,11 +46,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums", "SourceGeneration.EnumMemberTests", source);
+            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums",
+                "SourceGeneration.EnumMemberTests", source);
         }
 
         [Fact]
-        public Task GeneratesEnumExtensionsWithCustomEnumMemberEmptyJsonValueCorrectly()
+        public Task TestGeneratesEnumExtensionsWithCustomEnumMemberEmptyJsonValue()
         {
             string source = """
                 using TraktNET;
@@ -70,11 +72,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums", "SourceGeneration.EnumMemberEmptyJsonValueTests", source);
+            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums",
+                "SourceGeneration.EnumMemberEmptyJsonValueTests", source);
         }
 
         [Fact]
-        public Task GeneratesEnumExtensionsWithCustomEnumMemberEmptyDisplayNameCorrectly()
+        public Task TestGeneratesEnumExtensionsWithCustomEnumMemberEmptyDisplayName()
         {
             string source = """
                 using TraktNET;
@@ -95,11 +98,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums", "SourceGeneration.EnumMemberEmptyDisplayNameTests", source);
+            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums",
+                "SourceGeneration.EnumMemberEmptyDisplayNameTests", source);
         }
 
         [Fact]
-        public Task GeneratesEnumExtensionsWithCustomEnumMemberNullJsonValueDiagnosticsCorrectly()
+        public Task TestGeneratesEnumExtensionsWithCustomEnumMemberNullJsonValueDiagnostics()
         {
             string source = """
                 using TraktNET;
@@ -120,11 +124,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums", "SourceGeneration.EnumMemberNullJsonValueDiagnosticsTests", source);
+            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums",
+                "SourceGeneration.EnumMemberNullJsonValueDiagnosticsTests", source);
         }
 
         [Fact]
-        public Task GeneratesEnumExtensionsWithCustomEnumMemberNullDisplayNameDiagnosticsCorrectly()
+        public Task TestGeneratesEnumExtensionsWithCustomEnumMemberNullDisplayNameDiagnostics()
         {
             string source = """
                 using TraktNET;
@@ -145,7 +150,8 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums", "SourceGeneration.EnumMemberNullDisplayNameDiagnosticsTests", source);
+            return TestHelper.Verify<TraktEnumSourceGenerator>("Enums",
+                "SourceGeneration.EnumMemberNullDisplayNameDiagnosticsTests", source);
         }
     }
 }

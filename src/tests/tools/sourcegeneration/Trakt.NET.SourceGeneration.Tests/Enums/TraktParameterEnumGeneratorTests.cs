@@ -1,9 +1,9 @@
 ﻿namespace TraktNET.SourceGeneration.Enums
 {
-    public sealed class TraktParameterEnumAttributeGeneratorTests
+    public sealed class TraktParameterEnumGeneratorTests
     {
         [Fact]
-        public Task GeneratesParameterEnumExtensionsCorrectly()
+        public Task TestGeneratesParameterEnumExtensions()
         {
             string source = """
                 using TraktNET;
@@ -20,11 +20,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsWithFlagsAttributeCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsWithFlagsAttribute()
         {
             string source = """
                 using System;
@@ -43,11 +44,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumFlagsTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumFlagsTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsWithCustomEnumMemberCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsWithCustomEnumMember()
         {
             string source = """
                 using TraktNET;
@@ -68,11 +70,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumMemberTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumMemberTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsWithCustomEnumMemberAndFlagsAttributeCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsWithCustomEnumMemberAndFlagsAttribute()
         {
             string source = """
                 using System;
@@ -95,11 +98,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumMemberFlagsTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumMemberFlagsTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsEmptyParameterDiagnosticsCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsEmptyParameterDiagnostics()
         {
             string source = """
                 using TraktNET;
@@ -116,11 +120,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumNullParameterDiagnosticTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumNullParameterDiagnosticTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsNullParameterDiagnosticsCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsNullParameterDiagnostics()
         {
             string source = """
                 using TraktNET;
@@ -137,11 +142,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumNullParameterDiagnosticTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumNullParameterDiagnosticTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsWithCustomEnumMemberEmptyJsonValueCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsWithCustomEnumMemberEmptyJsonValue()
         {
             string source = """
                 using TraktNET;
@@ -162,11 +168,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumMemberEmptyJsonValueTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumMemberEmptyJsonValueTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsWithCustomEnumMemberEmptyDisplayNameCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsWithCustomEnumMemberEmptyDisplayName()
         {
             string source = """
                 using TraktNET;
@@ -187,11 +194,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumMemberEmptyDisplayNameTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumMemberEmptyDisplayNameTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsWithCustomEnumMemberNullJsonValueCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsWithCustomEnumMemberNullJsonValue()
         {
             string source = """
                 using TraktNET;
@@ -212,11 +220,12 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumMemberNullJsonValueTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumMemberNullJsonValueTests", source);
         }
 
         [Fact]
-        public Task GeneratesParameterEnumExtensionsWithCustomEnumMemberNullDisplayNameCorrectly()
+        public Task TestGeneratesParameterEnumExtensionsWithCustomEnumMemberNullDisplayName()
         {
             string source = """
                 using TraktNET;
@@ -237,7 +246,8 @@
                 }
                 """;
 
-            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums", "SourceGeneration.ParameterEnumMemberNullDisplayNameTests", source);
+            return TestHelper.Verify<TraktParameterEnumSourceGenerator>("Enums",
+                "SourceGeneration.ParameterEnumMemberNullDisplayNameTests", source);
         }
     }
 }
