@@ -3,6 +3,7 @@
   <ItemGroup>
     <PackageReference Include="Basic.Reference.Assemblies" Version="1.7.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+    <PackageReference Include="Verify.SourceGenerators" Version="2.2.0" />
     <PackageReference Include="Verify.Xunit" Version="25.0.3" />
   </ItemGroup>
 

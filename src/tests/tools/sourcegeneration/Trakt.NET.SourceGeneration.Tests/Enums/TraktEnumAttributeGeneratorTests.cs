@@ -32,7 +32,7 @@
                 namespace SourceGeneraterTestNamespace
                 {
                     [TraktEnum]
-                    public enum TestEnumWithCustomMembers
+                    public enum TestEnum
                     {
                         Unspecified,
 

@@ -26,7 +26,7 @@ namespace TraktNET.SourceGeneration
                 .WithMetadataImportOptions(MetadataImportOptions.All);
 
             // Fine tune binder flags accessibility.
-            // Because "TopLevelBinderFlags" is not public, so use some reflection trickery.
+            // Because "TopLevelBinderFlags" is not public, use some reflection trickery.
             PropertyInfo? topLevelBinderFlagsProperty = typeof(CSharpCompilationOptions)
                 .GetProperty("TopLevelBinderFlags", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -42,14 +42,10 @@ namespace TraktNET.SourceGeneration
             GeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
 
             driver = driver.RunGeneratorsAndUpdateCompilation(compilation, out _, out _);
-            GeneratorDriverRunResult results = driver.GetRunResult();
 
-            results.GeneratedTrees.Length.Should().Be(1);
-
-            SyntaxTree resultSyntaxTree = results.GeneratedTrees[0];
-            string resultSource = resultSyntaxTree.ToString();
-
-            return Verifier.Verify(resultSource).UseDirectory("Snapshots");
+            return Verifier.Verify(driver)
+                .UseDirectory("Snapshots")
+                .ScrubLines(static x => x.StartsWith("//HintName", StringComparison.InvariantCulture));
         }
     }
 }

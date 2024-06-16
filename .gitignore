@@ -249,4 +249,4 @@ NugetPackage
 _site/
 
 # Tests Verify Snapshot Files
-*.received.txt
+*.received.*

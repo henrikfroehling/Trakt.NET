@@ -115,9 +115,8 @@ namespace TraktNET.SourceGeneration.Enums
                 if (SymbolEqualityComparer.Default.Equals(attributeClass, _knownEnumSymbols.SystemFlagsAttributeType))
                 {
                     _hasFlagsAttribute = true;
-                }
-                
-                if (parseTraktParameterEnum && SymbolEqualityComparer.Default.Equals(attributeClass, _knownEnumSymbols.TraktParameterEnumAttributeType))
+                }                
+                else if (parseTraktParameterEnum && SymbolEqualityComparer.Default.Equals(attributeClass, _knownEnumSymbols.TraktParameterEnumAttributeType))
                 {
                     ImmutableArray<TypedConstant> constructorArguments = attributeData.ConstructorArguments;
                     string? parameterEnumValue = constructorArguments[0].Value as string;
