@@ -132,6 +132,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Core.Tests", "tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Json.Tests", "tests\libs\Trakt.NET.Json.Tests\Trakt.NET.Json.Tests.csproj", "{54A82CFA-80AE-43F3-A4E0-24873BA37298}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{A912E1BB-614D-41EE-9C2B-67994F3D5A65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sourcegeneration", "sourcegeneration", "{7CCCA937-44EC-4C43-9AEC-409BC790022C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.SourceGeneration.Tests", "tests\tools\sourcegeneration\Trakt.NET.SourceGeneration.Tests\Trakt.NET.SourceGeneration.Tests.csproj", "{C479E397-69C6-4C3D-BD4D-19C8ECAB74EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -190,6 +196,10 @@ Global
 		{54A82CFA-80AE-43F3-A4E0-24873BA37298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54A82CFA-80AE-43F3-A4E0-24873BA37298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54A82CFA-80AE-43F3-A4E0-24873BA37298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C479E397-69C6-4C3D-BD4D-19C8ECAB74EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C479E397-69C6-4C3D-BD4D-19C8ECAB74EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C479E397-69C6-4C3D-BD4D-19C8ECAB74EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C479E397-69C6-4C3D-BD4D-19C8ECAB74EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,6 +235,9 @@ Global
 		{AC4C9FA9-C78C-4BE1-A5DE-52316B70AFF0} = {50AD22EC-EB56-476B-8DCE-4AF2B5BD8B09}
 		{BA566CEC-BCEF-45F0-861F-B220EF577325} = {50AD22EC-EB56-476B-8DCE-4AF2B5BD8B09}
 		{54A82CFA-80AE-43F3-A4E0-24873BA37298} = {50AD22EC-EB56-476B-8DCE-4AF2B5BD8B09}
+		{A912E1BB-614D-41EE-9C2B-67994F3D5A65} = {0BCCCEE2-F3F0-41AF-855E-0671CC966898}
+		{7CCCA937-44EC-4C43-9AEC-409BC790022C} = {A912E1BB-614D-41EE-9C2B-67994F3D5A65}
+		{C479E397-69C6-4C3D-BD4D-19C8ECAB74EA} = {7CCCA937-44EC-4C43-9AEC-409BC790022C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}

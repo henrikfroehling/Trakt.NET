@@ -247,3 +247,6 @@ NugetPackage
 
 # Github Pages
 _site/
+
+# Tests Verify Snapshot Files
+*.received.txt

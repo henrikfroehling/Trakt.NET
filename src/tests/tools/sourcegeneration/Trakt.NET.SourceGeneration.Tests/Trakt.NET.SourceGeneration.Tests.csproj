@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Basic.Reference.Assemblies" Version="1.7.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+    <PackageReference Include="Verify.Xunit" Version="25.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\libs\Trakt.NET\Trakt.NET.csproj" />
+    <ProjectReference Include="..\..\..\..\tools\sourcegeneration\Trakt.NET.SourceGeneration\Trakt.NET.SourceGeneration.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Snapshots\" />
+    <Folder Include="Requests\" />
+  </ItemGroup>
+
+</Project>

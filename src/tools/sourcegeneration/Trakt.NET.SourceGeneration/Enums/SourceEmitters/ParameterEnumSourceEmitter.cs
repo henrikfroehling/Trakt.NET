@@ -59,7 +59,6 @@ namespace TraktNET.SourceGeneration.Enums
             }
             else
             {
-                _sourceWriter.WriteEmptyLine();
                 WriteToUriPathReturn("value.ToJson();");
             }
 
