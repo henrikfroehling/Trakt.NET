@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Snapshots\" />
     <Folder Include="Requests\" />
   </ItemGroup>
 

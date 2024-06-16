@@ -7,7 +7,7 @@ namespace TraktNET.SourceGeneration
 {
     internal sealed class TestHelper
     {
-        internal static Task Verify<T>(string compilationName, string source) where T : IIncrementalGenerator, new()
+        internal static Task Verify<T>(string subDirectory, string compilationName, string source) where T : IIncrementalGenerator, new()
         {
             IEnumerable<PortableExecutableReference> references = new[]
             {
@@ -44,7 +44,7 @@ namespace TraktNET.SourceGeneration
             driver = driver.RunGeneratorsAndUpdateCompilation(compilation, out _, out _);
 
             return Verifier.Verify(driver)
-                .UseDirectory("Snapshots")
+                .UseDirectory($"Snapshots/{subDirectory}")
                 .ScrubLines(static x => x.StartsWith("//HintName", StringComparison.InvariantCulture));
         }
     }

@@ -1,0 +1,14 @@
+﻿{
+  Diagnostics: [
+    {
+      Id: TRAKTNET1001,
+      Title: Invalid parameter value for Trakt parameter enum.,
+      Severity: Error,
+      WarningLevel: 0,
+      Location: : (5,16)-(5,24),
+      MessageFormat: Parameter value for Trakt parameter enum is null or empty.,
+      Message: Parameter value for Trakt parameter enum is null or empty.,
+      Category: Trakt.NET.SourceGeneration.Enums
+    }
+  ]
+}

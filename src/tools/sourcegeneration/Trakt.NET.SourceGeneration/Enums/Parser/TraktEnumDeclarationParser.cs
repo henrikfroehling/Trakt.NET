@@ -44,7 +44,10 @@ namespace TraktNET.SourceGeneration.Enums
                 return null;
             }
 
-            ParseEnumMembers(_enumDeclarationSymbol!, cancellationToken);
+            if (!ParseEnumMembers(_enumDeclarationSymbol!, cancellationToken))
+            {
+                return null;
+            }
 
             return new EnumGenerationSpecification
             {
@@ -72,7 +75,10 @@ namespace TraktNET.SourceGeneration.Enums
                 return null;
             }
 
-            ParseEnumMembers(_enumDeclarationSymbol!, cancellationToken);
+            if (!ParseEnumMembers(_enumDeclarationSymbol!, cancellationToken))
+            {
+                return null;
+            }
 
             return new ParameterEnumGenerationSpecification
             {
@@ -105,13 +111,6 @@ namespace TraktNET.SourceGeneration.Enums
 
                 INamedTypeSymbol? attributeClass = attributeData.AttributeClass;
 
-                Location? attributeLocation = null;
-
-                if (attributeClass!.Locations.Length > 0)
-                {
-                    attributeLocation = attributeClass!.Locations[0];
-                }
-
                 if (SymbolEqualityComparer.Default.Equals(attributeClass, _knownEnumSymbols.SystemFlagsAttributeType))
                 {
                     _hasFlagsAttribute = true;
@@ -123,7 +122,7 @@ namespace TraktNET.SourceGeneration.Enums
 
                     if (string.IsNullOrWhiteSpace(parameterEnumValue))
                     {
-                        ReportDiagnostic(DiagnosticDescriptors.InvalidTraktParameterEnumValue, attributeLocation);
+                        ReportDiagnostic(DiagnosticDescriptors.InvalidTraktParameterEnumValue);
                         return false;
                     }
                     else
@@ -136,7 +135,7 @@ namespace TraktNET.SourceGeneration.Enums
             return true;
         }
 
-        private void ParseEnumMembers(INamedTypeSymbol enumTypeSymbol, CancellationToken cancellationToken)
+        private bool ParseEnumMembers(INamedTypeSymbol enumTypeSymbol, CancellationToken cancellationToken)
         {
             foreach (ISymbol enumMember in enumTypeSymbol.GetMembers())
             {
@@ -151,7 +150,6 @@ namespace TraktNET.SourceGeneration.Enums
                 string displayName = enumMemberName.ToDisplayName();
                 string jsonValue = enumMemberName.ToLowercaseNamingConvention();
                 bool hasTraktEnumMemberAttribute = false;
-                bool addMember = true;
 
                 foreach (AttributeData attributeData in enumField.GetAttributes())
                 {
@@ -162,17 +160,12 @@ namespace TraktNET.SourceGeneration.Enums
                     if (SymbolEqualityComparer.Default.Equals(attributeClass, _knownEnumSymbols.TraktEnumMemberAttributeType))
                     {
                         hasTraktEnumMemberAttribute = true;
-                        Location? attributeLocation = null;
-
-                        if (attributeClass!.Locations.Length > 0)
-                            attributeLocation = attributeClass!.Locations[0];
-
                         ImmutableArray<TypedConstant> constructorArguments = attributeData.ConstructorArguments;
 
                         if (constructorArguments[0].Value is not string value)
                         {
-                            ReportDiagnostic(DiagnosticDescriptors.InvalidJsonValue, attributeLocation);
-                            addMember = false;
+                            ReportDiagnostic(DiagnosticDescriptors.InvalidJsonValue);
+                            return false;
                         }
                         else
                         {
@@ -185,8 +178,8 @@ namespace TraktNET.SourceGeneration.Enums
                         {
                             if (displayNameConstant.Value is not string displayNameValue)
                             {
-                                ReportDiagnostic(DiagnosticDescriptors.InvalidDisplayNameValue, attributeLocation);
-                                addMember = false;
+                                ReportDiagnostic(DiagnosticDescriptors.InvalidDisplayNameValue);
+                                return false;
                             }
                             else
                             {
@@ -196,29 +189,22 @@ namespace TraktNET.SourceGeneration.Enums
                     }
                 }
 
-                if (addMember)
+                _enumMembers.Add(new EnumMemberGenerationSpecification
                 {
-                    _enumMembers.Add(new EnumMemberGenerationSpecification
-                    {
-                        Name = enumMemberName,
-                        HasTraktEnumMemberAttribute = hasTraktEnumMemberAttribute,
-                        DisplayName = displayName,
-                        JsonValue = jsonValue
-                    });
-                }
+                    Name = enumMemberName,
+                    HasTraktEnumMemberAttribute = hasTraktEnumMemberAttribute,
+                    DisplayName = displayName,
+                    JsonValue = jsonValue
+                });
             }
+
+            return true;
         }
 
-        private void ReportDiagnostic(DiagnosticDescriptor descriptor, Location? location)
+        private void ReportDiagnostic(DiagnosticDescriptor descriptor)
         {
             Debug.Assert(_enumDeclarationLocation != null);
-
-            if (location == null || (location.SourceTree != null && !_knownEnumSymbols.Compilation.ContainsSyntaxTree(location.SourceTree)))
-            {
-                location = _enumDeclarationLocation;
-            }
-
-            Diagnostics.Add(DiagnosticInfo.Create(descriptor, location));
+            Diagnostics.Add(DiagnosticInfo.Create(descriptor, _enumDeclarationLocation));
         }
     }
 }

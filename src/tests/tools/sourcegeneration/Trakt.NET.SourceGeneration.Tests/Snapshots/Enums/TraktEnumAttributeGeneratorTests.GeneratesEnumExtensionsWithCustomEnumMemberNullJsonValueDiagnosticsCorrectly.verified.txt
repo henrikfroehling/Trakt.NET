@@ -1,0 +1,14 @@
+﻿{
+  Diagnostics: [
+    {
+      Id: TRAKTNET1003,
+      Title: Invalid json value for Trakt enum member.,
+      Severity: Error,
+      WarningLevel: 0,
+      Location: : (5,16)-(5,24),
+      MessageFormat: Json value for Trakt enum member is null or not of type 'string'.,
+      Message: Json value for Trakt enum member is null or not of type 'string'.,
+      Category: Trakt.NET.SourceGeneration.Enums
+    }
+  ]
+}

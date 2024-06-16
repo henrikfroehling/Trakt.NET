@@ -1,0 +1,14 @@
+﻿{
+  Diagnostics: [
+    {
+      Id: TRAKTNET1002,
+      Title: Invalid display name value for Trakt enum member.,
+      Severity: Error,
+      WarningLevel: 0,
+      Location: : (5,16)-(5,24),
+      MessageFormat: Display name for Trakt enum member is null or not of type 'string'.,
+      Message: Display name for Trakt enum member is null or not of type 'string'.,
+      Category: Trakt.NET.SourceGeneration.Enums
+    }
+  ]
+}
