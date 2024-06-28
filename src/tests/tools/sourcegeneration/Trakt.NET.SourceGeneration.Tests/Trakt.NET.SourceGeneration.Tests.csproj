@@ -12,8 +12,4 @@
     <ProjectReference Include="..\..\..\..\tools\sourcegeneration\Trakt.NET.SourceGeneration\Trakt.NET.SourceGeneration.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Requests\" />
-  </ItemGroup>
-
 </Project>
