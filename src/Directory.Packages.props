@@ -1,0 +1,38 @@
+<Project>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <!-- Libraries Dependencies -->
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+    <PackageVersion Include="Nerdbank.GitVersioning" Version="3.6.139" />
+    <PackageVersion Include="System.Text.Json" Version="8.0.3" />
+  </ItemGroup>
+
+  <!-- Tests Dependencies -->
+  <ItemGroup>
+    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
+    <PackageVersion Include="coverlet.msbuild" Version="6.0.2" />
+    <PackageVersion Include="FluentAssertions" Version="6.12.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+    <PackageVersion Include="xunit" Version="2.8.1" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.1" />
+  </ItemGroup>
+
+  <!-- Tests Source Generators Dependencies -->
+  <ItemGroup>
+    <PackageVersion Include="Basic.Reference.Assemblies" Version="1.7.2" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+    <PackageVersion Include="Verify.SourceGenerators" Version="2.2.0" />
+    <PackageVersion Include="Verify.Xunit" Version="25.0.4" />
+  </ItemGroup>
+
+  <!-- Tools Source Generators Dependencies -->
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+  </ItemGroup>
+
+</Project>
