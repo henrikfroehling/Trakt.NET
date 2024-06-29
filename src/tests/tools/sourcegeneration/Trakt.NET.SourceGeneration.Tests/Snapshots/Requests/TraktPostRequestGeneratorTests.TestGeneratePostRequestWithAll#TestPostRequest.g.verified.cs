@@ -12,7 +12,7 @@ using System.Web;
 
 namespace SourceGeneraterTestNamespace
 {
-    internal sealed partial class TestPostRequest : HttpRequestMessage
+    internal sealed partial class TestPostRequest : RequestBase
     {
         internal TraktExtendedInfo? ExtendedInfo { get; set; }
 
@@ -24,7 +24,7 @@ namespace SourceGeneraterTestNamespace
 
         internal TestPostRequest() : base(HttpMethod.Post, (Uri?)null) { }
 
-        internal void BuildUri()
+        internal override void BuildUri()
         {
             List<string> queries = [];
             string requestUri = $"notes";

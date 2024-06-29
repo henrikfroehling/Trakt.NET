@@ -90,7 +90,7 @@ namespace TraktNET.SourceGeneration.Requests
 
         private void WriteRequestClass()
         {
-            _sourceWriter.WriteLine($"internal sealed partial class {_requestName} : HttpRequestMessage");
+            _sourceWriter.WriteLine($"internal sealed partial class {_requestName} : RequestBase");
             _sourceWriter.WriteLine('{');
             _sourceWriter.Indent();
 
@@ -187,7 +187,7 @@ namespace TraktNET.SourceGeneration.Requests
         {
             if (_hasOptionalQueries)
             {
-                _sourceWriter.WriteLine("internal void BuildUri()");
+                _sourceWriter.WriteLine("internal override void BuildUri()");
                 _sourceWriter.WriteLine('{');
                 _sourceWriter.Indent();
 
@@ -254,7 +254,7 @@ namespace TraktNET.SourceGeneration.Requests
             }
             else
             {
-                _sourceWriter.WriteLine("internal void BuildUri()");
+                _sourceWriter.WriteLine("internal override void BuildUri()");
                 _sourceWriter.WriteLine('{');
                 _sourceWriter.Indent();
 

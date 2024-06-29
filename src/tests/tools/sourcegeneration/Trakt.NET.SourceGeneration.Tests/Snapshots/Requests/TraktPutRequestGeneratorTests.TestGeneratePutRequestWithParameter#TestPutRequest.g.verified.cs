@@ -12,13 +12,13 @@ using System.Web;
 
 namespace SourceGeneraterTestNamespace
 {
-    internal sealed partial class TestPutRequest : HttpRequestMessage
+    internal sealed partial class TestPutRequest : RequestBase
     {
         internal required string Id { get; init; }
 
         internal TestPutRequest() : base(HttpMethod.Put, (Uri?)null) { }
 
-        internal void BuildUri()
+        internal override void BuildUri()
         {
             string uriPath = $"notes/{Id}";
             string? encodedUriPath = HttpUtility.UrlEncode(uriPath, Encoding.UTF8);

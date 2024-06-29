@@ -12,7 +12,7 @@ using System.Web;
 
 namespace SourceGeneraterTestNamespace
 {
-    internal sealed partial class TestPutRequest : HttpRequestMessage
+    internal sealed partial class TestPutRequest : RequestBase
     {
         internal uint? Page { get; set; }
 
@@ -20,7 +20,7 @@ namespace SourceGeneraterTestNamespace
 
         internal TestPutRequest() : base(HttpMethod.Put, (Uri?)null) { }
 
-        internal void BuildUri()
+        internal override void BuildUri()
         {
             List<string> queries = [];
             string requestUri = $"notes";

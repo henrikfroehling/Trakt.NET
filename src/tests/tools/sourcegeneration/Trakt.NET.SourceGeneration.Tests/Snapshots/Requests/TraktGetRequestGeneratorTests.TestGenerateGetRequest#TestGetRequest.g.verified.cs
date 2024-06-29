@@ -12,11 +12,11 @@ using System.Web;
 
 namespace SourceGeneraterTestNamespace
 {
-    internal sealed partial class TestGetRequest : HttpRequestMessage
+    internal sealed partial class TestGetRequest : RequestBase
     {
         internal TestGetRequest() : base(HttpMethod.Get, (Uri?)null) { }
 
-        internal void BuildUri()
+        internal override void BuildUri()
         {
             string uriPath = $"notes";
             string? encodedUriPath = HttpUtility.UrlEncode(uriPath, Encoding.UTF8);

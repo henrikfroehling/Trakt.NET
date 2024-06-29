@@ -12,7 +12,7 @@ using System.Web;
 
 namespace SourceGeneraterTestNamespace
 {
-    internal sealed partial class TestDeleteRequest : HttpRequestMessage
+    internal sealed partial class TestDeleteRequest : RequestBase
     {
         internal required string Id { get; init; }
 
@@ -20,7 +20,7 @@ namespace SourceGeneraterTestNamespace
 
         internal TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) { }
 
-        internal void BuildUri()
+        internal override void BuildUri()
         {
             List<string> queries = [];
             string requestUri = $"notes/{Id}";

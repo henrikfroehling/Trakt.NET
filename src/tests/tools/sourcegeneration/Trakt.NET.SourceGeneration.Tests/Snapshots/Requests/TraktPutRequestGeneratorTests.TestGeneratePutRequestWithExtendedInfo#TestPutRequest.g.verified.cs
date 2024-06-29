@@ -12,13 +12,13 @@ using System.Web;
 
 namespace SourceGeneraterTestNamespace
 {
-    internal sealed partial class TestPutRequest : HttpRequestMessage
+    internal sealed partial class TestPutRequest : RequestBase
     {
         internal TraktExtendedInfo? ExtendedInfo { get; set; }
 
         internal TestPutRequest() : base(HttpMethod.Put, (Uri?)null) { }
 
-        internal void BuildUri()
+        internal override void BuildUri()
         {
             List<string> queries = [];
             string requestUri = $"notes";

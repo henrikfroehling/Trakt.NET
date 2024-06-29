@@ -12,13 +12,13 @@ using System.Web;
 
 namespace SourceGeneraterTestNamespace
 {
-    internal sealed partial class TestDeleteRequest : HttpRequestMessage
+    internal sealed partial class TestDeleteRequest : RequestBase
     {
         internal string? Id { get; set; }
 
         internal TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) { }
 
-        internal void BuildUri()
+        internal override void BuildUri()
         {
             string uriPath = $"notes/{Id}".Replace("//", "/");
             string? encodedUriPath = HttpUtility.UrlEncode(uriPath, Encoding.UTF8);
