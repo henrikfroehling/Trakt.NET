@@ -21,18 +21,17 @@
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.1" />
   </ItemGroup>
 
-  <!-- Tests Source Generators Dependencies -->
-  <ItemGroup>
-    <PackageVersion Include="Basic.Reference.Assemblies" Version="1.7.2" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
-    <PackageVersion Include="Verify.SourceGenerators" Version="2.2.0" />
-    <PackageVersion Include="Verify.Xunit" Version="25.0.4" />
-  </ItemGroup>
-
   <!-- Tools Source Generators Dependencies -->
   <ItemGroup>
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+  </ItemGroup>
+
+  <!-- Tests Source Generators Dependencies -->
+  <ItemGroup>
+    <PackageVersion Include="Basic.Reference.Assemblies" Version="1.7.2" />
+    <PackageVersion Include="Verify.SourceGenerators" Version="2.2.0" />
+    <PackageVersion Include="Verify.Xunit" Version="25.0.4" />
   </ItemGroup>
 
 </Project>
