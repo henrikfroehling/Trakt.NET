@@ -18,7 +18,7 @@ namespace SourceGeneraterTestNamespace
 
         internal TraktExtendedInfo? ExtendedInfo { get; set; }
 
-        private TestPutRequest() : base(HttpMethod.Put, (Uri?)null) {}
+        private TestPutRequest() : base(HttpMethod.Put, (Uri?)null) { }
 
         internal void BuildUri()
         {
@@ -30,7 +30,11 @@ namespace SourceGeneraterTestNamespace
                 queries.Add(ExtendedInfo.Value.ToUriPath());
             }
 
-            requestUri = requestUri + "?" + string.Join("&", queries);
+            if (queries.Count > 0)
+            {
+                requestUri = requestUri + "?" + string.Join("&", queries);
+            }
+
             string? encodedUriPath = HttpUtility.UrlEncode(requestUri, Encoding.UTF8);
             RequestUri = new Uri(encodedUriPath);
         }

@@ -20,7 +20,7 @@ namespace SourceGeneraterTestNamespace
 
         internal uint? Limit { get; set; }
 
-        private TestGetRequest() : base(HttpMethod.Get, (Uri?)null) {}
+        private TestGetRequest() : base(HttpMethod.Get, (Uri?)null) { }
 
         internal void BuildUri()
         {
@@ -37,7 +37,11 @@ namespace SourceGeneraterTestNamespace
                 queries.Add($"limit={Limit.Value}");
             }
 
-            requestUri = requestUri + "?" + string.Join("&", queries);
+            if (queries.Count > 0)
+            {
+                requestUri = requestUri + "?" + string.Join("&", queries);
+            }
+
             string? encodedUriPath = HttpUtility.UrlEncode(requestUri, Encoding.UTF8);
             RequestUri = new Uri(encodedUriPath);
         }

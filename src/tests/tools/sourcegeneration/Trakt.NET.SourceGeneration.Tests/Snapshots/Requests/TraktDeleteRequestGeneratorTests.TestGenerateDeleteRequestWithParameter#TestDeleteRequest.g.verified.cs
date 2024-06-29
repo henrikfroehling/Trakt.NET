@@ -16,7 +16,7 @@ namespace SourceGeneraterTestNamespace
     {
         internal required string Id { get; init; }
 
-        private TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) {}
+        private TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) { }
 
         internal void BuildUri()
         {

@@ -181,7 +181,7 @@ namespace TraktNET.SourceGeneration.Requests
             => _sourceWriter.WriteLine($"internal TraktOAuthRequirement OAuthRequirement {{ get; }} = TraktOAuthRequirement.{_oauthRequirementValue};");
 
         private void WriteRequestConstructor()
-            => _sourceWriter.WriteLine($"private {_requestName}() : base(HttpMethod.{_httpMethodValue}, (Uri?)null) {{}}");
+            => _sourceWriter.WriteLine($"private {_requestName}() : base(HttpMethod.{_httpMethodValue}, (Uri?)null) {{ }}");
 
         private void WriteBuildUriMethod()
         {
@@ -239,7 +239,13 @@ namespace TraktNET.SourceGeneration.Requests
 
                 _sourceWriter.WriteEmptyLine();
 
+                _sourceWriter.WriteLine("if (queries.Count > 0)");
+                _sourceWriter.WriteLine('{');
+                _sourceWriter.Indent();
                 _sourceWriter.WriteLine($"{requestUriName} = {requestUriName} + \"?\" + string.Join(\"&\", queries);");
+                _sourceWriter.DecrementIndent();
+                _sourceWriter.WriteLine('}');
+                _sourceWriter.WriteEmptyLine();
                 _sourceWriter.WriteLine($"string? encodedUriPath = HttpUtility.UrlEncode({requestUriName}, Encoding.UTF8);");
                 _sourceWriter.WriteLine("RequestUri = new Uri(encodedUriPath);");
 

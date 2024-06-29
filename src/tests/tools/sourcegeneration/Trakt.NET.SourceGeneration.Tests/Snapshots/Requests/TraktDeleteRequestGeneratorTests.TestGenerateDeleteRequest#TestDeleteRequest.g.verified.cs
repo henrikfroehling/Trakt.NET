@@ -14,7 +14,7 @@ namespace SourceGeneraterTestNamespace
 {
     internal sealed partial class TestDeleteRequest : HttpRequestMessage
     {
-        private TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) {}
+        private TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) { }
 
         internal void BuildUri()
         {
