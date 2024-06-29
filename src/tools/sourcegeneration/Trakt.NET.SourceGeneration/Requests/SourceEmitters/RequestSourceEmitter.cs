@@ -181,7 +181,7 @@ namespace TraktNET.SourceGeneration.Requests
             => _sourceWriter.WriteLine($"internal TraktOAuthRequirement OAuthRequirement {{ get; }} = TraktOAuthRequirement.{_oauthRequirementValue};");
 
         private void WriteRequestConstructor()
-            => _sourceWriter.WriteLine($"private {_requestName}() : base(HttpMethod.{_httpMethodValue}, (Uri?)null) {{ }}");
+            => _sourceWriter.WriteLine($"internal {_requestName}() : base(HttpMethod.{_httpMethodValue}, (Uri?)null) {{ }}");
 
         private void WriteBuildUriMethod()
         {
@@ -421,11 +421,11 @@ namespace TraktNET.SourceGeneration.Requests
 
         private readonly record struct PlaceHolder
         {
-            public required string Name { get; init; }
+            internal required string Name { get; init; }
 
-            public required string ValueType { get; init; }
+            internal required string ValueType { get; init; }
 
-            public required bool IsRequired { get; init; }
+            internal required bool IsRequired { get; init; }
         }
 
         private enum UriParserState

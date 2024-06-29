@@ -18,7 +18,7 @@ namespace SourceGeneraterTestNamespace
 
         internal TraktExtendedInfo? ExtendedInfo { get; set; }
 
-        private TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) { }
+        internal TestDeleteRequest() : base(HttpMethod.Delete, (Uri?)null) { }
 
         internal void BuildUri()
         {

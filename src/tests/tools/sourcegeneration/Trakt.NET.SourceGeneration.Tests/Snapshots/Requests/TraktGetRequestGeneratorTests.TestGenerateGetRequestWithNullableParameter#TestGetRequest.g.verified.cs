@@ -16,7 +16,7 @@ namespace SourceGeneraterTestNamespace
     {
         internal string? Id { get; set; }
 
-        private TestGetRequest() : base(HttpMethod.Get, (Uri?)null) { }
+        internal TestGetRequest() : base(HttpMethod.Get, (Uri?)null) { }
 
         internal void BuildUri()
         {

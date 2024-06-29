@@ -16,7 +16,7 @@ namespace SourceGeneraterTestNamespace
     {
         internal TraktExtendedInfo? ExtendedInfo { get; set; }
 
-        private TestPutRequest() : base(HttpMethod.Put, (Uri?)null) { }
+        internal TestPutRequest() : base(HttpMethod.Put, (Uri?)null) { }
 
         internal void BuildUri()
         {

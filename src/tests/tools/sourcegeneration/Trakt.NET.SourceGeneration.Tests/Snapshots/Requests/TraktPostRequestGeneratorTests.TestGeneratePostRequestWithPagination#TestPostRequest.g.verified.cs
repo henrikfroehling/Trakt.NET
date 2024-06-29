@@ -18,7 +18,7 @@ namespace SourceGeneraterTestNamespace
 
         internal uint? Limit { get; set; }
 
-        private TestPostRequest() : base(HttpMethod.Post, (Uri?)null) { }
+        internal TestPostRequest() : base(HttpMethod.Post, (Uri?)null) { }
 
         internal void BuildUri()
         {

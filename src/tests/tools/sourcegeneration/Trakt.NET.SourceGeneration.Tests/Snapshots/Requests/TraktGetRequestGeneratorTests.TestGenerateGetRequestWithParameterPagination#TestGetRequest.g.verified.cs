@@ -20,7 +20,7 @@ namespace SourceGeneraterTestNamespace
 
         internal uint? Limit { get; set; }
 
-        private TestGetRequest() : base(HttpMethod.Get, (Uri?)null) { }
+        internal TestGetRequest() : base(HttpMethod.Get, (Uri?)null) { }
 
         internal void BuildUri()
         {

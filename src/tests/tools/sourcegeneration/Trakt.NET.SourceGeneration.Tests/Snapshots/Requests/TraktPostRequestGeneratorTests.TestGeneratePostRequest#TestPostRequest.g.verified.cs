@@ -14,7 +14,7 @@ namespace SourceGeneraterTestNamespace
 {
     internal sealed partial class TestPostRequest : HttpRequestMessage
     {
-        private TestPostRequest() : base(HttpMethod.Post, (Uri?)null) { }
+        internal TestPostRequest() : base(HttpMethod.Post, (Uri?)null) { }
 
         internal void BuildUri()
         {

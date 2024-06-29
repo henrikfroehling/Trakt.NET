@@ -24,7 +24,7 @@ namespace SourceGeneraterTestNamespace
 
         internal TraktOAuthRequirement OAuthRequirement { get; } = TraktOAuthRequirement.Required;
 
-        private TestPostRequest() : base(HttpMethod.Post, (Uri?)null) { }
+        internal TestPostRequest() : base(HttpMethod.Post, (Uri?)null) { }
 
         internal void BuildUri()
         {
