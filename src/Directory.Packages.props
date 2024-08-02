@@ -31,7 +31,7 @@
   <!-- Tests Source Generators Dependencies -->
   <ItemGroup>
     <PackageVersion Include="Basic.Reference.Assemblies" Version="1.7.2" />
-    <PackageVersion Include="Verify.SourceGenerators" Version="2.2.0" />
+    <PackageVersion Include="Verify.SourceGenerators" Version="2.3.0" />
     <PackageVersion Include="Verify.Xunit" Version="26.1.2" />
   </ItemGroup>
 
