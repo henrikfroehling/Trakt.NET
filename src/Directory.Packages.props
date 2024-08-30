@@ -33,7 +33,7 @@
 
   <!-- Tests Source Generators Dependencies -->
   <ItemGroup>
-    <PackageVersion Include="Basic.Reference.Assemblies" Version="1.7.7" />
+    <PackageVersion Include="Basic.Reference.Assemblies" Version="1.7.8" />
     <PackageVersion Include="Verify.DiffPlex" Version="3.1.0" />
     <PackageVersion Include="Verify.SourceGenerators" Version="2.3.0" />
     <PackageVersion Include="Verify.Xunit" Version="26.2.0" />
