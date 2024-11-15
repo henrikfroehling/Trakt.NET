@@ -91,7 +91,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: ${{ inputs.upload_codecov }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
 
       - name: Create NuGet packages
         if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
