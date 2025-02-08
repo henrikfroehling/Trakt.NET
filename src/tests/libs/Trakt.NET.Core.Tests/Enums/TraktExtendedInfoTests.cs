@@ -13,6 +13,7 @@
             TraktExtendedInfo.GuestStars.ToJson().ShouldBe("guest_stars");
             TraktExtendedInfo.Comments.ToJson().ShouldBe("comments");
             TraktExtendedInfo.VIP.ToJson().ShouldBe("vip");
+            TraktExtendedInfo.Images.ToJson().ShouldBe("images");
         }
 
         [Fact]
@@ -26,6 +27,7 @@
             "guest_stars".ToTraktExtendedInfo().ShouldBe(TraktExtendedInfo.GuestStars);
             "comments".ToTraktExtendedInfo().ShouldBe(TraktExtendedInfo.Comments);
             "vip".ToTraktExtendedInfo().ShouldBe(TraktExtendedInfo.VIP);
+            "images".ToTraktExtendedInfo().ShouldBe(TraktExtendedInfo.Images);
 
             string? nullValue = null;
             nullValue.ToTraktExtendedInfo().ShouldBe(TraktExtendedInfo.None);
@@ -42,9 +44,13 @@
             TraktExtendedInfo.GuestStars.DisplayName().ShouldBe("Guest Stars");
             TraktExtendedInfo.Comments.DisplayName().ShouldBe("Comments");
             TraktExtendedInfo.VIP.DisplayName().ShouldBe("VIP");
+            TraktExtendedInfo.Images.DisplayName().ShouldBe("Images");
 
             TraktExtendedInfo fullAndVIP = TraktExtendedInfo.Full | TraktExtendedInfo.VIP;
             fullAndVIP.DisplayName().ShouldBe("Full, VIP");
+
+            TraktExtendedInfo fullAndImages = TraktExtendedInfo.Full | TraktExtendedInfo.Images;
+            fullAndImages.DisplayName().ShouldBe("Full, Images");
 
             TraktExtendedInfo fullAndComments = TraktExtendedInfo.Full | TraktExtendedInfo.Comments;
             fullAndComments.DisplayName().ShouldBe("Full, Comments");
@@ -64,9 +70,13 @@
             TraktExtendedInfo.GuestStars.AsQuery().ShouldBe("extended=guest_stars");
             TraktExtendedInfo.Comments.AsQuery().ShouldBe("extended=comments");
             TraktExtendedInfo.VIP.AsQuery().ShouldBe("extended=vip");
+            TraktExtendedInfo.Images.AsQuery().ShouldBe("extended=images");
 
             TraktExtendedInfo fullAndVIP = TraktExtendedInfo.Full | TraktExtendedInfo.VIP;
             fullAndVIP.AsQuery().ShouldBe("extended=full,vip");
+
+            TraktExtendedInfo fullAndImages = TraktExtendedInfo.Full | TraktExtendedInfo.Images;
+            fullAndImages.AsQuery().ShouldBe("extended=full,images");
 
             TraktExtendedInfo fullAndComments = TraktExtendedInfo.Full | TraktExtendedInfo.Comments;
             fullAndComments.AsQuery().ShouldBe("extended=full,comments");

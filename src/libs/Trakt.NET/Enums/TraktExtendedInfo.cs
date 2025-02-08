@@ -9,30 +9,33 @@
     [Flags]
     public enum TraktExtendedInfo
     {
-        /// <summary>No additional data should be retrieved.</summary>
+        /// <summary>No additional data shall be retrieved.</summary>
         [TraktEnumMember(JsonValue = "")]
         None = 0,
 
-        /// <summary>Metadata information should be retrieved.</summary>
+        /// <summary>Metadata information shall be retrieved.</summary>
         Metadata = 1,
 
-        /// <summary>Full information for media objects should be retrieved.</summary>
+        /// <summary>Full information for media objects shall be retrieved.</summary>
         Full = 2,
 
-        /// <summary>No seasons information should be retrieved.</summary>
+        /// <summary>No seasons information shall be retrieved.</summary>
         [TraktEnumMember(JsonValue = "noseasons")]
         NoSeasons = 4,
 
-        /// <summary>Episodes information should be retrieved.</summary>
+        /// <summary>Episodes information shall be retrieved.</summary>
         Episodes = 8,
 
-        /// <summary>Guest stars information should be retrieved.</summary>
+        /// <summary>Guest stars information shall be retrieved.</summary>
         GuestStars = 16,
 
-        /// <summary>Comment media object information should be retrieved.</summary>
+        /// <summary>Comment media object information shall be retrieved.</summary>
         Comments = 32,
 
-        /// <summary>User VIP information should be retrieved.</summary>
-        VIP = 64
+        /// <summary>User VIP information shall be retrieved.</summary>
+        VIP = 64,
+
+        /// <summary>Media images shall be retrieved.</summary>
+        Images = 128
     }
 }
