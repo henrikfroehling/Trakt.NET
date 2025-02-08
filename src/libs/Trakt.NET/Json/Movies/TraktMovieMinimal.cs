@@ -18,6 +18,12 @@ namespace TraktNET
         [JsonPropertyName("ids")]
         public TraktMovieIDs? IDs { get; set; }
 
+        /// <summary>
+        /// The collection of image URLs for the movie.
+        /// See also <seealso cref="TraktMovieImages" />.
+        /// </summary>
+        public TraktMovieImages? Images { get; set; }
+
         /// <summary>Gets a string representation of the movie.</summary>
         /// <returns>A string representation of the movie.</returns>
         public override string ToString()

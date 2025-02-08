@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.MoviesModule
 {
@@ -10,7 +10,8 @@ namespace TraktNET.MoviesModule
         [Theory]
         [InlineData(null, $"{GetMovieUri}/293990", "Movies\\movie_minimal.json")]
         [InlineData(TraktExtendedInfo.None, $"{GetMovieUri}/293990", "Movies\\movie_minimal.json")]
-        [InlineData(TraktExtendedInfo.Full, $"{GetMovieUri}/293990?extended=full", "Movies\\movie.json")]
+        [InlineData(TraktExtendedInfo.Full, $"{GetMovieUri}/293990?extended=full", "Movies\\movie_full.json")]
+        [InlineData(TraktExtendedInfo.Full | TraktExtendedInfo.Images, $"{GetMovieUri}/293990?extended=full,images", "Movies\\movie_full_images.json")]
         public async Task TestGetMovieWithID(TraktExtendedInfo? extendedInfo, string requestUri, string responseContentFile)
         {
             string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
@@ -36,7 +37,8 @@ namespace TraktNET.MoviesModule
         [Theory]
         [InlineData(null, GetMovieUriWithSlug, "Movies\\movie_minimal.json")]
         [InlineData(TraktExtendedInfo.None, GetMovieUriWithSlug, "Movies\\movie_minimal.json")]
-        [InlineData(TraktExtendedInfo.Full, $"{GetMovieUriWithSlug}?extended=full", "Movies\\movie.json")]
+        [InlineData(TraktExtendedInfo.Full, $"{GetMovieUriWithSlug}?extended=full", "Movies\\movie_full.json")]
+        [InlineData(TraktExtendedInfo.Full | TraktExtendedInfo.Images, $"{GetMovieUriWithSlug}?extended=full,images", "Movies\\movie_full_images.json")]
         public async Task TestGetMovieWithSlug(TraktExtendedInfo? extendedInfo, string requestUri, string responseContentFile)
         {
             string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
@@ -62,7 +64,8 @@ namespace TraktNET.MoviesModule
         [Theory]
         [InlineData(null, GetMovieUriWithSlug, "Movies\\movie_minimal.json")]
         [InlineData(TraktExtendedInfo.None, GetMovieUriWithSlug, "Movies\\movie_minimal.json")]
-        [InlineData(TraktExtendedInfo.Full, $"{GetMovieUriWithSlug}?extended=full", "Movies\\movie.json")]
+        [InlineData(TraktExtendedInfo.Full, $"{GetMovieUriWithSlug}?extended=full", "Movies\\movie_full.json")]
+        [InlineData(TraktExtendedInfo.Full | TraktExtendedInfo.Images, $"{GetMovieUriWithSlug}?extended=full,images", "Movies\\movie_full_images.json")]
         public async Task TestGetMovieWithIDs(TraktExtendedInfo? extendedInfo, string requestUri, string responseContentFile)
         {
             string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);

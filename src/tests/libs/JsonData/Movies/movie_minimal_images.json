@@ -1,0 +1,30 @@
+{
+  "title": "Guardians of the Galaxy Volume 3",
+  "year": 2023,
+  "ids": {
+    "trakt": 293990,
+    "slug": "guardians-of-the-galaxy-volume-3-2023",
+    "imdb": "tt6791350",
+    "tmdb": 447365
+  },
+  "images": {
+    "fanart": [
+      "walter-r2.trakt.tv/images/movies/000/293/990/fanarts/medium/2ea7854adf.jpg.webp"
+    ],
+    "poster": [
+      "walter-r2.trakt.tv/images/movies/000/293/990/posters/thumb/61ceb0624b.jpg.webp"
+    ],
+    "logo": [
+      "walter-r2.trakt.tv/images/movies/000/293/990/logos/medium/9021d3352d.png.webp"
+    ],
+    "clearart": [
+      "walter-r2.trakt.tv/images/movies/000/293/990/cleararts/medium/719bb7c638.png.webp"
+    ],
+    "banner": [
+      "walter-r2.trakt.tv/images/movies/000/293/990/banners/medium/aadecf57bf.jpg.webp"
+    ],
+    "thumb": [
+      "walter-r2.trakt.tv/images/movies/000/293/990/thumbs/medium/6d944d9545.jpg.webp"
+    ]
+  }
+}
