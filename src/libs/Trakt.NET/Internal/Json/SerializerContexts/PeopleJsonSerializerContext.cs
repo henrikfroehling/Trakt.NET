@@ -6,9 +6,15 @@ namespace TraktNET
 {
     [ExcludeFromCodeCoverage]
     [JsonSerializable(typeof(TraktPerson))]
+    [JsonSerializable(typeof(IReadOnlyList<TraktPerson>))]
     [JsonSerializable(typeof(TraktPersonIDs))]
+    [JsonSerializable(typeof(IReadOnlyList<TraktPersonIDs>))]
+    [JsonSerializable(typeof(TraktPersonImages))]
+    [JsonSerializable(typeof(IReadOnlyList<TraktPersonImages>))]
     [JsonSerializable(typeof(TraktPersonMinimal))]
+    [JsonSerializable(typeof(IReadOnlyList<TraktPersonMinimal>))]
     [JsonSerializable(typeof(TraktPersonSocialIDs))]
+    [JsonSerializable(typeof(IReadOnlyList<TraktPersonSocialIDs>))]
     public sealed partial class PeopleJsonSerializerContext : JsonSerializerContext
     {
     }

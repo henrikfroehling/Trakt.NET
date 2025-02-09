@@ -14,5 +14,11 @@ namespace TraktNET
         /// </summary>
         [JsonPropertyName("ids")]
         public TraktPersonIDs? IDs { get; set; }
+
+        /// <summary>
+        /// The collection of image URLs for the person.
+        /// See also <seealso cref="TraktPersonImages" />.
+        /// </summary>
+        public TraktPersonImages? Images { get; set; }
     }
 }

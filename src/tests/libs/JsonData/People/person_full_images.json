@@ -1,0 +1,32 @@
+{
+  "name": "Bryan Cranston",
+  "ids": {
+    "trakt": 297737,
+    "slug": "bryan-cranston",
+    "imdb": "nm0186505",
+    "tmdb": 17419,
+    "tvrage": null
+  },
+  "social_ids": {
+    "twitter": "BryanCranston",
+    "facebook": "thebryancranston",
+    "instagram": "bryancranston",
+    "wikipedia": null
+  },
+  "biography": "Bryan Lee Cranston (born March 7, 1956) is an American actor, director, and producer who is mainly known for portraying Walter White in the AMC crime drama series Breaking Bad (2008–2013) and Hal in the Fox sitcom Malcolm in the Middle (2000–2006).",
+  "birthday": "1956-03-07",
+  "death": null,
+  "birthplace": "Hollywood, Los Angeles, California, USA",
+  "homepage": null,
+  "known_for_department": "acting",
+  "gender": "male",
+  "updated_at": "2024-03-22T08:01:24.000Z",
+  "images": {
+    "headshot": [
+      "walter-r2.trakt.tv/images/people/000/297/737/headshots/thumb/ef96a1e565.jpg.webp"
+    ],
+    "fanart": [
+      "walter-r2.trakt.tv/images/people/000/297/737/fanarts/medium/ec609f5bcc.jpg.webp"
+    ]
+  }
+}

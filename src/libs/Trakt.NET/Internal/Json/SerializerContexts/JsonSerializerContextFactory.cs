@@ -200,6 +200,7 @@ namespace TraktNET
         {
             typeof(TraktPerson),
             typeof(TraktPersonIDs),
+            typeof(TraktPersonImages),
             typeof(TraktPersonMinimal),
             typeof(TraktPersonSocialIDs)
         });
@@ -314,6 +315,7 @@ namespace TraktNET
         private static readonly HashSet<Type> s_peopleJsonTypes = [
             typeof(TraktPerson),
             typeof(TraktPersonIDs),
+            typeof(TraktPersonImages),
             typeof(TraktPersonMinimal),
             typeof(TraktPersonSocialIDs)
         ];
