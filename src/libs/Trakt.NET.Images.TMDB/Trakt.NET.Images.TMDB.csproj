@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Product>Trakt.NET.Images.TMDB ($(TargetFramework))</Product>
+    <Title>Trakt.NET.Images.TMDB</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Trakt.NET\Trakt.NET.csproj" />
+  </ItemGroup>
+
+</Project>
