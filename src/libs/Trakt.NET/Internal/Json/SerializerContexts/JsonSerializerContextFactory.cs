@@ -215,6 +215,7 @@ namespace TraktNET
             typeof(TraktShow),
             typeof(TraktShowAirs),
             typeof(TraktShowIDs),
+            typeof(TraktShowImages),
             typeof(TraktShowMinimal)
         });
 
@@ -324,6 +325,7 @@ namespace TraktNET
             typeof(TraktShow),
             typeof(TraktShowAirs),
             typeof(TraktShowIDs),
+            typeof(TraktShowImages),
             typeof(TraktShowMinimal)
         ];
 

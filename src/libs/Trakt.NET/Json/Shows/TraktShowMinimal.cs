@@ -18,6 +18,12 @@ namespace TraktNET
         [JsonPropertyName("ids")]
         public TraktShowIDs? IDs { get; set; }
 
+        /// <summary>
+        /// The collection of image URLs for the show.
+        /// See also <seealso cref="TraktShowImages" />.
+        /// </summary>
+        public TraktShowImages? Images { get; set; }
+
         /// <summary>Gets a string representation of the show.</summary>
         /// <returns>A string representation of the show.</returns>
         public override string ToString()
