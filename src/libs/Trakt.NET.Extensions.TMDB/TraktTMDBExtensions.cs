@@ -26,6 +26,30 @@ namespace TraktNET
             return await Task.FromResult(new TMDBShowImages());
         }
 
+        public static async Task<TMDBSeasonImages> GetTMDBImagesAsync(this TraktSeasonMinimal traktSeason, CancellationToken cancellationToken = default)
+        {
+            // TODO
+            return await Task.FromResult(new TMDBSeasonImages());
+        }
+
+        public static async Task<TMDBSeasonImages> GetTMDBImagesAsync(this TraktSeason traktSeason, CancellationToken cancellationToken = default)
+        {
+            // TODO
+            return await Task.FromResult(new TMDBSeasonImages());
+        }
+
+        public static async Task<TMDBEpisodeImages> GetTMDBImagesAsync(this TraktEpisodeMinimal traktEpisode, CancellationToken cancellationToken = default)
+        {
+            // TODO
+            return await Task.FromResult(new TMDBEpisodeImages());
+        }
+
+        public static async Task<TMDBEpisodeImages> GetTMDBImagesAsync(this TraktEpisode traktEpisode, CancellationToken cancellationToken = default)
+        {
+            // TODO
+            return await Task.FromResult(new TMDBEpisodeImages());
+        }
+
         public static async Task<TMDBPersonImages> GetTMDBImagesAsync(this TraktPersonMinimal traktPerson, CancellationToken cancellationToken = default)
         {
             // TODO
