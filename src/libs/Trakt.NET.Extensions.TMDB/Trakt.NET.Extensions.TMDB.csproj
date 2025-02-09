@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Product>Trakt.NET.Images.TMDB ($(TargetFramework))</Product>
-    <Title>Trakt.NET.Images.TMDB</Title>
+    <Product>Trakt.NET.Extensions.TMDB ($(TargetFramework))</Product>
+    <Title>Trakt.NET.Extensions.TMDB</Title>
   </PropertyGroup>
 
   <ItemGroup>

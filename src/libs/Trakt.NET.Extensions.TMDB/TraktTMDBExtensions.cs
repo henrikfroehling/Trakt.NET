@@ -1,6 +1,6 @@
 namespace TraktNET
 {
-    public static class TraktTMDBImageExtensions
+    public static class TraktTMDBExtensions
     {
         public static async Task<TMDBMovieImages> GetTMDBImagesAsync(this TraktMovieMinimal traktMovie, CancellationToken cancellationToken = default)
         {
