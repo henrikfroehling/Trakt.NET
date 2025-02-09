@@ -14,7 +14,7 @@ namespace TraktNET
             TJsonObjectType? value;
 
 #if NET6_0_OR_GREATER
-            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactory.GetContext<TJsonObjectType>();
+            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactoryRegistry.GetContext<TJsonObjectType>(Constants.Json.FactoryKey);
 
             value = await JsonSerializer.DeserializeAsync(stream, typeof(TJsonObjectType),
                 jsonSerializerContext, cancellationToken).ConfigureAwait(false) as TJsonObjectType;
@@ -32,7 +32,7 @@ namespace TraktNET
             IReadOnlyList<TJsonObjectType>? values;
 
 #if NET6_0_OR_GREATER
-            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactory.GetContext<TJsonObjectType>();
+            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactoryRegistry.GetContext<TJsonObjectType>(Constants.Json.FactoryKey);
 
             values = await JsonSerializer.DeserializeAsync(stream, typeof(IReadOnlyList<TJsonObjectType>),
                 jsonSerializerContext, cancellationToken).ConfigureAwait(false) as IReadOnlyList<TJsonObjectType>;

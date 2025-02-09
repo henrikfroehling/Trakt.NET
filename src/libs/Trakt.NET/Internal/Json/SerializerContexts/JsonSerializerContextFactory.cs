@@ -9,9 +9,9 @@ using System.Collections.Frozen;
 
 namespace TraktNET
 {
-    internal static class JsonSerializerContextFactory
+    internal sealed class JsonSerializerContextFactory : IJsonSerializerContextFactory
     {
-        internal static JsonSerializerContext GetContext<TJsonObjectType>()
+        public JsonSerializerContext GetContext<TJsonObjectType>()
         {
             if (s_authenticationJsonTypes.Contains(typeof(TJsonObjectType)))
             {

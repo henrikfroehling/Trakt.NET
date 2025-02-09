@@ -10,6 +10,11 @@ namespace TraktNET
 {
     public static class TestUtility
     {
+#if NET6_0_OR_GREATER
+        static TestUtility()
+            => JsonSerializerContextFactoryRegistry.RegisterFactory(Constants.Json.FactoryKey, new JsonSerializerContextFactory());
+#endif
+
         private static string? _location;
 
         public static async Task<string> GetJsonFileContentAsync(string jsonFilename)
@@ -25,7 +30,7 @@ namespace TraktNET
             using var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
 #if NET6_0_OR_GREATER
-            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactory.GetContext<T>();
+            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactoryRegistry.GetContext<T>(Constants.Json.FactoryKey);
             return await JsonSerializer.DeserializeAsync(stream, typeof(T), jsonSerializerContext) as T;
 #else
             return await JsonSerializer.DeserializeAsync<T>(stream, Constants.Json.JsonOptions);
@@ -38,7 +43,7 @@ namespace TraktNET
             using var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
 #if NET6_0_OR_GREATER
-            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactory.GetContext<T>();
+            JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactoryRegistry.GetContext<T>(Constants.Json.FactoryKey);
             return await JsonSerializer.DeserializeAsync(stream, typeof(IReadOnlyList<T>), jsonSerializerContext) as IReadOnlyList<T>;
 #else
             return await JsonSerializer.DeserializeAsync<IReadOnlyList<T>>(stream, Constants.Json.JsonOptions);

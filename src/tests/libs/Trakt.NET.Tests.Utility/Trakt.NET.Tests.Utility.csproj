@@ -1,7 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <ItemGroup>
-        <PackageReference Include="RichardSzalay.MockHttp" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="RichardSzalay.MockHttp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libs\shared\Json.Utilities\Json.Utilities.csproj" />
+  </ItemGroup>
 
 </Project>

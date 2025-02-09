@@ -15,5 +15,10 @@
             ArgumentValidator.ThrowIfNull(context);
             _context = context;
         }
+
+#if NET6_0_OR_GREATER
+        static TraktClient()
+            => JsonSerializerContextFactoryRegistry.RegisterFactory(Constants.Json.FactoryKey, new JsonSerializerContextFactory());
+#endif
     }
 }

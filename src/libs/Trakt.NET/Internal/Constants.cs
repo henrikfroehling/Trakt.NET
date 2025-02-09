@@ -100,6 +100,8 @@ namespace TraktNET
 
         internal static class Json
         {
+            internal const string FactoryKey = "trakt";
+
 #if NET8_0_OR_GREATER
             internal static readonly JsonNamingPolicy NamingPolicy = JsonNamingPolicy.SnakeCaseLower;
 #else
