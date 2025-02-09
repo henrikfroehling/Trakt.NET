@@ -14,5 +14,11 @@ namespace TraktNET
         /// </summary>
         [JsonPropertyName("ids")]
         public TraktSeasonIDs? IDs { get; set; }
+
+        /// <summary>
+        /// The collection of image URLs for the season.
+        /// See also <seealso cref="TraktSeasonImages" />.
+        /// </summary>
+        public TraktSeasonImages? Images { get; set; }
     }
 }

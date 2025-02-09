@@ -207,6 +207,7 @@ namespace TraktNET
         {
             typeof(TraktSeason),
             typeof(TraktSeasonIDs),
+            typeof(TraktSeasonImages),
             typeof(TraktSeasonMinimal)
         });
 
@@ -318,6 +319,7 @@ namespace TraktNET
         private static readonly HashSet<Type> s_seasonsJsonTypes = [
             typeof(TraktSeason),
             typeof(TraktSeasonIDs),
+            typeof(TraktSeasonImages),
             typeof(TraktSeasonMinimal)
         ];
 
