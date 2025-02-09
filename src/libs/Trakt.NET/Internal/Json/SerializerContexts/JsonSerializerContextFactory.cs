@@ -150,6 +150,7 @@ namespace TraktNET
         {
             typeof(TraktEpisode),
             typeof(TraktEpisodeIDs),
+            typeof(TraktEpisodeImages),
             typeof(TraktEpisodeMinimal),
             typeof(TraktEpisodeTranslation)
         });
@@ -267,6 +268,7 @@ namespace TraktNET
         private static readonly HashSet<Type> s_episodeJsonTypes = [
             typeof(TraktEpisode),
             typeof(TraktEpisodeIDs),
+            typeof(TraktEpisodeImages),
             typeof(TraktEpisodeMinimal),
             typeof(TraktEpisodeTranslation)
         ];
