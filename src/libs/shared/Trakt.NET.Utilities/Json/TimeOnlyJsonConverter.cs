@@ -1,11 +1,11 @@
-﻿#if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace TraktNET
+namespace TraktNET.Utilities.Json
 {
-    internal sealed class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
+    public sealed class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
     {
         private const string Format = "HH:mm";
 

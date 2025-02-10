@@ -1,4 +1,6 @@
-﻿namespace TraktNET
+using TraktNET.Utilities.Json;
+
+namespace TraktNET
 {
     public sealed partial class TraktClient
     {

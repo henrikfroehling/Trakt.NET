@@ -1,8 +1,7 @@
 #if NET6_0_OR_GREATER
 using System.Diagnostics;
-using System.Text.Json.Serialization;
 
-namespace TraktNET
+namespace TraktNET.Utilities.Json
 {
     public static class JsonSerializerContextFactoryRegistry
     {
@@ -14,11 +13,11 @@ namespace TraktNET
             _ = s_jsonSerializerFactories.TryAdd(key, factory);
         }
 
-        public static JsonSerializerContext GetContext<TJsonObjectType>(string factoryKey)
+        public static IJsonSerializerContextFactory Get(string factoryKey)
         {
             Debug.Assert(!string.IsNullOrWhiteSpace(factoryKey));
             Debug.Assert(s_jsonSerializerFactories.ContainsKey(factoryKey));
-            return s_jsonSerializerFactories[factoryKey].GetContext<TJsonObjectType>();
+            return s_jsonSerializerFactories[factoryKey];
         }
     }
 }

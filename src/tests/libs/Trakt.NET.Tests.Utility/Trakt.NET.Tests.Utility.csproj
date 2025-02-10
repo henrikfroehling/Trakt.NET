@@ -5,7 +5,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\libs\shared\Json.Utilities\Json.Utilities.csproj" />
+    <ProjectReference Include="..\..\..\libs\shared\Trakt.NET.Utilities\Trakt.NET.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

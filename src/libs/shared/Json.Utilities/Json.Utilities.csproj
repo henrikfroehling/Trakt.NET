@@ -1,8 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <Product>Json.Utilities ($(TargetFramework))</Product>
-    <Title>Json.Utilities</Title>
-  </PropertyGroup>
-
-</Project>

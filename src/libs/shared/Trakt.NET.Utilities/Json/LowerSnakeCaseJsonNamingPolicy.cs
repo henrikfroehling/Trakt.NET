@@ -1,13 +1,13 @@
-﻿#if !NET8_0_OR_GREATER
+#if !NET8_0_OR_GREATER
 using System.Buffers;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
-namespace TraktNET
+namespace TraktNET.Utilities.Json
 {
-    internal sealed class LowerSnakeCaseJsonNamingPolicy : JsonNamingPolicy
+    public sealed class LowerSnakeCaseJsonNamingPolicy : JsonNamingPolicy
     {
         // NOTE: Content copied from
         //       https://github.com/dotnet/runtime/blob/main/src/libraries/System.Text.Json/Common/JsonSeparatorNamingPolicy.cs
@@ -18,7 +18,12 @@ namespace TraktNET
 
         public override string ConvertName(string name)
         {
-            ArgumentValidator.ThrowIfNull(name);
+#if NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+#else
+            ArgumentNullException.ThrowIfNull(name);
+#endif
 
             char[]? rentedBuffer = null;
             ReadOnlySpan<char> chars = name.AsSpan();
