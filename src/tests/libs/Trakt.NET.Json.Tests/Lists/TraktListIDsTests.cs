@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Lists
+namespace TraktNET.Json.Lists
 {
     public sealed class TraktListIDsTests
     {
@@ -17,7 +17,7 @@
         [Fact]
         public async Task TestTraktListIDsFromJson()
         {
-            TraktListIDs? listIDs = await TestUtility.DeserializeJsonAsync<TraktListIDs>("Lists\\listids.json");
+            TraktListIDs? listIDs = await TraktTestUtility.DeserializeJsonAsync<TraktListIDs>("Lists\\listids.json");
 
             listIDs.ShouldNotBeNull();
 

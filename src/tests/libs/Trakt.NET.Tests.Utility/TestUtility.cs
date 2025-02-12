@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 
@@ -9,41 +10,47 @@ using System.Text.Json;
 
 namespace TraktNET
 {
-    public static class TestUtility
+    public abstract class TestUtility
     {
-#if NET6_0_OR_GREATER
-        static TestUtility()
-            => JsonSerializerContextFactoryRegistry.RegisterFactory(Constants.Json.FactoryKey, new JsonSerializerContextFactory());
-#endif
+        private readonly string _factoryKey;
+        private string? _location;
+        private readonly string _jsonSubDirectory;
 
-        private static string? _location;
+        protected TestUtility(string factoryKey, string jsonSubDirectory)
+        {
+            _factoryKey = factoryKey;
+            _jsonSubDirectory = jsonSubDirectory;
 
-        public static async Task<string> GetJsonFileContentAsync(string jsonFilename)
+            Debug.Assert(!string.IsNullOrWhiteSpace(_factoryKey));
+            Debug.Assert(!string.IsNullOrWhiteSpace(_jsonSubDirectory));
+        }
+
+        internal async Task<string> GetJsonFileContentAsync(string jsonFilename)
         {
             string filepath = GetJsonFilepath(jsonFilename);
             using StreamReader reader = File.OpenText(filepath);
             return await reader.ReadToEndAsync();
         }
 
-        public static async Task<T?> DeserializeJsonAsync<T>(string jsonFilename) where T : class
+        internal async Task<T?> DeserializeJsonAsync<T>(string jsonFilename) where T : class
         {
             string filepath = GetJsonFilepath(jsonFilename);
             using var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
 #if NET6_0_OR_GREATER
-            return await JsonContextSerializer.DeserializeAsync<T>(Constants.Json.FactoryKey, stream);
+            return await JsonContextSerializer.DeserializeAsync<T>(_factoryKey, stream);
 #else
             return await JsonSerializer.DeserializeAsync<T>(stream, Constants.Json.JsonOptions);
 #endif
         }
 
-        public static async Task<IReadOnlyList<T>?> DeserializeJsonListAsync<T>(string jsonFilename) where T : class
+        internal async Task<IReadOnlyList<T>?> DeserializeJsonListAsync<T>(string jsonFilename) where T : class
         {
             string filepath = GetJsonFilepath(jsonFilename);
             using var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
 #if NET6_0_OR_GREATER
-            return await JsonContextSerializer.DeserializeArrayAsync<T>(Constants.Json.FactoryKey, stream);
+            return await JsonContextSerializer.DeserializeArrayAsync<T>(_factoryKey, stream);
 #else
             return await JsonSerializer.DeserializeAsync<IReadOnlyList<T>>(stream, Constants.Json.JsonOptions);
 #endif
@@ -58,10 +65,10 @@ namespace TraktNET
         public static TimeOnly ParseTime(string time) => TimeOnly.ParseExact(time, "HH:mm", CultureInfo.InvariantCulture);
 #endif
 
-        private static string GetJsonFilepath(string jsonFilename)
-            => Path.Combine(GetLocation(), Path.Combine("..\\..\\..\\..\\JsonData", jsonFilename));
+        private string GetJsonFilepath(string jsonFilename)
+            => Path.Combine(GetLocation(), Path.Combine($"..\\..\\..\\..\\JsonData\\{_jsonSubDirectory}", jsonFilename));
 
-        private static string GetLocation()
+        private string GetLocation()
         {
             if (!string.IsNullOrWhiteSpace(_location))
             {

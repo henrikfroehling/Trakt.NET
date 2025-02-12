@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Episodes
+namespace TraktNET.Json.Episodes
 {
     public sealed class TraktEpisodeTests
     {
@@ -29,7 +29,7 @@
         [Fact]
         public async Task TestTraktEpisodeFromJsonMinimal()
         {
-            TraktEpisodeMinimal? episode = await TestUtility.DeserializeJsonAsync<TraktEpisodeMinimal>("Episodes\\episode_minimal.json");
+            TraktEpisodeMinimal? episode = await TraktTestUtility.DeserializeJsonAsync<TraktEpisodeMinimal>("Episodes\\episode_minimal.json");
 
             episode.ShouldNotBeNull();
 
@@ -51,7 +51,7 @@
         [Fact]
         public async Task TestTraktEpisodeFromJsonMinimalWithImages()
         {
-            TraktEpisodeMinimal? episode = await TestUtility.DeserializeJsonAsync<TraktEpisodeMinimal>("Episodes\\episode_minimal_images.json");
+            TraktEpisodeMinimal? episode = await TraktTestUtility.DeserializeJsonAsync<TraktEpisodeMinimal>("Episodes\\episode_minimal_images.json");
 
             episode.ShouldNotBeNull();
 
@@ -79,7 +79,7 @@
         [Fact]
         public async Task TestTraktEpisodeFromJsonFull()
         {
-            TraktEpisode? episode = await TestUtility.DeserializeJsonAsync<TraktEpisode>("Episodes\\episode_full.json");
+            TraktEpisode? episode = await TraktTestUtility.DeserializeJsonAsync<TraktEpisode>("Episodes\\episode_full.json");
 
             episode.ShouldNotBeNull();
 
@@ -123,7 +123,7 @@
         [Fact]
         public async Task TestTraktEpisodeFromJsonFullWithImages()
         {
-            TraktEpisode? episode = await TestUtility.DeserializeJsonAsync<TraktEpisode>("Episodes\\episode_full_images.json");
+            TraktEpisode? episode = await TraktTestUtility.DeserializeJsonAsync<TraktEpisode>("Episodes\\episode_full_images.json");
 
             episode.ShouldNotBeNull();
 
@@ -173,7 +173,7 @@
         [Fact]
         public async Task TestTraktEpisodeFromJsonWithTranslations()
         {
-            TraktEpisode? episode = await TestUtility.DeserializeJsonAsync<TraktEpisode>("Episodes\\episode_with_translations.json");
+            TraktEpisode? episode = await TraktTestUtility.DeserializeJsonAsync<TraktEpisode>("Episodes\\episode_with_translations.json");
 
             episode.ShouldNotBeNull();
 

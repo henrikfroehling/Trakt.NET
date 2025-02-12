@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.MoviesModule
 {
@@ -12,7 +12,7 @@ namespace TraktNET.MoviesModule
         [InlineData(TraktExtendedInfo.Full, $"{GetBoxOfficeMoviesUri}?extended=full", "Movies\\boxofficemovies.json")]
         public async Task TestGetBoxOfficeMovies(TraktExtendedInfo? extendedInfo, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent);
 
             TraktListResponse<TraktBoxOfficeMovie> response = await client.Movies.GetBoxOfficeMoviesAsync(extendedInfo);

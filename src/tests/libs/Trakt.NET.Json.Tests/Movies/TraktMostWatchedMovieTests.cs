@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMostWatchedMovieTests
     {
@@ -37,7 +37,7 @@
         [Fact]
         public async Task TestTraktMostWatchedMovieFromJsonMinimal()
         {
-            TraktMostWatchedMovie? mostWatchedMovie = await TestUtility.DeserializeJsonAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovie_minimal.json");
+            TraktMostWatchedMovie? mostWatchedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovie_minimal.json");
 
             mostWatchedMovie.ShouldNotBeNull();
 
@@ -61,7 +61,7 @@
         [Fact]
         public async Task TestTraktMostWatchedMovieFromJson()
         {
-            TraktMostWatchedMovie? mostWatchedMovie = await TestUtility.DeserializeJsonAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovie.json");
+            TraktMostWatchedMovie? mostWatchedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovie.json");
 
             mostWatchedMovie.ShouldNotBeNull();
 
@@ -125,7 +125,7 @@
         [Fact]
         public async Task TestTraktMostWatchedMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktMostWatchedMovie>? mostWatchedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovies_minimal.json");
+            IReadOnlyList<TraktMostWatchedMovie>? mostWatchedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovies_minimal.json");
 
             mostWatchedMovies.ShouldNotBeNull();
             mostWatchedMovies!.Count.ShouldBe(2);
@@ -176,7 +176,7 @@
         [Fact]
         public async Task TestTraktMostWatchedMoviesFromJson()
         {
-            IReadOnlyList<TraktMostWatchedMovie>? mostWatchedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovies.json");
+            IReadOnlyList<TraktMostWatchedMovie>? mostWatchedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostWatchedMovie>("Movies\\mostpwcmovies.json");
 
             mostWatchedMovies.ShouldNotBeNull();
             mostWatchedMovies!.Count.ShouldBe(2);

@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Users
+namespace TraktNET.Json.Users
 {
     public sealed class TraktUserTests
     {
@@ -27,7 +27,7 @@
         [Fact]
         public async Task TestTraktUserFromJsonMinimal()
         {
-            TraktUserMinimal? user = await TestUtility.DeserializeJsonAsync<TraktUserMinimal>("Users\\user_minimal.json");
+            TraktUserMinimal? user = await TraktTestUtility.DeserializeJsonAsync<TraktUserMinimal>("Users\\user_minimal.json");
 
             user.ShouldNotBeNull();
 
@@ -47,7 +47,7 @@
         [Fact]
         public async Task TestTraktUserFromJson()
         {
-            TraktUser? user = await TestUtility.DeserializeJsonAsync<TraktUser>("Users\\user.json");
+            TraktUser? user = await TraktTestUtility.DeserializeJsonAsync<TraktUser>("Users\\user.json");
 
             user.ShouldNotBeNull();
 

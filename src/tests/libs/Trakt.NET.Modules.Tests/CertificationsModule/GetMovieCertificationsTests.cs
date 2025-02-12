@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.CertificationsModule
 {
@@ -9,7 +9,7 @@ namespace TraktNET.CertificationsModule
         [Fact]
         public async Task TestGetMovieCertifications()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Certifications\\certifications.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Certifications\\certifications.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieCertificationsUri, responseContent);
 
             TraktResponse<TraktCertifications> response = await client.Certifications.GetMovieCertificationsAsync();

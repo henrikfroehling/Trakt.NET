@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.MoviesModule
 {
@@ -15,7 +15,7 @@ namespace TraktNET.MoviesModule
         [InlineData(4U, 20U, $"{GetRecentlyUpdatedMovieTraktIDsUri}?page=4&limit=20", "Movies\\updatedmovieids.json")]
         public async Task TestGetRecentlyUpdatedMovieTraktIDs(uint? page, uint? limit, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent, page, 1, limit, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(null, page, limit);
@@ -56,7 +56,7 @@ namespace TraktNET.MoviesModule
         [InlineData(4U, 20U, $"{GetRecentlyUpdatedMovieTraktIDsUri}/{StartDateValue}?page=4&limit=20", "Movies\\updatedmovieids.json")]
         public async Task TestGetRecentlyUpdatedMovieTraktIDsWithStartDate(uint? page, uint? limit, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent, page, 1, limit, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(StartDate, page, limit);
@@ -93,7 +93,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetRecentlyUpdatedMovieTraktIDsPagingHasPreviousPage()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
             TraktClient client = ModuleTestUtility.GetClient($"{GetRecentlyUpdatedMovieTraktIDsUri}?page=2", responseContent, 2, 2, 10, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(page: 2);
@@ -117,7 +117,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetRecentlyUpdatedMovieTraktIDsPagingHasNextPage()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
             TraktClient client = ModuleTestUtility.GetClient($"{GetRecentlyUpdatedMovieTraktIDsUri}?page=1", responseContent, 1, 2, 10, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(page: 1);
@@ -141,7 +141,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetRecentlyUpdatedMovieTraktIDsPagingHasPreviousPageAndHasNextPage()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
             TraktClient client = ModuleTestUtility.GetClient($"{GetRecentlyUpdatedMovieTraktIDsUri}?page=2", responseContent, 2, 3, 10, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(page: 2);
@@ -165,7 +165,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetRecentlyUpdatedMovieTraktIDsPagingHasNotPreviousPageAndHasNotNextPage()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
             TraktClient client = ModuleTestUtility.GetClient($"{GetRecentlyUpdatedMovieTraktIDsUri}?page=1", responseContent, 1, 1, 10, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(page: 1);
@@ -189,7 +189,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetRecentlyUpdatedMovieTraktIDsPagingGetPreviousPage()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
             TraktClient client = ModuleTestUtility.GetClient($"{GetRecentlyUpdatedMovieTraktIDsUri}?page=2", responseContent, 2, 2, 10, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(page: 2);
@@ -232,7 +232,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetRecentlyUpdatedMovieTraktIDsPagingGetNextPage()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\updatedmovieids.json");
             TraktClient client = ModuleTestUtility.GetClient($"{GetRecentlyUpdatedMovieTraktIDsUri}?page=1", responseContent, 1, 2, 10, 10);
 
             TraktPagedResponse<uint> response = await client.Movies.GetRecentlyUpdatedMovieTraktIDsAsync(page: 1);

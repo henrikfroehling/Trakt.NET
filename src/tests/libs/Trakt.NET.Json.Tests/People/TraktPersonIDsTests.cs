@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.People
+namespace TraktNET.Json.People
 {
     public sealed class TraktPersonIDsTests
     {
@@ -19,7 +19,7 @@
         [Fact]
         public async Task TestTraktPersonIDsFromJson()
         {
-            TraktPersonIDs? personIDs = await TestUtility.DeserializeJsonAsync<TraktPersonIDs>("People\\personids.json");
+            TraktPersonIDs? personIDs = await TraktTestUtility.DeserializeJsonAsync<TraktPersonIDs>("People\\personids.json");
 
             personIDs.ShouldNotBeNull();
 

@@ -13,7 +13,7 @@ namespace TraktNET.Json.Episodes
         [Fact]
         public async Task TestTraktEpisodeImagesFromJson()
         {
-            TraktEpisodeImages? episodeImages = await TestUtility.DeserializeJsonAsync<TraktEpisodeImages>("Episodes\\episodeimages.json");
+            TraktEpisodeImages? episodeImages = await TraktTestUtility.DeserializeJsonAsync<TraktEpisodeImages>("Episodes\\episodeimages.json");
 
             episodeImages.ShouldNotBeNull();
 

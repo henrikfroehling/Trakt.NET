@@ -18,7 +18,7 @@ namespace TraktNET.Json.Shows
         [Fact]
         public async Task TestTraktShowImagesFromJson()
         {
-            TraktShowImages? showImages = await TestUtility.DeserializeJsonAsync<TraktShowImages>("Shows\\showimages.json");
+            TraktShowImages? showImages = await TraktTestUtility.DeserializeJsonAsync<TraktShowImages>("Shows\\showimages.json");
 
             showImages.ShouldNotBeNull();
 

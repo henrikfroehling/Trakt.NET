@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Authentication
+namespace TraktNET.Json.Authentication
 {
     public sealed class TraktDeviceTests
     {
@@ -23,7 +23,7 @@
         [Fact]
         public async Task TestTraktDeviceFromJson()
         {
-            TraktDevice? device = await TestUtility.DeserializeJsonAsync<TraktDevice>("Authentication\\device.json");
+            TraktDevice? device = await TraktTestUtility.DeserializeJsonAsync<TraktDevice>("Authentication\\device.json");
 
             device.ShouldNotBeNull();
 

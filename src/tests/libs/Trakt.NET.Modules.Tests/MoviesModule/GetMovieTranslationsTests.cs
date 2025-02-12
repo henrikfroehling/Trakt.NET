@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.MoviesModule
 {
@@ -15,7 +15,7 @@ namespace TraktNET.MoviesModule
         [InlineData("en", $"{GetMovieTranslationsUri}/en", "Movies\\movietranslations.json")]
         public async Task TestGetMovieTranslationsWithID(string? language, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent);
 
             TraktListResponse<TraktMovieTranslation> response = await client.Movies.GetMovieTranslationsAsync(TestConstants.Movies.MovieID, language);
@@ -48,7 +48,7 @@ namespace TraktNET.MoviesModule
         [InlineData("en", $"{GetMovieTranslationsUriWithSlug}/en", "Movies\\movietranslations.json")]
         public async Task TestGetMovieTranslationsWithSlug(string? language, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent);
 
             TraktListResponse<TraktMovieTranslation> response = await client.Movies.GetMovieTranslationsAsync(TestConstants.Movies.MovieSlug, language);
@@ -81,7 +81,7 @@ namespace TraktNET.MoviesModule
         [InlineData("en", $"{GetMovieTranslationsUriWithSlug}/en", "Movies\\movietranslations.json")]
         public async Task TestGetMovieTranslationsWithIDs(string? language, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent);
 
             TraktListResponse<TraktMovieTranslation> response = await client.Movies.GetMovieTranslationsAsync(TestConstants.Movies.MovieIDs, language);
@@ -234,7 +234,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieTranslationsWithIDsThrowsArgumentException()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\movietranslations.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\movietranslations.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieTranslationsUriWithSlug, responseContent);
 
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.

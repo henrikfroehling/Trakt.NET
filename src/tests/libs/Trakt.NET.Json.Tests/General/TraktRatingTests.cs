@@ -16,7 +16,7 @@ namespace TraktNET.Json.General
         [Fact]
         public async Task TestTraktRatingFromJson()
         {
-            TraktRating? rating = await TestUtility.DeserializeJsonAsync<TraktRating>("General\\rating.json");
+            TraktRating? rating = await TraktTestUtility.DeserializeJsonAsync<TraktRating>("General\\rating.json");
 
             rating.ShouldNotBeNull();
 

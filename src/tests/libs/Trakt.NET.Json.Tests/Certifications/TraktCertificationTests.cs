@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Certifications
+namespace TraktNET.Json.Certifications
 {
     public sealed class TraktCertificationTests
     {
@@ -15,7 +15,7 @@
         [Fact]
         public async Task TestTraktCertificationFromJson()
         {
-            TraktCertification? certification = await TestUtility.DeserializeJsonAsync<TraktCertification>("Certifications\\certification.json");
+            TraktCertification? certification = await TraktTestUtility.DeserializeJsonAsync<TraktCertification>("Certifications\\certification.json");
 
             certification.ShouldNotBeNull();
 

@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.General
+namespace TraktNET.Json.General
 {
     public sealed class TraktStudioTests
     {
@@ -15,7 +15,7 @@
         [Fact]
         public async Task TestTraktStudioFromJson()
         {
-            TraktStudio? studio = await TestUtility.DeserializeJsonAsync<TraktStudio>("General\\studio.json");
+            TraktStudio? studio = await TraktTestUtility.DeserializeJsonAsync<TraktStudio>("General\\studio.json");
 
             studio.ShouldNotBeNull();
 

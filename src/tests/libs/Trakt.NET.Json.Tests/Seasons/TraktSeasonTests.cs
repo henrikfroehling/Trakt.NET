@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Seasons
+namespace TraktNET.Json.Seasons
 {
     public sealed class TraktSeasonTests
     {
@@ -26,7 +26,7 @@
         [Fact]
         public async Task TestTraktSeasonFromJsonMinimal()
         {
-            TraktSeasonMinimal? season = await TestUtility.DeserializeJsonAsync<TraktSeasonMinimal>("Seasons\\season_minimal.json");
+            TraktSeasonMinimal? season = await TraktTestUtility.DeserializeJsonAsync<TraktSeasonMinimal>("Seasons\\season_minimal.json");
 
             season.ShouldNotBeNull();
 
@@ -43,7 +43,7 @@
         [Fact]
         public async Task TestTraktSeasonFromJsonMinimalWithImages()
         {
-            TraktSeasonMinimal? season = await TestUtility.DeserializeJsonAsync<TraktSeasonMinimal>("Seasons\\season_minimal_images.json");
+            TraktSeasonMinimal? season = await TraktTestUtility.DeserializeJsonAsync<TraktSeasonMinimal>("Seasons\\season_minimal_images.json");
 
             season.ShouldNotBeNull();
 
@@ -70,7 +70,7 @@
         [Fact]
         public async Task TestTraktSeasonFromJsonFull()
         {
-            TraktSeason? season = await TestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full.json");
+            TraktSeason? season = await TraktTestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full.json");
 
             season.ShouldNotBeNull();
 
@@ -100,7 +100,7 @@
         [Fact]
         public async Task TestTraktSeasonFromJsonFullWithImages()
         {
-            TraktSeason? season = await TestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full_images.json");
+            TraktSeason? season = await TraktTestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full_images.json");
 
             season.ShouldNotBeNull();
 
@@ -140,7 +140,7 @@
         [Fact]
         public async Task TestTraktSeasonFromJsonFullWithEpisodes()
         {
-            TraktSeason? season = await TestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full_episodes.json");
+            TraktSeason? season = await TraktTestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full_episodes.json");
 
             season.ShouldNotBeNull();
 
@@ -273,7 +273,7 @@
         [Fact]
         public async Task TestTraktSeasonFromJsonFullWithEpisodesAndImages()
         {
-            TraktSeason? season = await TestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full_episodes_images.json");
+            TraktSeason? season = await TraktTestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_full_episodes_images.json");
 
             season.ShouldNotBeNull();
 

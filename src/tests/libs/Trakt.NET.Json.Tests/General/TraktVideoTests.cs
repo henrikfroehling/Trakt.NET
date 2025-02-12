@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.General
+namespace TraktNET.Json.General
 {
     public sealed class TraktVideoTests
     {
@@ -24,7 +24,7 @@
         [Fact]
         public async Task TestTraktVideoFromJson()
         {
-            TraktVideo? video = await TestUtility.DeserializeJsonAsync<TraktVideo>("General\\video.json");
+            TraktVideo? video = await TraktTestUtility.DeserializeJsonAsync<TraktVideo>("General\\video.json");
 
             video.ShouldNotBeNull();
 
@@ -45,7 +45,7 @@
         [Fact]
         public async Task TestTraktVideosFromJson()
         {
-            IReadOnlyList<TraktVideo>? videos = await TestUtility.DeserializeJsonListAsync<TraktVideo>("General\\videos.json");
+            IReadOnlyList<TraktVideo>? videos = await TraktTestUtility.DeserializeJsonListAsync<TraktVideo>("General\\videos.json");
 
             videos.ShouldNotBeNull();
             videos!.Count.ShouldBe(2);

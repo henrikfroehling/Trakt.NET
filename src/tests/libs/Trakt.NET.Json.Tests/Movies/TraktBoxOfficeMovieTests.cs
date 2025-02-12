@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktBoxOfficeMovieTests
     {
@@ -35,7 +35,7 @@
         [Fact]
         public async Task TestTraktBoxOfficeMovieFromJsonMinimal()
         {
-            TraktBoxOfficeMovie? boxOfficeMovie = await TestUtility.DeserializeJsonAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovie_minimal.json");
+            TraktBoxOfficeMovie? boxOfficeMovie = await TraktTestUtility.DeserializeJsonAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovie_minimal.json");
 
             boxOfficeMovie.ShouldNotBeNull();
 
@@ -57,7 +57,7 @@
         [Fact]
         public async Task TestTraktBoxOfficeMovieFromJson()
         {
-            TraktBoxOfficeMovie? boxOfficeMovie = await TestUtility.DeserializeJsonAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovie.json");
+            TraktBoxOfficeMovie? boxOfficeMovie = await TraktTestUtility.DeserializeJsonAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovie.json");
 
             boxOfficeMovie.ShouldNotBeNull();
 
@@ -116,7 +116,7 @@
         [Fact]
         public async Task TestTraktBoxOfficeMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktBoxOfficeMovie>? boxOfficeMovies = await TestUtility.DeserializeJsonListAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovies_minimal.json");
+            IReadOnlyList<TraktBoxOfficeMovie>? boxOfficeMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovies_minimal.json");
 
             boxOfficeMovies.ShouldNotBeNull();
             boxOfficeMovies!.Count.ShouldBe(2);
@@ -163,7 +163,7 @@
         [Fact]
         public async Task TestTraktBoxOfficeMoviesFromJson()
         {
-            IReadOnlyList<TraktBoxOfficeMovie>? boxOfficeMovies = await TestUtility.DeserializeJsonListAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovies.json");
+            IReadOnlyList<TraktBoxOfficeMovie>? boxOfficeMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktBoxOfficeMovie>("Movies\\boxofficemovies.json");
 
             boxOfficeMovies.ShouldNotBeNull();
             boxOfficeMovies!.Count.ShouldBe(2);

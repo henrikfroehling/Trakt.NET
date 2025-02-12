@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Checkin
+namespace TraktNET.Json.Checkin
 {
     public sealed class TraktCheckinErrorResponseTests
     {
@@ -13,7 +13,7 @@
         [Fact]
         public async Task TestTraktCheckinErrorResponseFromJson()
         {
-            TraktCheckinErrorResponse? checkinErrorResponse = await TestUtility.DeserializeJsonAsync<TraktCheckinErrorResponse>("Checkin\\errorresponse.json");
+            TraktCheckinErrorResponse? checkinErrorResponse = await TraktTestUtility.DeserializeJsonAsync<TraktCheckinErrorResponse>("Checkin\\errorresponse.json");
 
             checkinErrorResponse.ShouldNotBeNull();
 

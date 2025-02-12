@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMostFavoritedMovieTests
     {
@@ -35,7 +35,7 @@
         [Fact]
         public async Task TestTraktMostFavoritedMovieFromJsonMinimal()
         {
-            TraktMostFavoritedMovie? mostFavoritedMovie = await TestUtility.DeserializeJsonAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovie_minimal.json");
+            TraktMostFavoritedMovie? mostFavoritedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovie_minimal.json");
 
             mostFavoritedMovie.ShouldNotBeNull();
 
@@ -57,7 +57,7 @@
         [Fact]
         public async Task TestTraktMostFavoritedMovieFromJson()
         {
-            TraktMostFavoritedMovie? mostFavoritedMovie = await TestUtility.DeserializeJsonAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovie.json");
+            TraktMostFavoritedMovie? mostFavoritedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovie.json");
 
             mostFavoritedMovie.ShouldNotBeNull();
 
@@ -118,7 +118,7 @@
         [Fact]
         public async Task TestTraktMostFavoritedMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktMostFavoritedMovie>? mostFavoritedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovies_minimal.json");
+            IReadOnlyList<TraktMostFavoritedMovie>? mostFavoritedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovies_minimal.json");
 
             mostFavoritedMovies.ShouldNotBeNull();
             mostFavoritedMovies!.Count.ShouldBe(2);
@@ -165,7 +165,7 @@
         [Fact]
         public async Task TestTraktMostFavoritedMoviesFromJson()
         {
-            IReadOnlyList<TraktMostFavoritedMovie>? mostFavoritedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovies.json");
+            IReadOnlyList<TraktMostFavoritedMovie>? mostFavoritedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostFavoritedMovie>("Movies\\mostFavoritedmovies.json");
 
             mostFavoritedMovies.ShouldNotBeNull();
             mostFavoritedMovies!.Count.ShouldBe(2);

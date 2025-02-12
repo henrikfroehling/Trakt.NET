@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Shows
+namespace TraktNET.Json.Shows
 {
     public sealed class TraktShowTests
     {
@@ -37,7 +37,7 @@
         [Fact]
         public async Task TestTraktShowFromJsonMinimal()
         {
-            TraktShowMinimal? show = await TestUtility.DeserializeJsonAsync<TraktShowMinimal>("Shows\\show_minimal.json");
+            TraktShowMinimal? show = await TraktTestUtility.DeserializeJsonAsync<TraktShowMinimal>("Shows\\show_minimal.json");
 
             show.ShouldNotBeNull();
 
@@ -59,7 +59,7 @@
         [Fact]
         public async Task TestTraktShowFromJsonMinimalWithImages()
         {
-            TraktShowMinimal? show = await TestUtility.DeserializeJsonAsync<TraktShowMinimal>("Shows\\show_minimal_images.json");
+            TraktShowMinimal? show = await TraktTestUtility.DeserializeJsonAsync<TraktShowMinimal>("Shows\\show_minimal_images.json");
 
             show.ShouldNotBeNull();
 
@@ -107,7 +107,7 @@
         [Fact]
         public async Task TestTraktShowFromJsonFull()
         {
-            TraktShow? show = await TestUtility.DeserializeJsonAsync<TraktShow>("Shows\\show_full.json");
+            TraktShow? show = await TraktTestUtility.DeserializeJsonAsync<TraktShow>("Shows\\show_full.json");
 
             show.ShouldNotBeNull();
 
@@ -175,7 +175,7 @@
         [Fact]
         public async Task TestTraktShowFromJsonFullWithImages()
         {
-            TraktShow? show = await TestUtility.DeserializeJsonAsync<TraktShow>("Shows\\show_full_images.json");
+            TraktShow? show = await TraktTestUtility.DeserializeJsonAsync<TraktShow>("Shows\\show_full_images.json");
 
             show.ShouldNotBeNull();
 

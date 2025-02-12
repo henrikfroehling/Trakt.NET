@@ -14,7 +14,7 @@ namespace TraktNET.Json.Persons
         [Fact]
         public async Task TestTraktPersonImagesFromJson()
         {
-            TraktPersonImages? personImages = await TestUtility.DeserializeJsonAsync<TraktPersonImages>("People\\personimages.json");
+            TraktPersonImages? personImages = await TraktTestUtility.DeserializeJsonAsync<TraktPersonImages>("People\\personimages.json");
 
             personImages.ShouldNotBeNull();
 

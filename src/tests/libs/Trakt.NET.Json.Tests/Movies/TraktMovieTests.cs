@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMovieTests
     {
@@ -34,7 +34,7 @@
         [Fact]
         public async Task TestTraktMovieFromJsonMinimal()
         {
-            TraktMovieMinimal? movie = await TestUtility.DeserializeJsonAsync<TraktMovieMinimal>("Movies\\movie_minimal.json");
+            TraktMovieMinimal? movie = await TraktTestUtility.DeserializeJsonAsync<TraktMovieMinimal>("Movies\\movie_minimal.json");
 
             movie.ShouldNotBeNull();
 
@@ -54,7 +54,7 @@
         [Fact]
         public async Task TestTraktMovieFromJsonMinimalWithImages()
         {
-            TraktMovieMinimal? movie = await TestUtility.DeserializeJsonAsync<TraktMovieMinimal>("Movies\\movie_minimal_images.json");
+            TraktMovieMinimal? movie = await TraktTestUtility.DeserializeJsonAsync<TraktMovieMinimal>("Movies\\movie_minimal_images.json");
 
             movie.ShouldNotBeNull();
 
@@ -100,7 +100,7 @@
         [Fact]
         public async Task TestTraktMovieFromJsonFull()
         {
-            TraktMovie? movie = await TestUtility.DeserializeJsonAsync<TraktMovie>("Movies\\movie_full.json");
+            TraktMovie? movie = await TraktTestUtility.DeserializeJsonAsync<TraktMovie>("Movies\\movie_full.json");
 
             movie.ShouldNotBeNull();
 
@@ -161,7 +161,7 @@
         [Fact]
         public async Task TestTraktMovieFromJsonFullWithImages()
         {
-            TraktMovie? movie = await TestUtility.DeserializeJsonAsync<TraktMovie>("Movies\\movie_full_images.json");
+            TraktMovie? movie = await TraktTestUtility.DeserializeJsonAsync<TraktMovie>("Movies\\movie_full_images.json");
 
             movie.ShouldNotBeNull();
 

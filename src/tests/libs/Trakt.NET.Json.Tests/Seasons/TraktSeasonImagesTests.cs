@@ -14,7 +14,7 @@ namespace TraktNET.Json.Seasons
         [Fact]
         public async Task TestTraktSeasonImagesFromJson()
         {
-            TraktSeasonImages? seasonImages = await TestUtility.DeserializeJsonAsync<TraktSeasonImages>("Seasons\\seasonimages.json");
+            TraktSeasonImages? seasonImages = await TraktTestUtility.DeserializeJsonAsync<TraktSeasonImages>("Seasons\\seasonimages.json");
 
             seasonImages.ShouldNotBeNull();
 

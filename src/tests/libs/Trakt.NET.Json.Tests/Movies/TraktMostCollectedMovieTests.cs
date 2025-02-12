@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMostCollectedMovieTests
     {
@@ -37,7 +37,7 @@
         [Fact]
         public async Task TestTraktMostCollectedMovieFromJsonMinimal()
         {
-            TraktMostCollectedMovie? mostCollectedMovie = await TestUtility.DeserializeJsonAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovie_minimal.json");
+            TraktMostCollectedMovie? mostCollectedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovie_minimal.json");
 
             mostCollectedMovie.ShouldNotBeNull();
 
@@ -61,7 +61,7 @@
         [Fact]
         public async Task TestTraktMostCollectedMovieFromJson()
         {
-            TraktMostCollectedMovie? mostCollectedMovie = await TestUtility.DeserializeJsonAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovie.json");
+            TraktMostCollectedMovie? mostCollectedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovie.json");
 
             mostCollectedMovie.ShouldNotBeNull();
 
@@ -125,7 +125,7 @@
         [Fact]
         public async Task TestTraktMostCollectedMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktMostCollectedMovie>? mostCollectedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovies_minimal.json");
+            IReadOnlyList<TraktMostCollectedMovie>? mostCollectedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovies_minimal.json");
 
             mostCollectedMovies.ShouldNotBeNull();
             mostCollectedMovies!.Count.ShouldBe(2);
@@ -176,7 +176,7 @@
         [Fact]
         public async Task TestTraktMostCollectedMoviesFromJson()
         {
-            IReadOnlyList<TraktMostCollectedMovie>? mostCollectedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovies.json");
+            IReadOnlyList<TraktMostCollectedMovie>? mostCollectedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostCollectedMovie>("Movies\\mostpwcmovies.json");
 
             mostCollectedMovies.ShouldNotBeNull();
             mostCollectedMovies!.Count.ShouldBe(2);

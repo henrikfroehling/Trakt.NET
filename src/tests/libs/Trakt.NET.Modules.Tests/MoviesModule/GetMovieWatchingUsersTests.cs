@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.MoviesModule
 {
@@ -15,7 +15,7 @@ namespace TraktNET.MoviesModule
         [InlineData(TraktExtendedInfo.Full, $"{GetMovieWatchingUsersUriPrefix}/293990/{GetMovieWatchingUsersUriSuffix}?extended=full", "Movies\\moviewatchingusers.json")]
         public async Task TestGetMovieWatchingUsersWithID(TraktExtendedInfo? extendedInfo, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent);
 
             TraktListResponse<TraktUser> response = await client.Movies.GetMovieWatchingUsersAsync(TestConstants.Movies.MovieID, extendedInfo);
@@ -48,7 +48,7 @@ namespace TraktNET.MoviesModule
         [InlineData(TraktExtendedInfo.Full, $"{GetMovieWatchingUsersUriWithSlug}?extended=full", "Movies\\moviewatchingusers.json")]
         public async Task TestGetMovieWatchingUsersWithSlug(TraktExtendedInfo? extendedInfo, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent);
 
             TraktListResponse<TraktUser> response = await client.Movies.GetMovieWatchingUsersAsync(TestConstants.Movies.MovieSlug, extendedInfo);
@@ -81,7 +81,7 @@ namespace TraktNET.MoviesModule
         [InlineData(TraktExtendedInfo.Full, $"{GetMovieWatchingUsersUriWithSlug}?extended=full", "Movies\\moviewatchingusers.json")]
         public async Task TestGetMovieWatchingUsersWithIDs(TraktExtendedInfo? extendedInfo, string requestUri, string responseContentFile)
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync(responseContentFile);
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync(responseContentFile);
             TraktClient client = ModuleTestUtility.GetClient(requestUri, responseContent);
 
             TraktListResponse<TraktUser> response = await client.Movies.GetMovieWatchingUsersAsync(TestConstants.Movies.MovieIDs, extendedInfo);
@@ -234,7 +234,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieWatchingUsersWithIDsThrowsArgumentException()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviewatchingusers.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviewatchingusers.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieWatchingUsersUriWithSlug, responseContent);
 
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.

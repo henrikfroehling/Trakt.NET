@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktTrendingMovieTests
     {
@@ -35,7 +35,7 @@
         [Fact]
         public async Task TestTraktTrendingMovieFromJsonMinimal()
         {
-            TraktTrendingMovie? trendingMovie = await TestUtility.DeserializeJsonAsync<TraktTrendingMovie>("Movies\\trendingmovie_minimal.json");
+            TraktTrendingMovie? trendingMovie = await TraktTestUtility.DeserializeJsonAsync<TraktTrendingMovie>("Movies\\trendingmovie_minimal.json");
 
             trendingMovie.ShouldNotBeNull();
 
@@ -57,7 +57,7 @@
         [Fact]
         public async Task TestTraktTrendingMovieFromJson()
         {
-            TraktTrendingMovie? trendingMovie = await TestUtility.DeserializeJsonAsync<TraktTrendingMovie>("Movies\\trendingmovie.json");
+            TraktTrendingMovie? trendingMovie = await TraktTestUtility.DeserializeJsonAsync<TraktTrendingMovie>("Movies\\trendingmovie.json");
 
             trendingMovie.ShouldNotBeNull();
 
@@ -118,7 +118,7 @@
         [Fact]
         public async Task TestTraktTrendingMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktTrendingMovie>? trendingMovies = await TestUtility.DeserializeJsonListAsync<TraktTrendingMovie>("Movies\\trendingmovies_minimal.json");
+            IReadOnlyList<TraktTrendingMovie>? trendingMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktTrendingMovie>("Movies\\trendingmovies_minimal.json");
 
             trendingMovies.ShouldNotBeNull();
             trendingMovies!.Count.ShouldBe(2);
@@ -165,7 +165,7 @@
         [Fact]
         public async Task TestTraktTrendingMoviesFromJson()
         {
-            IReadOnlyList<TraktTrendingMovie>? trendingMovies = await TestUtility.DeserializeJsonListAsync<TraktTrendingMovie>("Movies\\trendingmovies.json");
+            IReadOnlyList<TraktTrendingMovie>? trendingMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktTrendingMovie>("Movies\\trendingmovies.json");
 
             trendingMovies.ShouldNotBeNull();
             trendingMovies!.Count.ShouldBe(2);

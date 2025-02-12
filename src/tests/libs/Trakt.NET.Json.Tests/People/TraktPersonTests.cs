@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.People
+namespace TraktNET.Json.People
 {
     public sealed class TraktPersonTests
     {
@@ -23,7 +23,7 @@
         [Fact]
         public async Task TestTraktPersonFromJsonMinimal()
         {
-            TraktPersonMinimal? person = await TestUtility.DeserializeJsonAsync<TraktPersonMinimal>("People\\person_minimal.json");
+            TraktPersonMinimal? person = await TraktTestUtility.DeserializeJsonAsync<TraktPersonMinimal>("People\\person_minimal.json");
 
             person.ShouldNotBeNull();
 
@@ -41,7 +41,7 @@
         [Fact]
         public async Task TestTraktPersonFromJsonMinimalWithImages()
         {
-            TraktPersonMinimal? person = await TestUtility.DeserializeJsonAsync<TraktPersonMinimal>("People\\person_minimal_images.json");
+            TraktPersonMinimal? person = await TraktTestUtility.DeserializeJsonAsync<TraktPersonMinimal>("People\\person_minimal_images.json");
 
             person.ShouldNotBeNull();
 
@@ -69,7 +69,7 @@
         [Fact]
         public async Task TestTraktPersonFromJsonFull()
         {
-            TraktPerson? person = await TestUtility.DeserializeJsonAsync<TraktPerson>("People\\person_full.json");
+            TraktPerson? person = await TraktTestUtility.DeserializeJsonAsync<TraktPerson>("People\\person_full.json");
 
             person.ShouldNotBeNull();
 
@@ -110,7 +110,7 @@
         [Fact]
         public async Task TestTraktPersonFromJsonFullWithImages()
         {
-            TraktPerson? person = await TestUtility.DeserializeJsonAsync<TraktPerson>("People\\person_full_images.json");
+            TraktPerson? person = await TraktTestUtility.DeserializeJsonAsync<TraktPerson>("People\\person_full_images.json");
 
             person.ShouldNotBeNull();
 

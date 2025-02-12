@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Authentication
+namespace TraktNET.Json.Authentication
 {
     public sealed class TraktAuthorizationTests
     {
@@ -32,7 +32,7 @@
         [Fact]
         public async Task TestTraktAuthorizationFromJson()
         {
-            TraktAuthorization? authorization = await TestUtility.DeserializeJsonAsync<TraktAuthorization>("Authentication\\authorization.json");
+            TraktAuthorization? authorization = await TraktTestUtility.DeserializeJsonAsync<TraktAuthorization>("Authentication\\authorization.json");
 
             authorization.ShouldNotBeNull();
 

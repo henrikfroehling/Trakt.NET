@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktUpdatedMovieTests
     {
@@ -34,7 +34,7 @@
         [Fact]
         public async Task TestTraktUpdatedMovieFromJsonMinimal()
         {
-            TraktUpdatedMovie? updatedMovie = await TestUtility.DeserializeJsonAsync<TraktUpdatedMovie>("Movies\\updatedmovie_minimal.json");
+            TraktUpdatedMovie? updatedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktUpdatedMovie>("Movies\\updatedmovie_minimal.json");
 
             updatedMovie.ShouldNotBeNull();
 
@@ -56,7 +56,7 @@
         [Fact]
         public async Task TestTraktUpdatedMovieFromJson()
         {
-            TraktUpdatedMovie? updatedMovie = await TestUtility.DeserializeJsonAsync<TraktUpdatedMovie>("Movies\\updatedmovie.json");
+            TraktUpdatedMovie? updatedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktUpdatedMovie>("Movies\\updatedmovie.json");
 
             updatedMovie.ShouldNotBeNull();
 
@@ -105,7 +105,7 @@
         [Fact]
         public async Task TestTraktUpdatedMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktUpdatedMovie>? updatedMovies = await TestUtility.DeserializeJsonListAsync<TraktUpdatedMovie>("Movies\\updatedmovies_minimal.json");
+            IReadOnlyList<TraktUpdatedMovie>? updatedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktUpdatedMovie>("Movies\\updatedmovies_minimal.json");
 
             updatedMovies.ShouldNotBeNull();
             updatedMovies!.Count.ShouldBe(2);
@@ -152,7 +152,7 @@
         [Fact]
         public async Task TestTraktUpdatedMoviesFromJson()
         {
-            IReadOnlyList<TraktUpdatedMovie>? updatedMovies = await TestUtility.DeserializeJsonListAsync<TraktUpdatedMovie>("Movies\\updatedmovies.json");
+            IReadOnlyList<TraktUpdatedMovie>? updatedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktUpdatedMovie>("Movies\\updatedmovies.json");
 
             updatedMovies.ShouldNotBeNull();
             updatedMovies!.Count.ShouldBe(2);

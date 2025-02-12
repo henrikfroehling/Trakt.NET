@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.General
+namespace TraktNET.Json.General
 {
     public sealed class TraktCrewMemberTests
     {
@@ -14,7 +14,7 @@
         [Fact]
         public async Task TestTraktCrewMemberFromJson()
         {
-            TraktCrewMember? crewMember = await TestUtility.DeserializeJsonAsync<TraktCrewMember>("General\\crewmember.json");
+            TraktCrewMember? crewMember = await TraktTestUtility.DeserializeJsonAsync<TraktCrewMember>("General\\crewmember.json");
 
             crewMember.ShouldNotBeNull();
 

@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.MoviesModule
 {
@@ -12,7 +12,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStatisticsWithID()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStatisticsUri, responseContent);
 
             TraktResponse<TraktMovieStatistics> response = await client.Movies.GetMovieStatisticsAsync(TestConstants.Movies.MovieID);
@@ -34,7 +34,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStatisticsWithSlug()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStatisticsUriWithSlug, responseContent);
 
             TraktResponse<TraktMovieStatistics> response = await client.Movies.GetMovieStatisticsAsync(TestConstants.Movies.MovieSlug);
@@ -56,7 +56,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStatisticsWithIDs()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStatisticsUriWithSlug, responseContent);
 
             TraktResponse<TraktMovieStatistics> response = await client.Movies.GetMovieStatisticsAsync(TestConstants.Movies.MovieIDs);
@@ -201,7 +201,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStatisticsWithIDsThrowsArgumentException()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestatistics.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStatisticsUriWithSlug, responseContent);
 
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.

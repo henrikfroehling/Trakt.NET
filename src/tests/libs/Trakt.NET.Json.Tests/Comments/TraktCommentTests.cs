@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Comments
+namespace TraktNET.Json.Comments
 {
     public sealed class TraktCommentTests
     {
@@ -23,7 +23,7 @@
         [Fact]
         public async Task TestTraktCommentFromJson()
         {
-            TraktComment? comment = await TestUtility.DeserializeJsonAsync<TraktComment>("Comments\\comment.json");
+            TraktComment? comment = await TraktTestUtility.DeserializeJsonAsync<TraktComment>("Comments\\comment.json");
 
             comment.ShouldNotBeNull();
 

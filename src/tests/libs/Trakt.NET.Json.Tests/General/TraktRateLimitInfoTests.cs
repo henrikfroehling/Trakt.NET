@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.General
+namespace TraktNET.Json.General
 {
     public sealed class TraktRateLimitInfoTests
     {
@@ -17,7 +17,7 @@
         [Fact]
         public async Task TestTraktRateLimitInfoFromJson()
         {
-            TraktRateLimitInfo? rateLimitInfo = await TestUtility.DeserializeJsonAsync<TraktRateLimitInfo>("General\\ratelimitinfo.json");
+            TraktRateLimitInfo? rateLimitInfo = await TraktTestUtility.DeserializeJsonAsync<TraktRateLimitInfo>("General\\ratelimitinfo.json");
 
             rateLimitInfo.ShouldNotBeNull();
 

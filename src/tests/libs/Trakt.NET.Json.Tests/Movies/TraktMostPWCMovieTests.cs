@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMostPWCMovieTests
     {
@@ -37,7 +37,7 @@
         [Fact]
         public async Task TestTraktMostPWCMovieFromJsonMinimal()
         {
-            TraktMostPWCMovie? mostPWCMovie = await TestUtility.DeserializeJsonAsync<TraktMostPWCMovie>("Movies\\mostpwcmovie_minimal.json");
+            TraktMostPWCMovie? mostPWCMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostPWCMovie>("Movies\\mostpwcmovie_minimal.json");
 
             mostPWCMovie.ShouldNotBeNull();
 
@@ -61,7 +61,7 @@
         [Fact]
         public async Task TestTraktMostPWCMovieFromJson()
         {
-            TraktMostPWCMovie? mostPWCMovie = await TestUtility.DeserializeJsonAsync<TraktMostPWCMovie>("Movies\\mostpwcmovie.json");
+            TraktMostPWCMovie? mostPWCMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostPWCMovie>("Movies\\mostpwcmovie.json");
 
             mostPWCMovie.ShouldNotBeNull();
 
@@ -125,7 +125,7 @@
         [Fact]
         public async Task TestTraktMostPWCMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktMostPWCMovie>? mostPWCMovies = await TestUtility.DeserializeJsonListAsync<TraktMostPWCMovie>("Movies\\mostpwcmovies_minimal.json");
+            IReadOnlyList<TraktMostPWCMovie>? mostPWCMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostPWCMovie>("Movies\\mostpwcmovies_minimal.json");
 
             mostPWCMovies.ShouldNotBeNull();
             mostPWCMovies!.Count.ShouldBe(2);
@@ -176,7 +176,7 @@
         [Fact]
         public async Task TestTraktMostPWCMoviesFromJson()
         {
-            IReadOnlyList<TraktMostPWCMovie>? mostPWCMovies = await TestUtility.DeserializeJsonListAsync<TraktMostPWCMovie>("Movies\\mostpwcmovies.json");
+            IReadOnlyList<TraktMostPWCMovie>? mostPWCMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostPWCMovie>("Movies\\mostpwcmovies.json");
 
             mostPWCMovies.ShouldNotBeNull();
             mostPWCMovies!.Count.ShouldBe(2);

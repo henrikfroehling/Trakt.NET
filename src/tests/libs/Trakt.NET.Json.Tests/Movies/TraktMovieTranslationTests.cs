@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMovieTranslationTests
     {
@@ -19,7 +19,7 @@
         [Fact]
         public async Task TestTraktMovieTranslationFromJson()
         {
-            TraktMovieTranslation? movieTranslation = await TestUtility.DeserializeJsonAsync<TraktMovieTranslation>("Movies\\movietranslation.json");
+            TraktMovieTranslation? movieTranslation = await TraktTestUtility.DeserializeJsonAsync<TraktMovieTranslation>("Movies\\movietranslation.json");
 
             movieTranslation.ShouldNotBeNull();
 
@@ -35,7 +35,7 @@
         [Fact]
         public async Task TestTraktMovieTranslationsFromJson()
         {
-            IReadOnlyList<TraktMovieTranslation>? movieTranslations = await TestUtility.DeserializeJsonListAsync<TraktMovieTranslation>("Movies\\movietranslations.json");
+            IReadOnlyList<TraktMovieTranslation>? movieTranslations = await TraktTestUtility.DeserializeJsonListAsync<TraktMovieTranslation>("Movies\\movietranslations.json");
 
             movieTranslations.ShouldNotBeNull();
             movieTranslations!.Count.ShouldBe(2);

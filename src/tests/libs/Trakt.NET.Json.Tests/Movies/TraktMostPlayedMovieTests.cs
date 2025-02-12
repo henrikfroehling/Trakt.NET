@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMostPlayedMovieTests
     {
@@ -37,7 +37,7 @@
         [Fact]
         public async Task TestTraktMostPlayedMovieFromJsonMinimal()
         {
-            TraktMostPlayedMovie? mostPlayedMovie = await TestUtility.DeserializeJsonAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovie_minimal.json");
+            TraktMostPlayedMovie? mostPlayedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovie_minimal.json");
 
             mostPlayedMovie.ShouldNotBeNull();
 
@@ -61,7 +61,7 @@
         [Fact]
         public async Task TestTraktMostPlayedMovieFromJson()
         {
-            TraktMostPlayedMovie? mostPlayedMovie = await TestUtility.DeserializeJsonAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovie.json");
+            TraktMostPlayedMovie? mostPlayedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovie.json");
 
             mostPlayedMovie.ShouldNotBeNull();
 
@@ -125,7 +125,7 @@
         [Fact]
         public async Task TestTraktMostPlayedMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktMostPlayedMovie>? mostPlayedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovies_minimal.json");
+            IReadOnlyList<TraktMostPlayedMovie>? mostPlayedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovies_minimal.json");
 
             mostPlayedMovies.ShouldNotBeNull();
             mostPlayedMovies!.Count.ShouldBe(2);
@@ -176,7 +176,7 @@
         [Fact]
         public async Task TestTraktMostPlayedMoviesFromJson()
         {
-            IReadOnlyList<TraktMostPlayedMovie>? mostPlayedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovies.json");
+            IReadOnlyList<TraktMostPlayedMovie>? mostPlayedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostPlayedMovie>("Movies\\mostpwcmovies.json");
 
             mostPlayedMovies.ShouldNotBeNull();
             mostPlayedMovies!.Count.ShouldBe(2);

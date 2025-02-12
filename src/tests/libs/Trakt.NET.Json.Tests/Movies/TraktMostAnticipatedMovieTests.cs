@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Movies
+namespace TraktNET.Json.Movies
 {
     public sealed class TraktMostAnticipatedMovieTests
     {
@@ -35,7 +35,7 @@
         [Fact]
         public async Task TestTraktMostAnticipatedMovieFromJsonMinimal()
         {
-            TraktMostAnticipatedMovie? mostAnticipatedMovie = await TestUtility.DeserializeJsonAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovie_minimal.json");
+            TraktMostAnticipatedMovie? mostAnticipatedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovie_minimal.json");
 
             mostAnticipatedMovie.ShouldNotBeNull();
 
@@ -57,7 +57,7 @@
         [Fact]
         public async Task TestTraktMostAnticipatedMovieFromJson()
         {
-            TraktMostAnticipatedMovie? mostAnticipatedMovie = await TestUtility.DeserializeJsonAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovie.json");
+            TraktMostAnticipatedMovie? mostAnticipatedMovie = await TraktTestUtility.DeserializeJsonAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovie.json");
 
             mostAnticipatedMovie.ShouldNotBeNull();
 
@@ -117,7 +117,7 @@
         [Fact]
         public async Task TestTraktMostAnticipatedMoviesFromJsonMinimal()
         {
-            IReadOnlyList<TraktMostAnticipatedMovie>? mostAnticipatedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovies_minimal.json");
+            IReadOnlyList<TraktMostAnticipatedMovie>? mostAnticipatedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovies_minimal.json");
 
             mostAnticipatedMovies.ShouldNotBeNull();
             mostAnticipatedMovies!.Count.ShouldBe(2);
@@ -164,7 +164,7 @@
         [Fact]
         public async Task TestTraktMostAnticipatedMoviesFromJson()
         {
-            IReadOnlyList<TraktMostAnticipatedMovie>? mostAnticipatedMovies = await TestUtility.DeserializeJsonListAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovies.json");
+            IReadOnlyList<TraktMostAnticipatedMovie>? mostAnticipatedMovies = await TraktTestUtility.DeserializeJsonListAsync<TraktMostAnticipatedMovie>("Movies\\mostanticipatedmovies.json");
 
             mostAnticipatedMovies.ShouldNotBeNull();
             mostAnticipatedMovies!.Count.ShouldBe(2);

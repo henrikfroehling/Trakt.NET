@@ -18,7 +18,7 @@ namespace TraktNET.Json.Movies
         [Fact]
         public async Task TestTraktMovieImagesFromJson()
         {
-            TraktMovieImages? movieImages = await TestUtility.DeserializeJsonAsync<TraktMovieImages>("Movies\\movieimages.json");
+            TraktMovieImages? movieImages = await TraktTestUtility.DeserializeJsonAsync<TraktMovieImages>("Movies\\movieimages.json");
 
             movieImages.ShouldNotBeNull();
 

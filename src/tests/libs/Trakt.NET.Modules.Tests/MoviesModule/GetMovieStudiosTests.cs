@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 namespace TraktNET.MoviesModule
 {
@@ -12,7 +12,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStudiosWithID()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStudiosUri, responseContent);
 
             TraktListResponse<TraktStudio> response = await client.Movies.GetMovieStudiosAsync(TestConstants.Movies.MovieID);
@@ -42,7 +42,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStudiosWithSlug()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStudiosUriWithSlug, responseContent);
 
             TraktListResponse<TraktStudio> response = await client.Movies.GetMovieStudiosAsync(TestConstants.Movies.MovieSlug);
@@ -72,7 +72,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStudiosWithIDs()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStudiosUriWithSlug, responseContent);
 
             TraktListResponse<TraktStudio> response = await client.Movies.GetMovieStudiosAsync(TestConstants.Movies.MovieIDs);
@@ -225,7 +225,7 @@ namespace TraktNET.MoviesModule
         [Fact]
         public async Task TestGetMovieStudiosWithIDsThrowsArgumentException()
         {
-            string responseContent = await TestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
+            string responseContent = await TraktTestUtility.GetJsonFileContentAsync("Movies\\moviestudios.json");
             TraktClient client = ModuleTestUtility.GetClient(GetMovieStudiosUriWithSlug, responseContent);
 
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.

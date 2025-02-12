@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Json.Seasons
+namespace TraktNET.Json.Seasons
 {
     public sealed class TraktSeasonIDsTests
     {
@@ -18,7 +18,7 @@
         [Fact]
         public async Task TestTraktSeasonIDsFromJson()
         {
-            TraktSeasonIDs? seasonIDs = await TestUtility.DeserializeJsonAsync<TraktSeasonIDs>("Seasons\\seasonids.json");
+            TraktSeasonIDs? seasonIDs = await TraktTestUtility.DeserializeJsonAsync<TraktSeasonIDs>("Seasons\\seasonids.json");
 
             seasonIDs.ShouldNotBeNull();
 
