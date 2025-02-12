@@ -1,4 +1,6 @@
+#if NET6_0_OR_GREATER
 using TraktNET.Utilities.Json;
+#endif
 
 namespace TraktNET
 {
