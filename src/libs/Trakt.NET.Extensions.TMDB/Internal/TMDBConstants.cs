@@ -1,9 +1,5 @@
 using System.Text.Json;
 
-#if !NET8_0_OR_GREATER
-using TraktNET.Utilities.Json;
-#endif
-
 namespace TraktNET
 {
     internal static class TMDBConstants

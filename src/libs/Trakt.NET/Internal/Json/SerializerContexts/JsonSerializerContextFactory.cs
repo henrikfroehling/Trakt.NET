@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TraktNET.Utilities.Json;
 
 #if NET8_0_OR_GREATER
 using System.Collections.Frozen;

@@ -2,11 +2,11 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace TraktNET.Utilities.Json
+namespace TraktNET
 {
-    public static class JsonContextSerializer
+    internal static class JsonContextSerializer
     {
-        public static async Task<TJsonObjectType?> DeserializeAsync<TJsonObjectType>(string factoryKey, Stream stream,
+        internal static async Task<TJsonObjectType?> DeserializeAsync<TJsonObjectType>(string factoryKey, Stream stream,
             CancellationToken cancellationToken = default) where TJsonObjectType : class
         {
             JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactoryRegistry.Get(factoryKey).GetContext<TJsonObjectType>();
@@ -15,7 +15,7 @@ namespace TraktNET.Utilities.Json
                 jsonSerializerContext, cancellationToken).ConfigureAwait(false) as TJsonObjectType;
         }
 
-        public static async Task<IReadOnlyList<TJsonObjectType>?> DeserializeArrayAsync<TJsonObjectType>(string factoryKey, Stream stream,
+        internal static async Task<IReadOnlyList<TJsonObjectType>?> DeserializeArrayAsync<TJsonObjectType>(string factoryKey, Stream stream,
             CancellationToken cancellationToken = default)
         {
             JsonSerializerContext jsonSerializerContext = JsonSerializerContextFactoryRegistry.Get(factoryKey).GetContext<TJsonObjectType>();

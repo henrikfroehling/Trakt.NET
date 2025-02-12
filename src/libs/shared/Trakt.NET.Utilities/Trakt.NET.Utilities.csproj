@@ -1,8 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <Product>Trakt.NET.Utilities ($(TargetFramework))</Product>
-    <Title>Trakt.NET.Utilities</Title>
-  </PropertyGroup>
-
-</Project>

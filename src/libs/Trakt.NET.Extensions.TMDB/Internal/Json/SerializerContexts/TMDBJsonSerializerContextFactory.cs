@@ -1,6 +1,5 @@
 #if NET6_0_OR_GREATER
 using System.Text.Json.Serialization;
-using TraktNET.Utilities.Json;
 
 namespace TraktNET
 {

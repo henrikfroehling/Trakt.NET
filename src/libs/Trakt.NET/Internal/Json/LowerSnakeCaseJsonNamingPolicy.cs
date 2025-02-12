@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
-namespace TraktNET.Utilities.Json
+namespace TraktNET
 {
     public sealed class LowerSnakeCaseJsonNamingPolicy : JsonNamingPolicy
     {

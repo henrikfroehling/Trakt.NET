@@ -4,8 +4,4 @@
     <PackageReference Include="RichardSzalay.MockHttp" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\libs\shared\Trakt.NET.Utilities\Trakt.NET.Utilities.csproj" />
-  </ItemGroup>
-
 </Project>

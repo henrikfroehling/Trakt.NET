@@ -1,9 +1,9 @@
 #if NET6_0_OR_GREATER
 using System.Text.Json.Serialization;
 
-namespace TraktNET.Utilities.Json
+namespace TraktNET
 {
-    public interface IJsonSerializerContextFactory
+    internal interface IJsonSerializerContextFactory
     {
         JsonSerializerContext GetContext<TJsonObjectType>();
     }

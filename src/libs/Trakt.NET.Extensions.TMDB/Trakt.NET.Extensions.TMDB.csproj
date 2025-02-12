@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Trakt.NET\Trakt.NET.csproj" />
-    <ProjectReference Include="..\shared\Trakt.NET.Utilities\Trakt.NET.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,4 @@
-#if NET6_0_OR_GREATER
-using TraktNET.Utilities.Json;
-#else
+#if !NET6_0_OR_GREATER
 using System.Text.Json;
 #endif
 

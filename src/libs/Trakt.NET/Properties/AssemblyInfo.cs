@@ -6,3 +6,5 @@
 [assembly: InternalsVisibleTo("Trakt.NET.Requests.Tests")]
 [assembly: InternalsVisibleTo("Trakt.NET.Tests.Utility")]
 [assembly: InternalsVisibleTo("Trakt.NET.SourceGeneration.Tests")]
+
+[assembly: InternalsVisibleTo("Trakt.NET.Extensions.TMDB")]
