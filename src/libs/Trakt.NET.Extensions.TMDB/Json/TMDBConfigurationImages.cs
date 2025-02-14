@@ -6,14 +6,14 @@ namespace TraktNET
 
         public string? SecureBaseUrl { get; set; }
 
-        public List<string>? BackdropSizes { get; set; }
+        public List<TMDBBackdropSize>? BackdropSizes { get; set; }
 
-        public List<string>? LogoSizes { get; set; }
+        public List<TMDBLogoSize>? LogoSizes { get; set; }
 
-        public List<string>? PosterSizes { get; set; }
+        public List<TMDBPosterSize>? PosterSizes { get; set; }
 
-        public List<string>? ProfileSizes { get; set; }
+        public List<TMDBProfileSize>? ProfileSizes { get; set; }
 
-        public List<string>? StillSizes { get; set; }
+        public List<TMDBStillSize>? StillSizes { get; set; }
     }
 }

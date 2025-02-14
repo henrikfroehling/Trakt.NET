@@ -14,7 +14,7 @@ namespace TraktNET
 
         public bool? Official { get; set; }
 
-        public string? Type { get; set; }
+        public TMDBVideoType? Type { get; set; }
 
         public uint? Size { get; set; }
 

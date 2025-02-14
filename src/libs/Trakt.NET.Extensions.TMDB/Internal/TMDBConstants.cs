@@ -23,7 +23,16 @@ namespace TraktNET
 
             internal static readonly JsonSerializerOptions JsonOptions = new()
             {
-                PropertyNamingPolicy = NamingPolicy
+                PropertyNamingPolicy = NamingPolicy,
+                Converters =
+                {
+                    new TMDBBackdropSizeJsonConverter(),
+                    new TMDBLogoSizeJsonConverter(),
+                    new TMDBPosterSizeJsonConverter(),
+                    new TMDBProfileSizeJsonConverter(),
+                    new TMDBStillSizeJsonConverter(),
+                    new TMDBVideoTypeJsonConverter()
+                }
             };
         }
     }
