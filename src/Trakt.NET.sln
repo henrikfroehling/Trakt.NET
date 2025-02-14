@@ -126,11 +126,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.HttpClientFactory
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Extensions.TMDB", "libs\Trakt.NET.Extensions.TMDB\Trakt.NET.Extensions.TMDB.csproj", "{5E6FE4C0-07D9-010B-E19B-DA162549E9E3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{B88173E7-DD80-40D7-B443-73E914D48D26}"
-	ProjectSection(SolutionItems) = preProject
-		libs\shared\Directory.Build.props = libs\shared\Directory.Build.props
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Extensions.TMDB.Tests", "tests\libs\Trakt.NET.Extensions.TMDB.Tests\Trakt.NET.Extensions.TMDB.Tests.csproj", "{CC693155-5F85-4C13-9082-8B9443FB85DA}"
 EndProject
 Global
@@ -215,7 +210,6 @@ Global
 		{991F0FB1-CDFD-412E-B7B2-81946E12D6D7} = {50AD22EC-EB56-476B-8DCE-4AF2B5BD8B09}
 		{AE64986B-39E8-49C2-A3E0-48FBA888B437} = {E7B2A7FC-F550-4546-8F2C-6FC9AA49F6B5}
 		{5E6FE4C0-07D9-010B-E19B-DA162549E9E3} = {E7B2A7FC-F550-4546-8F2C-6FC9AA49F6B5}
-		{B88173E7-DD80-40D7-B443-73E914D48D26} = {377A7F6A-A4B9-45F6-AB2A-492F0E1F71AD}
 		{CC693155-5F85-4C13-9082-8B9443FB85DA} = {50AD22EC-EB56-476B-8DCE-4AF2B5BD8B09}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

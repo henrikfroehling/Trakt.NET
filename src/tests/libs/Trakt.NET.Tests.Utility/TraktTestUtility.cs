@@ -21,7 +21,7 @@ namespace TraktNET
 
     internal sealed class TraktTestUtilityImplementation : TestUtility
     {
-        internal TraktTestUtilityImplementation() : base(Constants.Json.FactoryKey, "Trakt")
+        internal TraktTestUtilityImplementation() : base(Constants.Json.FactoryKey, "Trakt", Constants.Json.JsonOptions)
         {
         }
     }

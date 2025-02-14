@@ -1,0 +1,23 @@
+{
+    "id": 63056,
+    "stills": [
+        {
+            "aspect_ratio": 1.778,
+            "height": 1080,
+            "iso_639_1": null,
+            "file_path": "/9hGF3WUkBf7cSjMg0cdMDHJkByd.jpg",
+            "vote_average": 6.312,
+            "vote_count": 8,
+            "width": 1920
+        },
+        {
+            "aspect_ratio": 1.778,
+            "height": 1080,
+            "iso_639_1": null,
+            "file_path": "/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg",
+            "vote_average": 5.06,
+            "vote_count": 11,
+            "width": 1920
+        }
+    ]
+}

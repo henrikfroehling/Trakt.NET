@@ -6,7 +6,7 @@ namespace TraktNET
         Unspecified,
 
         [TraktEnumMember(JsonValue = "w92", DisplayName = "Width 92")]
-        Width82,
+        Width92,
 
         [TraktEnumMember(JsonValue = "w185", DisplayName = "Width 185")]
         Width185,

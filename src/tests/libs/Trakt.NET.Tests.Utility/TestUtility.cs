@@ -1,10 +1,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
-
-#if !NET6_0_OR_GREATER
 using System.Text.Json;
-#endif
 
 namespace TraktNET
 {
@@ -13,11 +10,13 @@ namespace TraktNET
         private readonly string _factoryKey;
         private string? _location;
         private readonly string _jsonSubDirectory;
+        private readonly JsonSerializerOptions _jsonOptions;
 
-        protected TestUtility(string factoryKey, string jsonSubDirectory)
+        protected TestUtility(string factoryKey, string jsonSubDirectory, JsonSerializerOptions jsonOptions)
         {
             _factoryKey = factoryKey;
             _jsonSubDirectory = jsonSubDirectory;
+            _jsonOptions = jsonOptions;
 
             Debug.Assert(!string.IsNullOrWhiteSpace(_factoryKey));
             Debug.Assert(!string.IsNullOrWhiteSpace(_jsonSubDirectory));
@@ -38,7 +37,7 @@ namespace TraktNET
 #if NET6_0_OR_GREATER
             return await JsonContextSerializer.DeserializeAsync<T>(_factoryKey, stream);
 #else
-            return await JsonSerializer.DeserializeAsync<T>(stream, Constants.Json.JsonOptions);
+            return await JsonSerializer.DeserializeAsync<T>(stream, _jsonOptions);
 #endif
         }
 
@@ -50,7 +49,7 @@ namespace TraktNET
 #if NET6_0_OR_GREATER
             return await JsonContextSerializer.DeserializeArrayAsync<T>(_factoryKey, stream);
 #else
-            return await JsonSerializer.DeserializeAsync<IReadOnlyList<T>>(stream, Constants.Json.JsonOptions);
+            return await JsonSerializer.DeserializeAsync<IReadOnlyList<T>>(stream, _jsonOptions);
 #endif
         }
 

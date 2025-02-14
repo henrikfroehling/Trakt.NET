@@ -21,7 +21,7 @@ namespace TraktNET
 
     internal sealed class TMDBTestUtilityImplementation : TestUtility
     {
-        public TMDBTestUtilityImplementation() : base(TMDBConstants.Json.FactoryKey, "TMDB")
+        public TMDBTestUtilityImplementation() : base(TMDBConstants.Json.FactoryKey, "TMDB", TMDBConstants.Json.JsonOptions)
         {
         }
     }

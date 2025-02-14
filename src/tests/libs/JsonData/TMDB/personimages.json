@@ -1,0 +1,23 @@
+{
+    "id": 3,
+    "profiles": [
+        {
+            "aspect_ratio": 0.667,
+            "height": 838,
+            "iso_639_1": null,
+            "file_path": "/zVnHagUvXkR2StdOtquEwsiwSVt.jpg",
+            "vote_average": 6.2,
+            "vote_count": 15,
+            "width": 559
+        },
+        {
+            "aspect_ratio": 0.667,
+            "height": 1923,
+            "iso_639_1": null,
+            "file_path": "/n4dwIg6NbQzeMaS1yEKKlfNJH7a.jpg",
+            "vote_average": 5.566,
+            "vote_count": 15,
+            "width": 1282
+        }
+    ]
+}

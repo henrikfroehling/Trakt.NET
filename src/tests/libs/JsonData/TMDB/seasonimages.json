@@ -1,0 +1,23 @@
+{
+    "id": 3624,
+    "posters": [
+        {
+            "aspect_ratio": 0.667,
+            "height": 1500,
+            "iso_639_1": "en",
+            "file_path": "/wgfKiqzuMrFIkU1M68DDDY8kGC1.jpg",
+            "vote_average": 6.0,
+            "vote_count": 19,
+            "width": 1000
+        },
+        {
+            "aspect_ratio": 0.692,
+            "height": 578,
+            "iso_639_1": "en",
+            "file_path": "/zwaj4egrhnXOBIit1tyb4Sbt3KP.jpg",
+            "vote_average": 5.45,
+            "vote_count": 33,
+            "width": 400
+        }
+    ]
+}
