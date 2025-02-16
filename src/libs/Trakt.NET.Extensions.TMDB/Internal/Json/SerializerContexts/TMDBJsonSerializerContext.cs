@@ -11,6 +11,8 @@ namespace TraktNET
     [JsonSerializable(typeof(IReadOnlyList<TMDBConfigurationImages>))]
     [JsonSerializable(typeof(TMDBEpisodeImages))]
     [JsonSerializable(typeof(IReadOnlyList<TMDBEpisodeImages>))]
+    [JsonSerializable(typeof(TMDBErrorResponse))]
+    [JsonSerializable(typeof(IReadOnlyList<TMDBErrorResponse>))]
     [JsonSerializable(typeof(TMDBImage))]
     [JsonSerializable(typeof(IReadOnlyList<TMDBImage>))]
     [JsonSerializable(typeof(TMDBMovieImages))]
