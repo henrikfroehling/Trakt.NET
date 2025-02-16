@@ -11,7 +11,6 @@
     <LibraryCommonNETPreviewTargets></LibraryCommonNETPreviewTargets>
 
     <LibraryTargetFrameworks>$(LibraryNETStandardTargets);net5.0;$(LibraryCommonNETTargets)</LibraryTargetFrameworks>
-    <HttpClientFactoryLibraryTargetFrameworks>$(LibraryNETStandardTargets);$(LibraryCommonNETTargets)</HttpClientFactoryLibraryTargetFrameworks>
     <TestTargetFrameworks>$(LibraryNETFrameworkTargets);$(LibraryCommonNETTargets)</TestTargetFrameworks>
 
     <!-- These tests use Verify packages which only support these .NET versions >= 6. -->

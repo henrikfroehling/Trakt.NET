@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace TraktNET
 {
-    public static class HttpClientFactoryExtensions
+    public static class TraktServiceCollectionExtensions
     {
         private const string ConfigurationKeyClientID = "TraktNET:ClientID";
         private const string ConfigurationKeyClientSecret = "TraktNET:ClientSecret";
@@ -144,7 +144,7 @@ namespace TraktNET
             httpClientBuilder.Services.AddTransient(serviceProvider =>
             {
                 IHttpClientFactory httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
-                context.HttpClientProvider = new HttpClientFactoryProvider(httpClientFactory);
+                context.HttpClientProvider = new TraktHttpClientFactoryProvider(httpClientFactory);
                 return new TraktClient(context);
             });
 

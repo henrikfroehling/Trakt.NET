@@ -93,9 +93,9 @@ jobs:
       environment_name: ${{ needs.init.outputs.environment_name }}
       target_branch_name: ${{ needs.init.outputs.target_branch_name }}
       working_directory: 'src'
-      project_names: 'src/libs/Trakt.NET/Trakt.NET.csproj;src/libs/Trakt.NET.HttpClientFactory/Trakt.NET.HttpClientFactory.csproj'
+      project_names: 'src/libs/Trakt.NET/Trakt.NET.csproj;src/libs/Trakt.NET.Extensions.TMDB/Trakt.NET.Extensions.TMDB.csproj'
       build_configuration: Release
-      binaries_root_directories: 'src/libs/Trakt.NET/bin;src/libs/Trakt.NET.HttpClientFactory/bin'
+      binaries_root_directories: 'src/libs/Trakt.NET/bin;src/libs/Trakt.NET.Extensions.TMDB/bin'
       artifacts_root_directory: 'artifacts-v2.0.0-alpha'
       artifacts_sub_directories: 'netstandard2.0,netstandard2.1,net5.0,net6.0,net7.0,net8.0,net9.0'
       artifacts_archive_name: 'Trakt.NET-CI-Build-v2.0.0-Alpha-${{ needs.init.outputs.target_branch_name }}'
