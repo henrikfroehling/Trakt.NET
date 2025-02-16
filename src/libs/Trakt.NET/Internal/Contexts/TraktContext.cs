@@ -1,33 +1,13 @@
-﻿namespace TraktNET
+namespace TraktNET
 {
-    public abstract class TraktContext
+    public abstract class TraktContext : ITraktContext
     {
         private string _clientID = string.Empty;
         private string _clientSecret = string.Empty;
 
-        internal string ID { get; }
+        public string ID { get; }
 
-        internal string ClientID
-        {
-            get => _clientID;
-
-            set
-            {
-                ArgumentValidator.ThrowIfNullOrWhiteSpace(value, "client ID must not be null or empty or only whitespace", checkSpaces: true);
-                _clientID = value;
-            }
-        }
-
-        internal string ClientSecret
-        {
-            get => _clientSecret;
-
-            set
-            {
-                ArgumentValidator.ThrowIfNullOrWhiteSpace(value, "client secret must not be null or empty or only whitespace", checkSpaces: true);
-                _clientSecret = value;
-            }
-        }
+        public Uri BaseUri { get; internal set; }
 
         public TraktAuthorization? Authorization { get; set; }
 
@@ -102,12 +82,6 @@
         public static TraktContext CreateForSandbox(string clientID, string clientSecret)
             => new TraktSandboxContext(clientID, clientSecret);
 
-        internal Uri BaseUri { get; set; }
-
-        internal Uri BaseAuthorizationUri { get; set; }
-
-        internal HttpClientProvider HttpClientProvider { get; set; }
-
         protected TraktContext(string clientID, string clientSecret)
         {
             ID = Guid.NewGuid().ToString();
@@ -139,6 +113,32 @@
             Sync = new TraktSyncModule(this);
             Users = new TraktUsersModule(this);
         }
+
+        internal string ClientID
+        {
+            get => _clientID;
+
+            set
+            {
+                ArgumentValidator.ThrowIfNullOrWhiteSpace(value, "client ID must not be null or empty or only whitespace", checkSpaces: true);
+                _clientID = value;
+            }
+        }
+
+        internal string ClientSecret
+        {
+            get => _clientSecret;
+
+            set
+            {
+                ArgumentValidator.ThrowIfNullOrWhiteSpace(value, "client secret must not be null or empty or only whitespace", checkSpaces: true);
+                _clientSecret = value;
+            }
+        }
+
+        internal Uri BaseAuthorizationUri { get; set; }
+
+        internal HttpClientProvider<TraktContext> HttpClientProvider { get; set; }
 
         internal HttpClient GetHttpClient() => HttpClientProvider.GetHttpClient(this);
     }

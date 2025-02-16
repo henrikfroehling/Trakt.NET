@@ -4,7 +4,7 @@ namespace TraktNET
     {
         private readonly TraktContext _context;
 
-        internal HttpClientProvider HttpClientProvider
+        internal HttpClientProvider<TraktContext> HttpClientProvider
         {
             get => _context.HttpClientProvider;
             set => _context.HttpClientProvider = value;

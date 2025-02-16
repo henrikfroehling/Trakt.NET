@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using System.Net.Http.Headers;
 
 #if !NETSTANDARD2_0
@@ -7,11 +7,11 @@ using System.Net.Mime;
 
 namespace TraktNET
 {
-    internal abstract class HttpClientProvider
+    internal abstract class HttpClientProvider<TContext> where TContext : ITraktContext
     {
-        internal abstract HttpClient GetHttpClient(TraktContext context);
+        internal abstract HttpClient GetHttpClient(TContext context);
 
-        protected static HttpClient CreateHttpClient(TraktContext context)
+        protected static HttpClient CreateHttpClient(TContext context)
         {
             var httpClient = new HttpClient { BaseAddress = context.BaseUri };
 
@@ -25,7 +25,7 @@ namespace TraktNET
         }
     }
 
-    internal sealed class DefaultHttpClientProvider : HttpClientProvider
+    internal sealed class DefaultHttpClientProvider : HttpClientProvider<TraktContext>
     {
         private static readonly ConcurrentDictionary<string, HttpClient> s_httpClientCache = new();
 

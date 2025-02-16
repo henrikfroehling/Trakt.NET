@@ -20,6 +20,8 @@ namespace TraktNET
 
         internal static class Request
         {
+            internal const string AuthenticationScheme = "Bearer";
+
             internal static class Headers
             {
                 internal const string APIVersionHeaderKey = "trakt-api-version";

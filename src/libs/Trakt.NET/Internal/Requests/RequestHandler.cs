@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Headers;
+using System.Net.Http.Headers;
 
 namespace TraktNET
 {
@@ -97,8 +97,6 @@ namespace TraktNET
 
         private static void AddRequestMessageHeaders(TraktContext context, RequestBase request)
         {
-            const string AuthenticationScheme = "Bearer";
-
             request.Headers.Add(Constants.Request.Headers.APIVersionHeaderKey, $"{Constants.API.Version}");
             request.Headers.Add(Constants.Request.Headers.APIClientIDHeaderKey, context.ClientID);
 
@@ -117,7 +115,7 @@ namespace TraktNET
 
             if (context.Authorization != null)
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue(AuthenticationScheme, context.Authorization!.AccessToken ?? string.Empty);
+                request.Headers.Authorization = new AuthenticationHeaderValue(Constants.Request.AuthenticationScheme, context.Authorization!.AccessToken ?? string.Empty);
             }
         }
 

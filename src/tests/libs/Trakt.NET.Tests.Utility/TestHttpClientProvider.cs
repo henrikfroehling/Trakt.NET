@@ -1,4 +1,4 @@
-﻿using RichardSzalay.MockHttp;
+using RichardSzalay.MockHttp;
 using System.Net;
 
 #if TRAKT_NET_4XX_FRAMEWORK_TARGET
@@ -10,7 +10,7 @@ using System.Text;
 
 namespace TraktNET
 {
-    internal sealed class TestHttpClientProvider : HttpClientProvider, IDisposable
+    internal sealed class TestHttpClientProvider : HttpClientProvider<TraktContext>, IDisposable
     {
         private const string AcceptMediaType = "application/json";
         private const string TraktApiHeaderKey = "trakt-api-key";
