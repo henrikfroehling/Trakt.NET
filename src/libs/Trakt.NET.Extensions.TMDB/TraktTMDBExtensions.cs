@@ -4,6 +4,13 @@ namespace TraktNET
 {
     public static class TraktTMDBExtensions
     {
+        public static TraktClient WithTMDB(this TraktClient client, string readAccessToken)
+        {
+            var context = new TMDBContext(readAccessToken);
+            ContextRegistry.Add(TMDBConstants.ContextRegistryKey, context);
+            return client;
+        }
+
         public static async Task<TMDBResponse<TMDBMovieImages>> GetTMDBImagesAsync(this TraktMovieMinimal traktMovie, CancellationToken cancellationToken = default)
         {
             // TODO

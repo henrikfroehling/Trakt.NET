@@ -4,6 +4,8 @@ namespace TraktNET
 {
     internal static class TMDBConstants
     {
+        internal const string ContextRegistryKey = "tmdb";
+
         internal static class API
         {
             internal const string BaseURL = "https://api.themoviedb.org/";

@@ -77,10 +77,18 @@ namespace TraktNET
         public TraktUsersModule Users { get; }
 
         public static TraktContext Create(string clientID, string clientSecret)
-            => new TraktDefaultContext(clientID, clientSecret);
+        {
+            var context = new TraktDefaultContext(clientID, clientSecret);
+            ContextRegistry.Add(context);
+            return context;
+        }
 
         public static TraktContext CreateForSandbox(string clientID, string clientSecret)
-            => new TraktSandboxContext(clientID, clientSecret);
+        {
+            var context = new TraktSandboxContext(clientID, clientSecret);
+            ContextRegistry.Add(context);
+            return context;
+        }
 
         protected TraktContext(string clientID, string clientSecret)
         {
